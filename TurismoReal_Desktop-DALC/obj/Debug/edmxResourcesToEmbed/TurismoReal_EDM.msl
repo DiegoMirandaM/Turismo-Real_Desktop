@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TURISMOREAL_ModelStoreContainer" CdmEntityContainer="TurismoReal_Entities">
+    <FunctionImportMapping FunctionImportName="SP_ALTERNAR_DISP_DPTO" FunctionName="TURISMOREAL_Model.Store.SP_ALTERNAR_DISP_DPTO" />
+    <FunctionImportMapping FunctionImportName="SP_CANCEL_RESERVA" FunctionName="TURISMOREAL_Model.Store.SP_CANCEL_RESERVA" />
+    <FunctionImportMapping FunctionImportName="SP_CHECKIN" FunctionName="TURISMOREAL_Model.Store.SP_CHECKIN" />
+    <FunctionImportMapping FunctionImportName="SP_CHECKOUT" FunctionName="TURISMOREAL_Model.Store.SP_CHECKOUT" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_ARRIENDO" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_ARRIENDO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_MULTA" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_MULTA" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_RESERVA" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_RESERVA" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_USUARIO" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_USUARIO" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ARRIENDO" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_ARRIENDO" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_DPTO" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_DPTO" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_ITEM" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_ITEM" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_MANTEN" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_MANTEN" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_MULTA" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_MULTA" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_USUARIO" FunctionName="TURISMOREAL_Model.Store.SP_DELETE_USUARIO" />
+    <FunctionImportMapping FunctionImportName="SP_LOGIN" FunctionName="TURISMOREAL_Model.Store.SP_LOGIN" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_ARRIENDO" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_ARRIENDO" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_DPTO" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_DPTO" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_ITEM" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_ITEM" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_MANTEN" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_MANTEN" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVA" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_RESERVA" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_USUARIO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_DISP_SERVICIO" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_DISP_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_DPTO" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_DPTO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_ITEM" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_ITEM" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_MANTEN" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_MANTEN" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_SERVICIO" FunctionName="TURISMOREAL_Model.Store.SP_CREATE_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_DISP_SERVICIO" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_DISP_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_SERVICIO" FunctionName="TURISMOREAL_Model.Store.SP_UPDATE_SERVICIO" />
+    <EntitySetMapping Name="AMIGO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.AMIGO">
+        <MappingFragment StoreEntitySet="AMIGO">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="FEC_NAC" ColumnName="FEC_NAC" />
+          <ScalarProperty Name="NOMBRE_COMPLETO" ColumnName="NOMBRE_COMPLETO" />
+          <ScalarProperty Name="DV" ColumnName="DV" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ARRIENDO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.ARRIENDO">
+        <MappingFragment StoreEntitySet="ARRIENDO">
+          <ScalarProperty Name="TOTAL_ARRIENDO" ColumnName="TOTAL_ARRIENDO" />
+          <ScalarProperty Name="CHECK_OUT" ColumnName="CHECK_OUT" />
+          <ScalarProperty Name="CHECK_IN" ColumnName="CHECK_IN" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="RESERVA_PAGADA" ColumnName="RESERVA_PAGADA" />
+          <ScalarProperty Name="VALOR_RESERVA" ColumnName="VALOR_RESERVA" />
+          <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ARRIENDO_AMIGO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.ARRIENDO_AMIGO">
+        <MappingFragment StoreEntitySet="ARRIENDO_AMIGO">
+          <ScalarProperty Name="ID_AMIGOS" ColumnName="ID_AMIGOS" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIUDAD">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.CIUDAD">
+        <MappingFragment StoreEntitySet="CIUDAD">
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONDUCTOR">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.CONDUCTOR">
+        <MappingFragment StoreEntitySet="CONDUCTOR">
+          <ScalarProperty Name="FEC_NAC" ColumnName="FEC_NAC" />
+          <ScalarProperty Name="TIPO_LICENCIA" ColumnName="TIPO_LICENCIA" />
+          <ScalarProperty Name="APE_MAT" ColumnName="APE_MAT" />
+          <ScalarProperty Name="APE_PAT" ColumnName="APE_PAT" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_CONDUCTOR" ColumnName="ID_CONDUCTOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="CONDICION" ColumnName="CONDICION" />
+          <ScalarProperty Name="DISPONIBLE" ColumnName="DISPONIBLE" />
+          <ScalarProperty Name="PRECIO_DPTO" ColumnName="PRECIO_DPTO" />
+          <ScalarProperty Name="NRO_DPTO" ColumnName="NRO_DPTO" />
+          <ScalarProperty Name="SUPERFICIE_DPTO" ColumnName="SUPERFICIE_DPTO" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DISPONIBILIDAD_SERVICIO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.DISPONIBILIDAD_SERVICIO">
+        <MappingFragment StoreEntitySet="DISPONIBILIDAD_SERVICIO">
+          <ScalarProperty Name="ACTUALMENTE_DISPONIBLE" ColumnName="ACTUALMENTE_DISPONIBLE" />
+          <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ERROR">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.ERROR">
+        <MappingFragment StoreEntitySet="ERROR">
+          <ScalarProperty Name="ERROR_FECHA" ColumnName="ERROR_FECHA" />
+          <ScalarProperty Name="ERROR_MSG" ColumnName="ERROR_MSG" />
+          <ScalarProperty Name="ERROR_PROCESO" ColumnName="ERROR_PROCESO" />
+          <ScalarProperty Name="ID_ERROR" ColumnName="ID_ERROR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HISTORICO_ARRIENDO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.HISTORICO_ARRIENDO">
+        <MappingFragment StoreEntitySet="HISTORICO_ARRIENDO">
+          <ScalarProperty Name="VALOR_TRANSPORTES" ColumnName="VALOR_TRANSPORTES" />
+          <ScalarProperty Name="VALOR_TOURS" ColumnName="VALOR_TOURS" />
+          <ScalarProperty Name="TOTAL_MULTAS" ColumnName="TOTAL_MULTAS" />
+          <ScalarProperty Name="TOTAL_ARRIENDO" ColumnName="TOTAL_ARRIENDO" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="NOMBRE_DPTO" ColumnName="NOMBRE_DPTO" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HISTORICO_INGRESO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.HISTORICO_INGRESO">
+        <MappingFragment StoreEntitySet="HISTORICO_INGRESO">
+          <ScalarProperty Name="MONTO_MULTAS" ColumnName="MONTO_MULTAS" />
+          <ScalarProperty Name="MONTO_ARRIENDO" ColumnName="MONTO_ARRIENDO" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID_DETALLE" ColumnName="ID_DETALLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGEN">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.IMAGEN">
+        <MappingFragment StoreEntitySet="IMAGEN">
+          <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID_IMAGEN" ColumnName="ID_IMAGEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVENTARIO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.INVENTARIO">
+        <MappingFragment StoreEntitySet="INVENTARIO">
+          <ScalarProperty Name="FECHA_COMPRA" ColumnName="FECHA_COMPRA" />
+          <ScalarProperty Name="DISPONIBLE" ColumnName="DISPONIBLE" />
+          <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID_INVENTARIO" ColumnName="ID_INVENTARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MANTENCION">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.MANTENCION">
+        <MappingFragment StoreEntitySet="MANTENCION">
+          <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+          <ScalarProperty Name="ID_MANTENCION" ColumnName="ID_MANTENCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MULTA">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.MULTA">
+        <MappingFragment StoreEntitySet="MULTA">
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="MONTO_MULTA" ColumnName="MONTO_MULTA" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+          <ScalarProperty Name="ID_MULTA" ColumnName="ID_MULTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESERVA">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.RESERVA">
+        <MappingFragment StoreEntitySet="RESERVA">
+          <ScalarProperty Name="VIGENTE" ColumnName="VIGENTE" />
+          <ScalarProperty Name="COSTO_RESERVA" ColumnName="COSTO_RESERVA" />
+          <ScalarProperty Name="ACOMPANANTES" ColumnName="ACOMPANANTES" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+          <ScalarProperty Name="FECH_ARRIENDO" ColumnName="FECH_ARRIENDO" />
+          <ScalarProperty Name="NOM_PERSONA" ColumnName="NOM_PERSONA" />
+          <ScalarProperty Name="ID_RESERVA" ColumnName="ID_RESERVA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIO_CONTRATADO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.SERVICIO_CONTRATADO">
+        <MappingFragment StoreEntitySet="SERVICIO_CONTRATADO">
+          <ScalarProperty Name="REALIZADO" ColumnName="REALIZADO" />
+          <ScalarProperty Name="FECHA_REALIZACION" ColumnName="FECHA_REALIZACION" />
+          <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+          <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIO_EXTRA">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.SERVICIO_EXTRA">
+        <MappingFragment StoreEntitySet="SERVICIO_EXTRA">
+          <ScalarProperty Name="COSTO_ACTUAL" ColumnName="COSTO_ACTUAL" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_USUARIO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.TIPO_USUARIO">
+        <MappingFragment StoreEntitySet="TIPO_USUARIO">
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID_TIPOUSUARIO" ColumnName="ID_TIPOUSUARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSPORTE_REALIZADO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.TRANSPORTE_REALIZADO">
+        <MappingFragment StoreEntitySet="TRANSPORTE_REALIZADO">
+          <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
+          <ScalarProperty Name="DESC_VEHICULO" ColumnName="DESC_VEHICULO" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+          <ScalarProperty Name="ID_CONDUCTOR" ColumnName="ID_CONDUCTOR" />
+          <ScalarProperty Name="ID_TRANSPORTE" ColumnName="ID_TRANSPORTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="TURISMOREAL_Model.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="AREA_FUNCIONARIO" ColumnName="AREA_FUNCIONARIO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="CIUDAD" ColumnName="CIUDAD" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="DV" ColumnName="DV" />
+          <ScalarProperty Name="RUT" ColumnName="RUT" />
+          <ScalarProperty Name="APE_MAT" ColumnName="APE_MAT" />
+          <ScalarProperty Name="APE_PAT" ColumnName="APE_PAT" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_TIPOUSUARIO" ColumnName="ID_TIPOUSUARIO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

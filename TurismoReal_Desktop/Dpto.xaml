@@ -1,0 +1,186 @@
+﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.Dpto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurismoReal_Desktop"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        
+        Height="700" Width="1000"
+        MinHeight="700" MinWidth="1000"
+        
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Turismo Real - Departamentos" TitleCharacterCasing="Normal" WindowTitleBrush="#fe7a4a">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="rw_titulo" Height="0.65*"/>
+            <RowDefinition Name="rw_tabla_dpto" Height="1.6*"/>
+            <RowDefinition Name="rw_datos" Height="1.74*"/>
+            <RowDefinition Name="rw_titulo_inv" Height="0.4*"/>
+            <RowDefinition Name="rw_tabla_inv" Height="1.4*"/>
+            <RowDefinition Name="rw_btns_guardar" Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.04*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0" Content="Departamentos" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
+        <Label Grid.Column="1" Grid.Row="0" Content="Para actualizar, seleccione un departamento" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" FontWeight="Medium" Foreground="#04aba3"/>
+
+        <Button Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="Auto" MinHeight="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Click="btn_retroceder_Click" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="Auto" MaxWidth="45"/>
+        </Button>
+
+        <DataGrid Name="dg_listaDptos" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Background="WhiteSmoke" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionChanged="dg_listaDptos_SelectionChanged" CanUserResizeRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre Depto" Width="*"/>
+                <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="*"/>
+                <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="N° Depto" Width="0.6*"/>
+                <DataGridTextColumn Binding="{Binding Negocio_Ciudad.NOMBRE}" Header="Ciudad" Width="0.7*"/>
+                <DataGridTextColumn Binding="{Binding PRECIO_DPTO}"  Header="Precio (día)" Width="0.7*"/>
+                <DataGridTextColumn Binding="{Binding ArrendableStr}" Header="¿Arrendable?" Width="0.75*"/>
+                <DataGridTextColumn Binding="{Binding CONDICION}" Header="Estado actual" Width="1.1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <Grid Grid.Row="2" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.19*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Content="Define la información necesaria" Foreground="#04aba3" FontWeight="SemiBold" FontSize="16"/>
+
+            <StackPanel Name="sp_datosDepto" Grid.Column="0" Grid.Row="1" Orientation="Vertical" >
+                <Label Content="Nombre:" FontSize="12"/>
+                <TextBox Name="tb_nombre" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+
+
+                <Label FontSize="12" Content="Dirección:"/>
+                <TextBox Name="tb_direccion" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+
+
+                <Label Content="Ciudad:" FontSize="12"/>
+                <ComboBox Name="cb_ciudad" DisplayMemberPath="NOMBRE" FontSize="12" SelectedValuePath="ID_CIUDAD" VerticalContentAlignment="Center" Width="Auto"/>
+
+            </StackPanel>
+
+            <StackPanel Name="sp_datosDepto2" Grid.Column="2" Grid.Row="2" Orientation="Vertical">
+
+                <Label FontSize="12" Content="Número departamento:"/>
+                <TextBox Name="tb_numDpto" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+
+
+                <Label Content="Superficie depto:" FontSize="12"/>
+                <TextBox Name="tb_superficie" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+
+
+                <Label FontSize="12" Content="Precio por día:"/>
+                <TextBox Name="tb_precio" FontSize="12" VerticalContentAlignment="Center" Width="Auto"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4" Grid.Row="1">
+                <Label FontSize="12" Content="Estado actual:"/>
+
+                <TextBox Name="tb_estadoActual" TextWrapping="Wrap" Height="130" Width="Auto"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="6" Grid.Row="1">
+                <TextBlock Text="¿El departamento se encuentra disponible?" TextWrapping="Wrap" TextAlignment="Center"/>
+
+                <Border Background="White" CornerRadius="10" BorderThickness="2" MaxHeight="42" Margin="5,5,5,0" BorderBrush="#04aba3">
+                    <mah:Tile Name="btn_noDisp" Title="No disponible" Width="Auto" Height="Auto" Background="Transparent" Foreground="#04aba3" FontWeight="DemiBold" VerticalTitleAlignment="Center" HorizontalTitleAlignment="Center" TitleFontSize="12" Click="btn_noDisp_Click"/>
+                </Border>
+
+                <Border Background="#04aba3" CornerRadius="10" BorderThickness="2" MaxHeight="42" Margin="5,5,5,0">
+                    <mah:Tile Name="btn_disp" Title="Disponible" Width="Auto" Height="Auto" Background="Transparent" Foreground="#d4e8e6" FontWeight="DemiBold" VerticalTitleAlignment="Center" HorizontalTitleAlignment="Center" TitleFontSize="12" Click="btn_disp_Click"/>
+                </Border>
+            </StackPanel>
+
+        </Grid>
+
+        <Label Grid.Column="1" Grid.Row="3" Content="Inventario asociado" Foreground="#fe7a4a" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left"  VerticalContentAlignment="Center"/>
+
+        <Grid Grid.Row="4" Grid.Column="1" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <DataGrid Name="dg_inventario" Grid.Column="0" HorizontalAlignment="Left" Background="WhiteSmoke" Margin="0,0,0,15" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False"  IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.4*"/>
+                    <DataGridTextColumn Binding="{Binding VALOR}" Header="Valor" Width="0.3*"/>
+                    <DataGridTextColumn Binding="{Binding FECHA_COMPRA}" Header="Fecha de compra" Width="0.52*"/>
+                    <DataGridTextColumn Binding="{Binding DisponibleStr}" Header="¿Disponible?" Width="0.4*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Border Grid.Column="2" Background="#04aba3" CornerRadius="15" Margin="0,0,0,30" MaxWidth="150">
+                <mah:Tile Name="btn_gestMantenciones" Title="Calendarizar mantenciones" Width="Auto" Height="Auto" Background="Transparent" Foreground="#d4e8e6" VerticalAlignment="Center" HorizontalTitleAlignment="Center" VerticalContentAlignment="Center" TitleFontSize="14" Click="btn_gestMantenciones_Click" >
+                    <Image Source="images\calendarizar_icono.png" Stretch="None" Margin="0,0,0,45"/>
+                </mah:Tile>
+            </Border>
+
+            <Border  Grid.Column="4" Background="#04aba3" CornerRadius="15" Margin="0,0,0,30" MaxWidth="150">
+                <mah:Tile Name="btn_gestImagenes" Title="Gestionar imagenes" Width="Auto" Height="Auto" Background="Transparent" Foreground="#d4e8e6" HorizontalTitleAlignment="Center" VerticalAlignment="Center" TitleFontSize="14" Click="btn_gestImagenes_Click" >
+                    <Image Source="images\gestionar imagenes_icono.png" Stretch="None" Margin="0,0,0,45"/>
+                </mah:Tile>
+                </Border>
+
+            <Border Grid.Column="6"  Background="#04aba3" CornerRadius="15" Margin="0,0,0,30" MaxWidth="150">
+                <mah:Tile Name="btn_gestInventario" Title="Gestionar inventario" Width="Auto" Height="Auto" Background="Transparent" Foreground="#d4e8e6" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_gestInventario_Click" >
+                    <Image Source="images\gestionar inventario_icono.png" Stretch="None" Margin="0,0,0,45"/>
+                </mah:Tile>
+            </Border>
+
+        </Grid>
+
+        <Grid Name="btns_guardar" Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.9*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="1" Background="White" CornerRadius="20" BorderBrush="#fe7a4a" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5">
+                <mah:Tile Name="btn_actualizarDpto" Title="Actualizar departamento" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#fe7a4a" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_actualizarDpto_Click"/>
+            </Border>
+
+            <Border Grid.Column="3" Background="#fe7a4a" CornerRadius="20" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5">
+                <mah:Tile Name="btn_nuevoDpto" Title="Guardar nuevo departamento" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#d4e8e6" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_nuevoDpto_Click"/>
+            </Border>
+
+        </Grid>
+
+
+    </Grid>
+</mah:MetroWindow>

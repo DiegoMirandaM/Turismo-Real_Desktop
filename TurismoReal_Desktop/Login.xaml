@@ -1,0 +1,49 @@
+﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurismoReal_Desktop"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        
+        
+        MinWidth="900"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Title="Turismo Real - Inicio de sesión" Height="450" Width="800" WindowTitleBrush="#fe7a4a">
+    <mah:MetroWindow.Background>
+        <ImageBrush ImageSource="images/backgroundLogin.jpg"/>
+    </mah:MetroWindow.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Name="border_login" Grid.Column="1" Margin="30,30,30,30" CornerRadius="10,10,10,10" Background="White"/>
+
+        <Label Grid.Column="1" Foreground="#fe7a4a" x:Name="lb_titulo" Content="Turismo              " Margin="0,50,0,0" FontSize="46" Height="85" VerticalAlignment="Top" HorizontalAlignment="Center" Width="282" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Grid.Column="1" Foreground="#04aba3" x:Name="lb_titulo2" Content="              Real" Margin="0,50,0,0" FontSize="46" Height="85" VerticalAlignment="Top" HorizontalAlignment="Center" Width="282" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+
+
+
+        <Grid Grid.Column="1" x:Name="gd_login" Background="Transparent" Margin="0,150,0,0" HorizontalAlignment="Center" Width="366" Height="236" VerticalAlignment="Top" >
+
+            <Label Content="Usuario:" HorizontalAlignment="Left" Margin="19,63,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <TextBox Name="tb_user" HorizontalAlignment="Left" Margin="108,62,0,0" TextWrapping="NoWrap" Width="200" Height="28" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="1" Text="admin01" KeyDown="tb_enter_KeyDown"/>
+            <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="19,116,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <Label Content="BIENVENIDO" Foreground="#04aba3" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
+
+            <PasswordBox Name="tb_pass"  Margin="108,116,58,94" VerticalContentAlignment="Center" TabIndex="2" Password="password" KeyDown="tb_enter_KeyDown"/>
+
+            <Button x:Name="btn_login" Content="Iniciar Sesión" HorizontalAlignment="Center" Margin="0,178,0,0" VerticalAlignment="Top" Height="32" Width="110" TabIndex="3" Click="btn_login_Click"/>
+        </Grid>
+
+
+
+
+
+    </Grid>
+</mah:MetroWindow>

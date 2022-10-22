@@ -1,0 +1,13 @@
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-Controlador.dll.config
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-Controlador.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-Controlador.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\EntityFramework.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-DALC.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-DALC.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\TurismoReal_Desktop-DALC.dll.config
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\bin\Debug\EntityFramework.xml
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Negocio.csproj.AssemblyReference.cache
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Negocio.csproj.CoreCompileInputs.cache
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Negocio.csproj.CopyComplete
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Controlador.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Controlador.pdb

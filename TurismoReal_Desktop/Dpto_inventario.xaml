@@ -1,0 +1,109 @@
+﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.Dpto_inventario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurismoReal_Desktop"
+        mc:Ignorable="d"
+                 
+        MinHeight="500" MinWidth="800"
+        Height="500" Width="800"
+        
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        
+        Title="Inventario del departamento - Turismo Real" TitleCharacterCasing="Normal"  WindowTitleBrush="#fe7a4a">
+    <Grid >
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="0.65*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Name="btn_retroceder" Grid.Column="0" Grid.Row="1" Width="Auto" MinHeight="40" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn_cancelar_Click" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="Auto" MaxWidth="50"/>
+        </Button>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Inventario" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="29" FontWeight="Bold"  Foreground="#fe7a4a"/>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Content="Por favor, especifique los elementos que componen el inventario del departamento..." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Medium" Foreground="#04aba3"/>
+        <Label Name="lb_selectedDpto" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Content="" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
+
+        <DataGrid Name="dg_inventario" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#d7f2ef" IsReadOnly="True" SelectionChanged="dg_inventario_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.4*"/>
+                <DataGridTextColumn Binding="{Binding VALOR}" Header="Valor" Width="0.3*"/>
+                <DataGridTextColumn Binding="{Binding FECHA_COMPRA}" Header="Fecha de compra" Width="0.52*"/>
+                <DataGridTextColumn Binding="{Binding DisponibleStr}" Header="¿Disponible?" Width="0.4*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="4" Grid.Column="4" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.3*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Nombre:"/>
+            <Label Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Valor:"/>
+            <Label Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Content="¿Disponible?"/>
+            <Label Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Fecha de compra:"/>
+
+
+            
+            <Viewbox Grid.Row="9" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50" MinWidth="600">
+                <Button Name="btn_actualizar" Background="White" Content="Actualizar" BorderBrush="#fe7a4a" BorderThickness="2" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Width="100" Click="btn_actualizar_Click"/>
+            </Viewbox>
+            
+            <!--
+            <Border Grid.Row="9" Background="White" CornerRadius="20" BorderBrush="#fe7a4a" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5" HorizontalAlignment="Left">
+                <mah:Tile Name="btn_cancelar" Title="Cancelar" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#fe7a4a" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_cancelar_Click"/>
+            </Border>
+            -->
+            
+            <TextBox Name="tb_nombre" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+            <TextBox Name="tb_valor" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+            <CheckBox Name="ck_disponible" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center"/>
+            <DatePicker Name="dt_compra" Grid.Row="7" Grid.Column="2" VerticalAlignment="Center"/>
+
+            <Viewbox Grid.Row="9" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50" MinWidth="600">
+                <Button Content="Registrar nuevo" VerticalAlignment="Center" Width="100" Height="Auto" Background="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#d4e8e6" Click="btn_nuevoInventario_Click"/>
+            </Viewbox>
+
+            <!--
+            <Border Grid.Row="9" Grid.Column="2" Background="#fe7a4a" CornerRadius="20" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5">
+                <mah:Tile Title="Guardar cambios" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#d4e8e6" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_nuevoInventario_Click"/>
+            </Border>
+            -->
+
+
+        </Grid>
+
+    </Grid>
+</mah:MetroWindow>

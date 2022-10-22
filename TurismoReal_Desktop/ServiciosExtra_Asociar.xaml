@@ -1,0 +1,55 @@
+﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.ServiciosExtra_Asociar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurismoReal_Desktop"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:fa="http://schemas.fontawesome.io/icons/"
+            mc:Ignorable="d"
+                 
+        MinHeight="570" MinWidth="950" 
+        Height="570" Width="950"        
+        WindowStartupLocation="CenterScreen"
+        Title="Relacionar servicio con departamentos" WindowTitleBrush="#fe7a4a" Background="White" TitleCharacterCasing="Normal">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1.7*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Name="rd_datagrid" Height="2*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="1" Content="Relación servicio - departamentos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="29" FontWeight="Bold"  Foreground="#fe7a4a"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Por favor, especifique disponibilidad." HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
+        <Label Name="lb_selectedServicio" Grid.Row="3" Grid.Column="1" Content="Label generada" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
+
+        <DataGrid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Width="0.9*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Dirección" Width="0.9*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Núm. Depto" Width="0.6*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ciudad" Width="0.7*" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="¿Disponible aquí?" Width="0.8*"/>
+                <DataGridCheckBoxColumn Header="¿Temporalmente deshabilitado?" Width="0.8*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+    
+    
+</mah:MetroWindow>

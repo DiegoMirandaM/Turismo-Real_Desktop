@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Behaviors;
+using MahApps.Metro.Controls.Dialogs;
+
+namespace TurismoReal_Desktop
+{
+    /// <summary>
+    /// Interaction logic for Transporte.xaml
+    /// </summary>
+    public partial class Transporte : MetroWindow
+    {
+        public Transporte()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_retroceder_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu win_mainMenu = new MainMenu();
+            win_mainMenu.Show();
+            this.Close();
+        }
+    }
+}

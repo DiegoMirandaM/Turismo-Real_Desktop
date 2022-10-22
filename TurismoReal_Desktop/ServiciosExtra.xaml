@@ -1,0 +1,74 @@
+﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.ServiciosExtra"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TurismoReal_Desktop"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:fa="http://schemas.fontawesome.io/icons/"
+                 mc:Ignorable="d"
+                 
+        WindowStartupLocation="CenterScreen"
+        Title="Turismo Real - Servicios Extra" WindowTitleBrush="#fe7a4a" MinHeight="570" MinWidth="950" Height="570" Width="950" Background="White" TitleCharacterCasing="Normal">
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Viewbox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button Name="btn_retroceder" Style="{DynamicResource MahApps.Styles.Button.Circle}" Grid.Column="0" Grid.Row="0" Width="40" Height="40" Margin="10" Click="btn_retroceder_Click">
+                <fa:ImageAwesome Icon="ArrowCircleLeft" Width="45" />
+            </Button>
+        </Viewbox>
+        
+        
+
+        <!--
+        <Button Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="Auto" MinHeight="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Click="btn_retroceder_Click" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="Auto" MaxWidth="45"/>
+        </Button>
+        -->
+
+        <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Servicios extra" FontSize="35" Foreground="#fe7a4a" FontWeight="DemiBold"/>
+        <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Por favor, seleccione un servicio..." FontSize="18" FontWeight="DemiBold" Foreground="#04aba3"/>
+
+        <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="Gray" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dg_servicios_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding DESCRIPCION}" Header="Servicio extra" Width="*"/>
+                <DataGridTextColumn Binding="{Binding COSTO_ACTUAL}" Header="Costo diario actual" Width="1.1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Column="3" Grid.Row="2" FontSize="12" Content="Nombre:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+        <Label Grid.Column="3" Grid.Row="4" FontSize="12" Content="Costo diario actual:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+
+        <TextBox Name="tb_nombre" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="Nombre del servicio" Grid.Column="5" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15"/>
+        <TextBox Name="tb_costo" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="$30.000" Grid.Column="5" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15" TextChanged="tb_costo_TextChanged" />
+
+        <Button Name="btn_actualizarServicio" Grid.Column="3" Grid.Row="6" Content="Actualizar servicio" Background="White" BorderBrush="#04aba3" BorderThickness="3" Foreground="#04aba3" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_actualizarServicio_Click"/>
+        <Button Name="btn_guardarServicio" Grid.Column="5" Grid.Row="6" Content="Guardar servicio extra" Background="#04aba3" Foreground="White" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_guardarServicio_Click"/>
+        <Button Name="btn_relacionarServicio" Grid.Column="5" Grid.Row="8"  Background="#fe7a4a" Foreground="White" FontSize="15" FontWeight="Bold" MaxHeight="70" Click="btn_relacionarServicio_Click">
+            <TextBlock Text="Relacionar servicio con departamentos" TextWrapping="Wrap" TextAlignment="Center"/>
+        </Button>
+
+
+    </Grid>
+</mah:MetroWindow>
