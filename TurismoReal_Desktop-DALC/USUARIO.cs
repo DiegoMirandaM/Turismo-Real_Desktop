@@ -36,6 +36,5 @@ namespace TurismoReal_Desktop_DALC
     
         public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
         public virtual TIPO_USUARIO TIPO_USUARIO { get; set; }
-
     }
 }

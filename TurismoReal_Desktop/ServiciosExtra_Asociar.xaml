@@ -38,16 +38,20 @@
         <Label Grid.Row="2" Grid.Column="1" Content="Por favor, especifique disponibilidad." HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
         <Label Name="lb_selectedServicio" Grid.Row="3" Grid.Column="1" Content="Label generada" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
 
-        <DataGrid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="False">
+        <DataGrid Name="dg_relacionDptos" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Width="0.9*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Dirección" Width="0.9*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Núm. Depto" Width="0.6*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Ciudad" Width="0.7*" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="¿Disponible aquí?" Width="0.8*"/>
-                <DataGridCheckBoxColumn Header="¿Temporalmente deshabilitado?" Width="0.8*"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.9*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="0.9*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="Núm. Depto" Width="0.6*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Negocio_Ciudad.NOMBRE}" Header="Ciudad" Width="0.7*" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn  Header="¿Ofrecido aquí?" Width="0.8*"/>
+                <DataGridCheckBoxColumn  Header="¿Disponible?" Width="0.8*"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Grid.Column="2" Grid.Row="6" Content="Cancelar"/>
+
+        <Button Grid.Column="4" Grid.Row="6" Content="Guardar cambios" Background="#fe7a4a" Foreground="White"/>
 
     </Grid>
     

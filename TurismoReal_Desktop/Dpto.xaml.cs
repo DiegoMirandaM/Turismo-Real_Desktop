@@ -74,8 +74,11 @@ namespace TurismoReal_Desktop
 
             actualizando = true;
 
-            Boolean resultado = seleccionado.agregarDpto(idCiudad, newDpto_NOMBRE, newDpto_DIRECCION, newDpto_SUPERFICIE_DPTO, nroDpto, precioDecimal, "0", newDpto_CONDICION);
+            Departamento newDpto = new Departamento();
+            Boolean resultado = newDpto.agregarDpto(idCiudad, newDpto_NOMBRE, newDpto_DIRECCION, newDpto_SUPERFICIE_DPTO, nroDpto, precioDecimal, "0", newDpto_CONDICION);
 
+            
+            
             if (resultado)
             {
                 limpiarCampos();
@@ -86,7 +89,7 @@ namespace TurismoReal_Desktop
             {
                 await this.ShowMessageAsync("El registro ha fallado", "Algo ha salido mal, por favor intentelo nuevamente.");
             }
-
+            
             actualizando = false;
         }
 
@@ -231,7 +234,9 @@ namespace TurismoReal_Desktop
 
                 tb_estadoActual.Text = seleccionado.CONDICION;
 
-                dg_inventario.ItemsSource = seleccionado.ListarInventario();
+                Inventario inv = new Inventario();
+
+                dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(seleccionado.ID_DPTO);
             }
         }
 

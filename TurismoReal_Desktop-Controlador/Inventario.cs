@@ -50,14 +50,13 @@ namespace TurismoReal_Desktop_Controlador
                 return new List<Inventario>();
             }
 
-
         }
 
         public Boolean CrearItem(decimal ID_DPTO, string nombre, decimal valor, string disponible, DateTime? fecCompra)
         {
             try
             {
-                conn.SP_CREA_ITEM(ID_DPTO, nombre, valor, disponible, fecCompra);
+                conn.SP_CREATE_ITEM(ID_DPTO, nombre, valor, disponible, fecCompra);
                 conn.SaveChanges();
                 
                 return true;

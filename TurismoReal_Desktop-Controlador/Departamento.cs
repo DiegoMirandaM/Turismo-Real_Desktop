@@ -28,6 +28,11 @@ namespace TurismoReal_Desktop_Controlador
         public virtual ICollection<MANTENCION> MANTENCION { get; set; }
         public virtual ICollection<DISPONIBILIDAD_SERVICIO> DISPONIBILIDAD_SERVICIO { get; set; }
 
+        string disp_createOrUpdate { get; set; }
+        Boolean disp_asociado { get; set; }
+        Boolean disp_deshabilitado { get; set; }
+
+
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
         public List<Departamento> ListarTodo()
@@ -51,9 +56,6 @@ namespace TurismoReal_Desktop_Controlador
                     depa.ArrendableStr = dato.DISPONIBLE.Equals("0") ? "No" : "Sí";
                     depa.CONDICION = dato.CONDICION;
                     depa.ARRIENDO = dato.ARRIENDO;
-
-
-                    // PROBANDO FORMAS DE ALMACENAR CIUDAD EN EL DPTO. 
                     
                     Ciudad city = new Ciudad();
                     city.ID_CIUDAD = dato.CIUDAD.ID_CIUDAD;
@@ -75,49 +77,7 @@ namespace TurismoReal_Desktop_Controlador
                 return new List<Departamento>();
             }
         }
-
-        public List<Inventario> ListarInventario()
-        {
-            try
-            {
-                /*
-                List<Inventario> listInventario = new List<Inventario>();
-                List<INVENTARIO> listDato = conn.INVENTARIO.ToList<INVENTARIO>();
-                */
-
-                string query = "SELECT * FROM INVENTARIO WHERE ID_DPTO = " + this.ID_DPTO;
-                var listDato = conn.INVENTARIO.SqlQuery(query);
-                List<Inventario> listInv = new List<Inventario>();
-
-                foreach (INVENTARIO dato in listDato)
-                {
-                    // Esto está comentado porque si el listado de inventario que es propiedad 
-                    // de esta clase ya se trae el inventario asociado, este metodo podría ser redundante.
-                    /*
-                    if (inv.DISPONIBLE.Equals("0"))
-                    {
-                        inv.DisponibleStr = "No";
-                    }
-                    else
-                    {
-                        inv.DisponibleStr = "Sí";
-                    }
-                    */
-                    Inventario inv = new Inventario();
-
-
-
-
-                    listInv.Add(inv);
-                }
-                return listInv;
-            }
-            catch (Exception)
-            {
-                return new List<Inventario>();
-            }
-        }
-
+        
         public Boolean alternarDisponibilidad(decimal id_dpto, string nuevoEstado)
         {
             try

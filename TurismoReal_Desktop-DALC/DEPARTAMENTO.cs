@@ -28,10 +28,10 @@ namespace TurismoReal_Desktop_DALC
         public string NOMBRE { get; set; }
         public string DIRECCION { get; set; }
         public string SUPERFICIE_DPTO { get; set; }
-        public string NRO_DPTO { get; set; }
         public decimal PRECIO_DPTO { get; set; }
         public string DISPONIBLE { get; set; }
         public string CONDICION { get; set; }
+        public string NRO_DPTO { get; set; }
     
         public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
         public virtual CIUDAD CIUDAD { get; set; }

@@ -31,19 +31,21 @@ namespace TurismoReal_Desktop
         public Dpto_inventario()
         {
             InitializeComponent();
-            lb_selectedDpto.Content = armarLabel();
-            recargar_listado_inventario();
+            lb_selectedDpto.Content = ArmarLabel();
+            Recargar_listado_inventario();
+            Alternar_habil_btns(false);
         }
 
         public Dpto_inventario(Departamento dpto)
         {
             InitializeComponent();
             selectedDpto = dpto;
-            lb_selectedDpto.Content = armarLabel();
-            recargar_listado_inventario();
+            lb_selectedDpto.Content = ArmarLabel();
+            Recargar_listado_inventario();
+            Alternar_habil_btns(false);
         }
 
-        private string armarLabel()
+        private string ArmarLabel()
         {
             string resultado = String.Concat("Departamento actualmente seleccionado: ", selectedDpto.NOMBRE, ", ", selectedDpto.DIRECCION, ", ", "n°", selectedDpto.NRO_DPTO, ", ", selectedDpto.Negocio_Ciudad.NOMBRE, ".");
 
@@ -98,7 +100,7 @@ namespace TurismoReal_Desktop
                 actualizando = true;
 
                 limpiarCampos();
-                recargar_listado_inventario();
+                Recargar_listado_inventario();
                 actualizando = false;
 
                 await this.ShowMessageAsync("Registro exitoso", "El elemento especificado se ha registrado exitosamente.");
@@ -112,6 +114,12 @@ namespace TurismoReal_Desktop
 
         private async void btn_actualizar_Click(object sender, RoutedEventArgs e)
         {
+            // Si por algun motivo el boton de actualizar esta activado sin tener seleccionado un objeto de inventario, que no deberia, retornar de inmediato en vez de crashear.
+            if (selectedInventario == null)
+            {
+                return;
+            }
+
             // No deja proceder si faltan datos. 
             if (String.IsNullOrEmpty(tb_nombre.Text.Trim()) || String.IsNullOrEmpty(tb_valor.Text.Trim()) || dt_compra.SelectedDate == null)
             {
@@ -156,7 +164,7 @@ namespace TurismoReal_Desktop
                 actualizando = true;
 
                 limpiarCampos();
-                recargar_listado_inventario();
+                
                 actualizando = false;
 
                 await this.ShowMessageAsync("Actualización exitosa", "El elemento especificado se ha actualizado exitosamente.");
@@ -169,15 +177,23 @@ namespace TurismoReal_Desktop
 
         }
 
-
-
-
         private void limpiarCampos()
         {
             tb_nombre.Clear();
             tb_valor.Clear();
             ck_disponible.IsChecked = true;
             dt_compra.SelectedDate = null;
+
+            selectedInventario = null;
+
+            Alternar_habil_btns(false);
+
+            Recargar_listado_inventario();
+        }
+
+        private void Alternar_habil_btns(bool estado)
+        {
+            btn_actualizar.IsEnabled = estado;
         }
 
         private void btn_cancelar_Click(object sender, RoutedEventArgs e)
@@ -185,16 +201,21 @@ namespace TurismoReal_Desktop
             this.Close();
         }
 
-        private void recargar_listado_inventario()
+        private void Recargar_listado_inventario()
         {
-            dg_inventario.ItemsSource = selectedDpto.ListarInventario();
+            Inventario inv = new Inventario();
+            dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(selectedDpto.ID_DPTO);
         }
 
         private void dg_inventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (actualizando == false)
             {
+                Alternar_habil_btns(true);
+
                 selectedInventario = (Inventario)e.AddedItems[0];
+
+                //Recien aqui habilita boton de actualizar
 
                 tb_nombre.Text = selectedInventario.NOMBRE;
                 tb_valor.Text = selectedInventario.VALOR.ToString();

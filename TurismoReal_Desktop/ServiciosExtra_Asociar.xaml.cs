@@ -42,7 +42,28 @@ namespace TurismoReal_Desktop
         private void recargar_listado_dptos()
         {
             Departamento dpto = new Departamento();
-            dpto.ListarTodo();
+            Disponibilidad_servicio disp = new Disponibilidad_servicio();
+
+            var listadoDptos = dpto.ListarTodo();
+            var listadoDisps = disp.ListarTodoDeServicio(selectedService.ID_SERVICIO);
+
+            /* En esta parte, tengo que iterar por cada depto buscando su correlacion en el listado de disponibilidad. 
+             * Si no existe correlacion, ambos checkbox son false, y disp_createOrUpdate es Create.
+             * Si existe, "Ofrecido aqui" es verdadero, disponible toma el valor desde Disponibilidad_servicio, y disp_createOrUpdate es Update. 
+             * 
+             * Al momento de desmarcar Ofrecido, se debiese desmarcar disponible, ya que no ofrecido = registro de disponibilidad asociado es eliminado. 
+             * 
+             * Copiar listado resultante de Dptos para poblar la tabla, de manera que se pueda comparar la version original del listado con la modificada,
+             * realizando updates y deletes solo donde se modificaron las cosas.
+             * 
+             * Entonces, al presionar guardar cambios, comparar cada registro del datagrid con su version original, si se desmarco Ofrecido, delete from.
+             * Si Ofrecido sigue marcado pero se altero disponible, update from.
+             * 
+             * Terminando ese proceso, volver a ejecutar este metodo para refrescar datagrid. 
+             */
+
+
+
         }
 
         private string armarLabel()
