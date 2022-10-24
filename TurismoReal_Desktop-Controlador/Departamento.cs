@@ -20,17 +20,15 @@ namespace TurismoReal_Desktop_Controlador
         public string ArrendableStr { get; set; }
         public string CONDICION { get; set; }
         public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
-
         public virtual Ciudad Negocio_Ciudad { get; set; }
-
         public virtual ICollection<IMAGEN> IMAGEN { get; set; }
         public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
         public virtual ICollection<MANTENCION> MANTENCION { get; set; }
         public virtual ICollection<DISPONIBILIDAD_SERVICIO> DISPONIBILIDAD_SERVICIO { get; set; }
 
-        string disp_createOrUpdate { get; set; }
-        Boolean disp_asociado { get; set; }
-        Boolean disp_deshabilitado { get; set; }
+        public string disp_createOrUpdate { get; set; }
+        public Boolean disp_asociado { get; set; }
+        public Boolean disp_habilitado { get; set; }
 
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();

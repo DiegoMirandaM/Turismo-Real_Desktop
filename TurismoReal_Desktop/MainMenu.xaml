@@ -9,17 +9,17 @@
         mc:Ignorable="d"
         
         
-        MinWidth="640"
-        MinHeight="400"
+        Height="450" Width="945"
+                 
         WindowStartupLocation="CenterScreen"
-        Title="Turismo Real - Menú principal" WindowTitleBrush="#fe7a4a" Height="450" Width="800" ResizeMode="CanMinimize" Background="White">
+        Title="Menú principal - Turismo Real" WindowTitleBrush="#fe7a4a" BorderBrush="Black" TitleCharacterCasing="Normal" ResizeMode="CanMinimize" Background="White">
 
-    <Grid>
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.55*"/>
-            <RowDefinition Height="0.4*"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.7*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -28,37 +28,44 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_cerrarSesion" Grid.Column="0" Grid.Row="0" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5,15,0,0" Click="btn_cerrarSesion_Click" >
-            <fa:ImageAwesome Icon="SignOut" Width="45" Rotation="180"/>
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_cerrarSesion" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btn_cerrarSesion_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
-        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="Turismo" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" Foreground="#fe7a4a"/>
-        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="              Real" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" Foreground="#04aba3"/>
-        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Bienvenido administador" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="#fe7a4a"/>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Content="Turismo" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="#fe7a4a"/>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Content="              Real" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="48" FontWeight="Bold" Foreground="#04aba3"/>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Content="Bienvenido administador" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#fe7a4a"/>
 
         <Border Grid.Row="2" Grid.Column="1" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
-            <mah:Tile Title="DEPARTAMENTOS" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_winDpto_Click">
+            <mah:Tile Title="DEPARTAMENTOS" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" FontWeight="Bold" TitleFontSize="14" HorizontalTitleAlignment="Center" Click="btn_winDpto_Click">
                 <Image Source="images\edificio_icono.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="2" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
-            <mah:Tile Name="btn_transporte" Title="TRANSPORTE" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_transporte_Click">
+            <mah:Tile Name="btn_transporte" Title="TRANSPORTE" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" FontWeight="Bold" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_transporte_Click">
                 <Image Source="images\bus_icono.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="3" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
-            <mah:Tile Title="REPORTES" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14">
+            <mah:Tile Title="REPORTES" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" FontWeight="Bold" HorizontalTitleAlignment="Center" TitleFontSize="14">
                 <Image Source="images\dinero_icono.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="4" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
-            <mah:Tile Name="btn_winServiciosExtra" Title="SERVICIOS EXTRA" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_winServiciosExtra_Click">
+            <mah:Tile Name="btn_winUsuarios" Title="USUARIOS" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_winUsuarios_Click">
+                
+            </mah:Tile>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="5" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
+            <mah:Tile Name="btn_winServiciosExtra" Title="SERVICIOS EXTRA" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_winServiciosExtra_Click">
                 <Image Source="images\más_icono.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>

@@ -8,10 +8,10 @@
                  mc:Ignorable="d"
                  
         WindowStartupLocation="CenterScreen"
-        Title="Turismo Real - Servicios Extra" WindowTitleBrush="#fe7a4a" MinHeight="570" MinWidth="950" Height="570" Width="950" Background="White" TitleCharacterCasing="Normal">
+        Title="Servicios Extra - Turismo Real" BorderBrush="Black" WindowTitleBrush="#fe7a4a" MinHeight="570" MinWidth="950" Height="570" Width="950" Background="White" TitleCharacterCasing="Normal">
     <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="0.8*"/>
@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.8*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.2*"/>
@@ -33,24 +33,15 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Button Name="btn_retroceder" Style="{DynamicResource MahApps.Styles.Button.Circle}" Grid.Column="0" Grid.Row="0" Width="40" Height="40" Margin="10" Click="btn_retroceder_Click">
-                <fa:ImageAwesome Icon="ArrowCircleLeft" Width="45" />
-            </Button>
-        </Viewbox>
         
-        
-
-        <!--
-        <Button Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="Auto" MinHeight="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Click="btn_retroceder_Click" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
-            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="Auto" MaxWidth="45"/>
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
-        -->
 
-        <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Servicios extra" FontSize="35" Foreground="#fe7a4a" FontWeight="DemiBold"/>
+        <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Servicios extra" FontSize="35" Foreground="#fe7a4a" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Por favor, seleccione un servicio..." FontSize="18" FontWeight="DemiBold" Foreground="#04aba3"/>
 
-        <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="Gray" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dg_servicios_SelectionChanged">
+        <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="WhiteSmoke" GridLinesVisibility="All" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dg_servicios_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DESCRIPCION}" Header="Servicio extra" Width="*"/>
                 <DataGridTextColumn Binding="{Binding COSTO_ACTUAL}" Header="Costo diario actual" Width="1.1*"/>
@@ -63,7 +54,8 @@
         <TextBox Name="tb_nombre" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="Nombre del servicio" Grid.Column="5" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15"/>
         <TextBox Name="tb_costo" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="$30.000" Grid.Column="5" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15" TextChanged="tb_costo_TextChanged" />
 
-        <Button Name="btn_actualizarServicio" Grid.Column="3" Grid.Row="6" Content="Actualizar servicio" Background="White" BorderBrush="#04aba3" BorderThickness="3" Foreground="#04aba3" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_actualizarServicio_Click"/>
+
+        <Button Name="btn_actualizarServicio" Grid.Column="3" Grid.Row="6" Content="Actualizar servicio" Background="White" BorderBrush="#fe7a4a" BorderThickness="3" Foreground="#fe7a4a" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_actualizarServicio_Click"/>
         <Button Name="btn_guardarServicio" Grid.Column="5" Grid.Row="6" Content="Guardar servicio extra" Background="#04aba3" Foreground="White" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_guardarServicio_Click"/>
         <Button Name="btn_relacionarServicio" Grid.Column="5" Grid.Row="8"  Background="#fe7a4a" Foreground="White" FontSize="15" FontWeight="Bold" MaxHeight="70" Click="btn_relacionarServicio_Click">
             <TextBlock Text="Relacionar servicio con departamentos" TextWrapping="Wrap" TextAlignment="Center"/>

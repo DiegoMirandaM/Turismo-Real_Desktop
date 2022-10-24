@@ -8,20 +8,22 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Transporte" Height="700" Width="800" WindowTitleBrush="#fe7a4a">
+        Title="Transportes - Turismo Real" BorderBrush="Black" Height="700" Width="800" TitleCharacterCasing="Normal" WindowTitleBrush="#fe7a4a">
     
-    <Grid>
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.3*"/>
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
 
-        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="45" Height="45" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,20" Click="btn_retroceder_Click"  >
-            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="45"/>
+
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Left"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
-        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,20" Content="Planificació de traslados" FontSize="35" Foreground="#fe7a4a" FontWeight="DemiBold"/>
+
+        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,20" Content="Planificació de traslados" FontSize="35" Foreground="#fe7a4a" FontWeight="Bold"/>
         <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,70,0,0" Content="Por favor, seleccione solicitud de transporte..." FontWeight="DemiBold" FontSize="18" Foreground="#04aba3"/>
 
         <DataGrid Name="db_listaSolicitudes" Grid.Row="1"  Margin="15,0,15,0" HorizontalAlignment="Left" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" AlternatingRowBackground="SlateGray" Background="LightGray" IsReadOnly="True">

@@ -13,7 +13,6 @@ namespace TurismoReal_Desktop_Controlador
         public decimal ID_DPTO { get; set; }
         public decimal ID_SERVICIO { get; set; }
         public string ACTUALMENTE_DISPONIBLE { get; set; }
-
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
         public virtual SERVICIO_EXTRA SERVICIO_EXTRA { get; set; }
 

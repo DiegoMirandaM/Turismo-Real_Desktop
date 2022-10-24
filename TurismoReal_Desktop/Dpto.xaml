@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:TurismoReal_Desktop"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
         
         Height="700" Width="1000"
         MinHeight="700" MinWidth="1000"
         
-        mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Turismo Real - Departamentos" TitleCharacterCasing="Normal" WindowTitleBrush="#fe7a4a">
-    <Grid>
+        Title="Departamentos - Turismo Real" TitleCharacterCasing="Normal" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
+    <Grid ShowGridLines="False">
 
         <Grid.RowDefinitions>
             <RowDefinition Name="rw_titulo" Height="0.65*"/>
@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.062*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.04*"/>
         </Grid.ColumnDefinitions>
@@ -33,8 +33,8 @@
         <Label Grid.Column="1" Grid.Row="0" Content="Departamentos" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
         <Label Grid.Column="1" Grid.Row="0" Content="Para actualizar, seleccione un departamento" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" FontWeight="Medium" Foreground="#04aba3"/>
 
-        <Button Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="Auto" MinHeight="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Click="btn_retroceder_Click" Background="Transparent" Foreground="Transparent" BorderBrush="Transparent">
-            <fa:ImageAwesome Icon="ArrowCircleLeft" Width="Auto" MaxWidth="45"/>
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
         <DataGrid Name="dg_listaDptos" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Background="WhiteSmoke" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionChanged="dg_listaDptos_SelectionChanged" CanUserResizeRows="False" IsReadOnly="True">
@@ -163,7 +163,7 @@
 
         </Grid>
 
-        <Grid Name="btns_guardar" Grid.Row="5" Grid.Column="1">
+        <Grid Name="btns_guardar" Grid.Row="5" Grid.Column="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="0.9*"/>
@@ -171,13 +171,15 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="1" Background="White" CornerRadius="20" BorderBrush="#fe7a4a" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5">
-                <mah:Tile Name="btn_actualizarDpto" Title="Actualizar departamento" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#fe7a4a" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_actualizarDpto_Click"/>
-            </Border>
+            
+            <Viewbox Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+                <Button Name="btn_actualizarDpto" Content="Actualizar depto" VerticalAlignment="Center" BorderBrush="#fe7a4a"  Width="120"  Background="White" Foreground="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_actualizarDpto_Click"/>
+            </Viewbox>
 
-            <Border Grid.Column="3" Background="#fe7a4a" CornerRadius="20" BorderThickness="2" MaxHeight="50" Margin="0,5,0,5">
-                <mah:Tile Name="btn_nuevoDpto" Title="Guardar nuevo departamento" VerticalAlignment="Center" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#d4e8e6" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_nuevoDpto_Click"/>
-            </Border>
+
+            <Viewbox Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+                <Button Name="btn_nuevoDpto" Content="Registrar depto" VerticalAlignment="Center" Width="120"  Background="#fe7a4a" Foreground="#d4e8e6" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_nuevoDpto_Click"/>
+            </Viewbox>
 
         </Grid>
 

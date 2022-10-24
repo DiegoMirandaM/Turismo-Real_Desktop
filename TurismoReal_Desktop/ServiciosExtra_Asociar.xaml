@@ -10,17 +10,17 @@
         MinHeight="570" MinWidth="950" 
         Height="570" Width="950"        
         WindowStartupLocation="CenterScreen"
-        Title="Relacionar servicio con departamentos" WindowTitleBrush="#fe7a4a" Background="White" TitleCharacterCasing="Normal">
+        Title="Relacionar servicio con departamentos - Turismo Real" WindowTitleBrush="#fe7a4a" BorderBrush="Black" Background="White" TitleCharacterCasing="Normal">
 
 
-    <Grid>
+    <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.19*"/>
             <ColumnDefinition Width="1.7*"/>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="0.1*"/>
             <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.19*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -34,25 +34,42 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="1" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
+        </Button>
+
         <Label Grid.Row="1" Grid.Column="1" Content="Relación servicio - departamentos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="29" FontWeight="Bold"  Foreground="#fe7a4a"/>
         <Label Grid.Row="2" Grid.Column="1" Content="Por favor, especifique disponibilidad." HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
         <Label Name="lb_selectedServicio" Grid.Row="3" Grid.Column="1" Content="Label generada" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
 
-        <DataGrid Name="dg_relacionDptos" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="False">
+        <DataGrid Name="dg_relacionDptos" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Background="WhiteSmoke" AutoGenerateColumns="False" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="True" CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.9*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="0.9*" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="Núm. Depto" Width="0.6*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="Núm. Depto" Width="0.5*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Negocio_Ciudad.NOMBRE}" Header="Ciudad" Width="0.7*" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn  Header="¿Ofrecido aquí?" Width="0.8*"/>
-                <DataGridCheckBoxColumn  Header="¿Disponible?" Width="0.8*"/>
+                <DataGridCheckBoxColumn  Header="¿Ofrecido aquí?" Width="0.6*"/>
+                <DataGridCheckBoxColumn  Header="¿Disponible?" Width="0.6*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Column="2" Grid.Row="6" Content="Cancelar"/>
 
-        <Button Grid.Column="4" Grid.Row="6" Content="Guardar cambios" Background="#fe7a4a" Foreground="White"/>
 
+        <!--
+        <Viewbox Grid.Column="2" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+            <Button Name="btn_cancelar" Content="Cancelar" VerticalAlignment="Center" Width="120"  Background="#fe7a4a" Foreground="#d4e8e6" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_retroceder_Click"/>
+        </Viewbox>
+        -->
+
+        <Viewbox Grid.Column="2" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="55">
+            <Button Name="btn_cancelar" Content="Cancelar" VerticalAlignment="Center" BorderBrush="#fe7a4a" Width="80"  Background="White" Foreground="#fe7a4a" FontWeight="DemiBold" FontSize="8" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_retroceder_Click"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="4" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="55">
+            <Button Name="btn_guardarCambios" Content="Guardar cambios" VerticalAlignment="Center" BorderBrush="#fe7a4a" Width="80"  Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" FontSize="8" mah:ControlsHelper.ContentCharacterCasing="Normal"/>
+        </Viewbox>
+
+        
     </Grid>
     
     

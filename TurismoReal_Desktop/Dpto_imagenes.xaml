@@ -8,7 +8,7 @@
         
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Imagenes del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="800" WindowTitleBrush="#fe7a4a">
+        Title="Imagenes del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="800" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
     <Grid>
         
     </Grid>

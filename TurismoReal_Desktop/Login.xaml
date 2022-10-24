@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         
         
-        MinWidth="900"
-        MinHeight="500"
+        Height="450" Width="800"
+        MinHeight="500" MinWidth="900"
+                 
         WindowStartupLocation="CenterScreen"
-        Title="Turismo Real - Inicio de sesión" Height="450" Width="800" WindowTitleBrush="#fe7a4a">
+        Title="Turismo Real - Inicio de sesión" TitleCharacterCasing="Normal" WindowTitleBrush="#fe7a4a">
     <mah:MetroWindow.Background>
         <ImageBrush ImageSource="images/backgroundLogin.jpg"/>
     </mah:MetroWindow.Background>
