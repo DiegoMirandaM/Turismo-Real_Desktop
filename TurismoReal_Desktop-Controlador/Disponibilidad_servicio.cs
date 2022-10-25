@@ -17,7 +17,8 @@ namespace TurismoReal_Desktop_Controlador
         public virtual SERVICIO_EXTRA SERVICIO_EXTRA { get; set; }
 
 
-        private TurismoReal_Entities conn = new TurismoReal_Entities();
+        //private TurismoReal_Entities conn = new TurismoReal_Entities();
+        private TurismoReal_Entities_Final conn = new TurismoReal_Entities_Final();
 
         public List<Disponibilidad_servicio> ListarTodoDeServicio(decimal id_servicio)
         {

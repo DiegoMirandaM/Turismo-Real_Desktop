@@ -27,7 +27,8 @@ namespace TurismoReal_Desktop_Controlador
         public virtual TIPO_USUARIO TIPO_USUARIO { get; set; }
 
 
-        private TurismoReal_Entities conn = new TurismoReal_Entities();
+        //private TurismoReal_Entities conn = new TurismoReal_Entities();
+        private TurismoReal_Entities_Final conn = new TurismoReal_Entities_Final();
 
         public void Login(string user, 
                         string pass, 

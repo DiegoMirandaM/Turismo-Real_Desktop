@@ -15,7 +15,8 @@ namespace TurismoReal_Desktop_Controlador
         public virtual ICollection<DISPONIBILIDAD_SERVICIO> DISPONIBILIDAD_SERVICIO { get; set; }
         public virtual ICollection<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
 
-        private TurismoReal_Entities conn = new TurismoReal_Entities();
+        //private TurismoReal_Entities conn = new TurismoReal_Entities();
+        private TurismoReal_Entities_Final conn = new TurismoReal_Entities_Final();
 
         public List<Servicio_extra> ListarTodo()
         {

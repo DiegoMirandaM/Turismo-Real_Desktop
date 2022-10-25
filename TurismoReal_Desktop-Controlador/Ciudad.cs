@@ -14,7 +14,8 @@ namespace TurismoReal_Desktop_Controlador
         public virtual ICollection<DEPARTAMENTO> DEPARTAMENTO { get; set; }
 
 
-        private TurismoReal_Entities conn = new TurismoReal_Entities();
+        //private TurismoReal_Entities conn = new TurismoReal_Entities();
+        private TurismoReal_Entities_Final conn = new TurismoReal_Entities_Final();
 
         public List<Ciudad> listarTodo()
         {
