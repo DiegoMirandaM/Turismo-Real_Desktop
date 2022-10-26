@@ -11,6 +11,53 @@
         
         Title="Mantenciones del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="800" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.38*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.55*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.135*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="0.11*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Content="Mantención de departamentos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
+        <Label Grid.Column="1" Grid.Row="1" Content="(Nombre del depto)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
+        <Label Grid.Column="1" Grid.Row="2" Content="Por favor, especifique datos de mantenimientos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
+
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
+        </Button>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4">
+            <Label Content="Descripción:"/>
+            <TextBox Name="tb_descripcion" FontSize="12" MinWidth="350" TextWrapping="Wrap" BorderThickness="2" mah:TextBoxHelper.Watermark="Texto..." BorderBrush="#04aba3"/>
+        </StackPanel>
+
+        <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Content="0/100 carácteres"/>
+
+
+
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            
+        </Grid>
+
     </Grid>
 </mah:MetroWindow>

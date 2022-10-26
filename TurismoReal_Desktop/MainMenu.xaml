@@ -60,7 +60,7 @@
 
         <Border Grid.Row="2" Grid.Column="4" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
             <mah:Tile Name="btn_winUsuarios" Title="USUARIOS" Width="Auto" Height="Auto" Background="Transparent" FontWeight="Bold" Foreground="#f4c3b5" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_winUsuarios_Click">
-                
+                <Image Source="images\icono_usuario.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>
 

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 using MahApps.Metro.Controls;
 using MahApps.Metro.Behaviors;
 using MahApps.Metro.Controls.Dialogs;
@@ -18,18 +19,18 @@ using MahApps.Metro.Controls.Dialogs;
 namespace TurismoReal_Desktop
 {
     /// <summary>
-    /// Interaction logic for Dpto_mantenciones.xaml
+    /// Interaction logic for Win_Usuario.xaml
     /// </summary>
-    public partial class Dpto_mantenciones : MetroWindow
+    public partial class Win_Usuario : MetroWindow
     {
-        public Dpto_mantenciones()
+        public Win_Usuario()
         {
             InitializeComponent();
         }
 
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            
         }
     }
 }

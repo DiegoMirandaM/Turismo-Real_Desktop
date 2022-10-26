@@ -101,6 +101,9 @@
     <Compile Include="Transporte.xaml.cs">
       <DependentUpon>Transporte.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Win_Usuario.xaml.cs">
+      <DependentUpon>Win_Usuario.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dpto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Transporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Win_Usuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
