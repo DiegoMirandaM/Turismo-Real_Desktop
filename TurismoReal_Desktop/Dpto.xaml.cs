@@ -242,7 +242,7 @@ namespace TurismoReal_Desktop
 
         private void btn_gestMantenciones_Click(object sender, RoutedEventArgs e)
         {
-            Dpto_mantenciones win_mantencion = new Dpto_mantenciones();
+            Dpto_mantenciones win_mantencion = new Dpto_mantenciones(seleccionado);
             win_mantencion.ShowDialog();
         }
 

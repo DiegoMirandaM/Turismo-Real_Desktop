@@ -100,7 +100,6 @@ namespace TurismoReal_Desktop
                 actualizando = true;
 
                 limpiarCampos();
-                Recargar_listado_inventario();
                 actualizando = false;
 
                 await this.ShowMessageAsync("Registro exitoso", "El elemento especificado se ha registrado exitosamente.");
@@ -211,11 +210,10 @@ namespace TurismoReal_Desktop
         {
             if (actualizando == false)
             {
-                Alternar_habil_btns(true);
-
                 selectedInventario = (Inventario)e.AddedItems[0];
 
                 //Recien aqui habilita boton de actualizar
+                Alternar_habil_btns(true);
 
                 tb_nombre.Text = selectedInventario.NOMBRE;
                 tb_valor.Text = selectedInventario.VALOR.ToString();

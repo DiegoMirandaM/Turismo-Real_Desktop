@@ -14,8 +14,10 @@ namespace TurismoReal_Desktop_Controlador
         public string NOMBRE { get; set; }
         public string APE_PAT { get; set; }
         public string APE_MAT { get; set; }
+        public string nombreCompleto { get; set; }
         public int RUT { get; set; }
         public string DV { get; set; }
+        public string rutCompleto { get; set; }
         public string DIRECCION { get; set; }
         public string CIUDAD { get; set; }
         public string TELEFONO { get; set; }
@@ -29,8 +31,8 @@ namespace TurismoReal_Desktop_Controlador
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
-        public void Login(string user, 
-                        string pass, 
+        public void Login(string user,
+                        string pass,
                         out System.Data.Objects.ObjectParameter p_nombre,
                         out System.Data.Objects.ObjectParameter p_ape_pat,
                         out System.Data.Objects.ObjectParameter p_id_usuario,
@@ -53,8 +55,51 @@ namespace TurismoReal_Desktop_Controlador
                 p_tipo_usuario = null;
                 return;
             }
-            
+        }
+
+        public List<Usuario> ListarUsuariosPorTipo(decimal tipoUsuario)
+        {
+            try
+            {
+                List<Usuario> listUsuarios = new List<Usuario>();
+                var listDatos = conn.USUARIO.Where(usuario => usuario.ID_TIPOUSUARIO == tipoUsuario);
+
+                foreach (USUARIO dato in listDatos)
+                {
+                    Usuario user = new Usuario();
+
+                    user.ID_USUARIO = dato.ID_USUARIO;
+                    user.ID_TIPOUSUARIO = dato.ID_TIPOUSUARIO;
+                    user.NOMBRE = dato.NOMBRE;
+                    user.APE_PAT = dato.APE_PAT;
+                    user.APE_MAT = dato.APE_MAT;
+                    user.nombreCompleto = dato.NOMBRE + " " + dato.APE_PAT + " " + dato.APE_MAT;
+                    user.RUT = dato.RUT;
+                    user.DV = dato.DV;
+                    user.rutCompleto = dato.RUT.ToString() + "-" + dato.DV;
+                    user.DIRECCION = dato.DIRECCION;
+                    user.CIUDAD = dato.CIUDAD;
+                    user.TELEFONO = dato.TELEFONO;
+                    user.EMAIL = dato.EMAIL;
+                    user.AREA_FUNCIONARIO = dato.AREA_FUNCIONARIO;
+                    user.USERNAME = dato.USERNAME;
+                    user.PASSWORD = dato.PASSWORD;
+                    user.ARRIENDO = dato.ARRIENDO;
+                    user.TIPO_USUARIO = dato.TIPO_USUARIO;
+
+                    listUsuarios.Add(user);
+                }
+
+                return listUsuarios;
+
+            }
+            catch (Exception)
+            {
+                return new List<Usuario>();
+            }
 
         }
+
+
     }
 }

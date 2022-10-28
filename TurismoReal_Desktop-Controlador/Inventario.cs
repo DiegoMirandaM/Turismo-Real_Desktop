@@ -80,8 +80,6 @@ namespace TurismoReal_Desktop_Controlador
             {
                 return false;
             }
-
-            
         }
 
     }

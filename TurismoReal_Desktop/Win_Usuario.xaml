@@ -36,39 +36,41 @@
             <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
-        <Grid Name="gd_btnsTipoUsuario" Grid.Row="2" Grid.Column="1">
+        <Grid Name="gd_btnsTipoUsuario" Grid.Row="2" Grid.Column="1" ShowGridLines="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.7*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.7*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition Width="0.7*"/>
-                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Viewbox Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30">
-                <Button  Content="Cliente" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" />
-            </Viewbox>
+            <StackPanel Orientation="Horizontal">
+                <Viewbox Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30" Margin="0,0,20,0">
+                    <Button Name="btn_tipoCliente" Content="Cliente" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_tipoCliente_Click" />
+                </Viewbox>
 
-            <Viewbox Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30">
-                <Button  Content="Funcionario" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" />
-            </Viewbox>
+                <Viewbox Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30" Margin="0,0,20,0">
+                    <Button Name="btn_tipoFuncionario" Content="Funcionario" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_tipoFuncionario_Click" />
+                </Viewbox>
 
-            <Viewbox Grid.Column="4" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30">
-                <Button  Content="Administrador" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" />
-            </Viewbox>
+                <Viewbox Grid.Column="4" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30" Margin="0,0,20,0">
+                    <Button Name="btn_tipoAdmin" Content="Administrador" VerticalAlignment="Center"  Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_tipoAdmin_Click" />
+                </Viewbox>
+
+                <Viewbox Grid.Column="6" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="30" Margin="0,0,20,0">
+                    <Button Name="btn_tipoDesactivados" Content="Desactivados" VerticalAlignment="Center" Width="140" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="Regular" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_tipoDesactivados_Click" />
+                </Viewbox>
+            </StackPanel>
 
         </Grid>
 
-        <DataGrid Grid.Row="3" Grid.Column="1" GridLinesVisibility="All">
+        <DataGrid Name="dg_usuarios" Grid.Row="3" Grid.Column="1" Background="WhiteSmoke" GridLinesVisibility="All" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" IsReadOnly="True" MouseDoubleClick="dg_usuarios_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding }" Header="Nombre" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="RUT" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="Dirección" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="Ciudad" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="Teléfono" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="Email" Width="*"/>
-                <DataGridTextColumn Binding="{Binding }" Header="Username" Width="*"/>
+                <DataGridTextColumn Binding="{Binding nombreCompleto}" Header="Nombre" Width="*"/>
+                <DataGridTextColumn Binding="{Binding rutCompleto}" Header="RUT" Width="*"/>
+                <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="*"/>
+                <DataGridTextColumn Binding="{Binding CIUDAD}" Header="Ciudad" Width="*"/>
+                <DataGridTextColumn Binding="{Binding TELEFONO}" Header="Teléfono" Width="*"/>
+                <DataGridTextColumn Binding="{Binding EMAIL}" Header="Email" Width="*"/>
+                <DataGridTextColumn Binding="{Binding USERNAME}" Header="Username" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -85,38 +87,38 @@
 
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Nombre:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_nombre" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
 
                 <Label FontSize="12" Content="Rut:"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_rut" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
 
                 <Label Content="Dirección:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_direccion" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
 
                 <Label Content="Username:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_username" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Apellido Paterno:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_apePat" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
 
                 <Label FontSize="12" Content="Email:"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_email" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
 
                 <Label Content="Ciudad:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_ciudad" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
 
                 <Label Content="Tipo de usuario:" FontSize="12"/>
-                <ComboBox Name="cb_tipoUsuario" FontSize="12" VerticalContentAlignment="Center" Width="Auto"/>
+                <ComboBox Name="cb_tipoUsuario" FontSize="12" DisplayMemberPath="DESCRIPCION" SelectedValuePath="ID_TIPOUSUARIO" VerticalContentAlignment="Center" Width="Auto"/>
             </StackPanel>
 
             <StackPanel Grid.Column="4" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Apellido Materno:" FontSize="12"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_apeMat" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
 
                 <Label FontSize="12" Content="Teléfono:"/>
-                <TextBox Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_telefono" Width="Auto" FontSize="12" VerticalContentAlignment="Center" />
             </StackPanel>
         </Grid>
 
@@ -139,10 +141,6 @@
 
             <Viewbox Grid.Column="3" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="30">
                 <Button Name="Btn_updateDatos" Content="Actualizar datos" VerticalAlignment="Center"  Width="180" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" />
-            </Viewbox>
-
-            <Viewbox Grid.Column="1" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="30">
-                <Button Name="Btn_alternarEstadoUsuario" Content="Deshabilitar" VerticalAlignment="Center"  Width="180" FontSize="15" Background="White" Foreground="#04aba3" BorderBrush="#04aba3" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" />
             </Viewbox>
 
 

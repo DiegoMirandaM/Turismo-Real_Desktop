@@ -9,29 +9,28 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         
-        Title="Mantenciones del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="800" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
+        Title="Mantenciones del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="950" MinHeight="450" MinWidth="950" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="0.38*"/>
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="0.55*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.04*"/>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.135*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.8*"/>
             <ColumnDefinition Width="0.6*"/>
-            <ColumnDefinition Width="0.11*"/>
+            <ColumnDefinition Width="0.02*"/>
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Content="Mantención de departamentos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
-        <Label Grid.Column="1" Grid.Row="1" Content="(Nombre del depto)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
+        <Label Name="lb_selectedDpto" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Content="(Nombre del depto)" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
         <Label Grid.Column="1" Grid.Row="2" Content="Por favor, especifique datos de mantenimientos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
 
         <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
@@ -40,24 +39,57 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4">
             <Label Content="Descripción:"/>
-            <TextBox Name="tb_descripcion" FontSize="12" MinWidth="350" TextWrapping="Wrap" BorderThickness="2" mah:TextBoxHelper.Watermark="Texto..." BorderBrush="#04aba3"/>
+            <StackPanel>
+                <TextBox Name="tb_descripcion" FontSize="12" MinWidth="400" MinHeight="100" TextWrapping="Wrap" BorderThickness="2" mah:TextBoxHelper.Watermark="Texto..." BorderBrush="#04aba3"/>
+                <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Content="0/100 carácteres"/>
+            </StackPanel>
+
         </StackPanel>
 
-        <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Right" Content="0/100 carácteres"/>
-
-
-
-        <Grid Grid.Column="1" Grid.Row="6">
+        <Grid Grid.Column="1" Grid.Row="6" ShowGridLines="False">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="1.1*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Fecha de inicio:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <DatePicker Name="dp_fecInicio" Grid.Column="1" Grid.Row="0" MaxHeight="30" BorderBrush="#04aba3"/>
+
+            <Label Grid.Column="3" Grid.Row="0" Content="Fecha de término:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <DatePicker Name="dp_fecFin" Grid.Column="4" Grid.Row="0" MaxHeight="30" BorderBrush="#04aba3"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Costo:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <TextBox Name="tb_costo" Grid.Column="1" Grid.Row="2" MaxHeight="30"  BorderBrush="#04aba3"/>
+
+            <Viewbox Grid.Column="4" Grid.Row="4" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+                <Button Name="btn_guardar" Content="Guardar" VerticalAlignment="Center" FontSize="20" Width="150" Height="Auto" Background="#04aba3" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="White" Click="btn_guardar_Click"/>
+            </Viewbox>
+
+            <Viewbox Grid.Column="3" Grid.Row="4" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+                <Button Name="btn_actualizar" Content="Actualizar" VerticalAlignment="Center" FontSize="20" Width="150" BorderThickness="2" Height="Auto" BorderBrush="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_actualizar_Click"/>
+            </Viewbox>
+
         </Grid>
+
+        <DataGrid Name="dg_mantenciones" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" GridLinesVisibility="All" BorderBrush="Black" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionChanged="dg_mantenciones_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FECHA_INICIO}" Width="0.96*" Header="Fecha inicio"/>
+                <DataGridTextColumn Binding="{Binding FECHA_FIN}" Width="0.8*" Header="Fecha fin"/>
+                <DataGridTextColumn Binding="{Binding DESCRIPCION}" Width="1.15*" Header="Descripción"/>
+                <DataGridTextColumn Binding="{Binding COSTO}" Width="0.65*" Header="Costo"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </mah:MetroWindow>
