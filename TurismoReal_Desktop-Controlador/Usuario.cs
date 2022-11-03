@@ -100,6 +100,34 @@ namespace TurismoReal_Desktop_Controlador
 
         }
 
+        public bool agregarUsuario(Nullable<decimal> iD_TIPO, string nOMBRE, string pATERNO, string mATERNO, Nullable<decimal> rUT, string dV, string dIRECCION, string cIUDAD, string tELEFONO, string eMAIL, string aREA, string uSUARIO, string pASS)
+        {
+            try
+            {
+                conn.SP_CREATE_USUARIO(iD_TIPO, nOMBRE, pATERNO, mATERNO, rUT, dV, dIRECCION, cIUDAD, tELEFONO, eMAIL, aREA, uSUARIO, pASS);
+                conn.SaveChanges();
 
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool updateUsuario(Nullable<decimal> iD, Nullable<decimal> iD_TIPO, string nOMBRE, string pATERNO, string mATERNO, Nullable<decimal> rUT, string dV, string dIRECCION, string cIUDAD, string tELEFONO, string eMAIL, string aREA, string uSUARIO, string pASS)
+        {
+            try
+            {
+                conn.SP_UPDATE_USUARIO(iD, iD_TIPO, nOMBRE, pATERNO, mATERNO, rUT, dV, dIRECCION, cIUDAD, tELEFONO, eMAIL, aREA, uSUARIO, pASS);
+                conn.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

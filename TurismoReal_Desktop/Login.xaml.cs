@@ -32,7 +32,7 @@ namespace TurismoReal_Desktop
             //Validar que se posean datos en los campos: 
 
             string username = tb_user.Text;
-            string pass = tb_pass.Password;
+            string pass = TR_Recursos.ConvertirSha256(tb_pass.Password);
 
             if (username.Length == 0)
             {
@@ -51,34 +51,25 @@ namespace TurismoReal_Desktop
 
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
 
-
-
             System.Data.Objects.ObjectParameter p_nombre;
             System.Data.Objects.ObjectParameter p_ape_pat;
             System.Data.Objects.ObjectParameter p_id_usuario;
             System.Data.Objects.ObjectParameter p_tipo_usuario;
-
-
 
             Usuario user = new Usuario();
             user.Login(username, pass, out p_nombre, out p_ape_pat, out p_id_usuario, out p_tipo_usuario);
 
             int.TryParse(p_id_usuario.Value.ToString(), out int id_usuario);
 
-
-
-
             if (id_usuario == -1)
             {
                 System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
                 await this.ShowMessageAsync("Datos incorrectos", "Los datos ingresados no corresponden a ningun usuario.\n\nPor favor, intentelo nuevamente");
-                //MessageBox.Show("Los datos ingresados no corresponden a ningun usuario.\n\nPor favor, intentelo nuevamente","Datos incorrectos",MessageBoxButton.OK,MessageBoxImage.Error);
             }
             else if (id_usuario > 0 && p_tipo_usuario.Value.ToString() != "Administrador")
             {
                 System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
                 await this.ShowMessageAsync("Usuario no es administrador", "Esta aplicación es de uso exclusivo de los administradores");
-                //MessageBox.Show("Esta aplicación es de uso exclusivo de los administradores. \n\nEl usuario ingresado existe, pero no es un administrador.","Usuario sin acceso",MessageBoxButton.OK,MessageBoxImage.Asterisk);
             }
             else
             {
