@@ -16,13 +16,11 @@ namespace TurismoReal_Desktop_DALC
     {
         public decimal ID_TRANSPORTE { get; set; }
         public int ID_CONDUCTOR { get; set; }
-        public decimal ID_ARRIENDO { get; set; }
+        public decimal ID_SOLICITUD { get; set; }
         public string DESC_VEHICULO { get; set; }
         public string PATENTE { get; set; }
-        public System.DateTime FECHA_INICIO { get; set; }
-        public decimal COSTO { get; set; }
     
-        public virtual ARRIENDO ARRIENDO { get; set; }
         public virtual CONDUCTOR CONDUCTOR { get; set; }
+        public virtual SOLICITUD_TRANSPORTE SOLICITUD_TRANSPORTE { get; set; }
     }
 }

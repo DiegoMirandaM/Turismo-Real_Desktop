@@ -21,5 +21,7 @@ namespace TurismoReal_Desktop_DALC
         public decimal ACOMPANANTES { get; set; }
         public decimal COSTO_RESERVA { get; set; }
         public string VIGENTE { get; set; }
+    
+        public virtual ARRIENDO ARRIENDO { get; set; }
     }
 }

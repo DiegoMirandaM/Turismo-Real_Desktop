@@ -103,6 +103,9 @@
     <Compile Include="SERVICIO_EXTRA.cs">
       <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="SOLICITUD_TRANSPORTE.cs">
+      <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="TIPO_USUARIO.cs">
       <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
     </Compile>

@@ -181,6 +181,20 @@
     <Property Name="DESCRIPCION" Type="varchar2" MaxLength="35" Nullable="false" />
     <Property Name="COSTO_ACTUAL" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
+  <EntityType Name="SOLICITUD_TRANSPORTE">
+    <Key>
+      <PropertyRef Name="ID_SOLICITUD" />
+    </Key>
+    <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
+    <Property Name="PASAJEROS" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DIR_INICIO" Type="varchar2" MaxLength="250" Nullable="false" />
+    <Property Name="DIR_DESTINO" Type="varchar2" MaxLength="250" Nullable="false" />
+    <Property Name="KMS_DISTANCIA" Type="number" Precision="38" Scale="0" />
+    <Property Name="ACEPTADA" Type="char" MaxLength="1" />
+    <Property Name="COSTO" Type="number" Precision="38" Scale="0" />
+  </EntityType>
   <EntityType Name="TIPO_USUARIO">
     <Key>
       <PropertyRef Name="ID_TIPOUSUARIO" />
@@ -194,11 +208,9 @@
     </Key>
     <Property Name="ID_TRANSPORTE" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_CONDUCTOR" Type="number" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="DESC_VEHICULO" Type="varchar2" MaxLength="130" Nullable="false" />
     <Property Name="PATENTE" Type="varchar2" MaxLength="7" Nullable="false" />
-    <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
-    <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -327,6 +339,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="RESERVA_ARRIENDO_FK">
+    <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
+    <End Role="RESERVA" Type="Self.RESERVA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARRIENDO">
+        <PropertyRef Name="ID_ARRIENDO" />
+      </Principal>
+      <Dependent Role="RESERVA">
+        <PropertyRef Name="ID_ARRIENDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="SERVCONTRAT_ARRIENDOS_FK">
     <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
     <End Role="SERVICIO_CONTRATADO" Type="Self.SERVICIO_CONTRATADO" Multiplicity="*" />
@@ -375,6 +399,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="SOLICITUD_ARRIENDO_FK">
+    <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
+    <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARRIENDO">
+        <PropertyRef Name="ID_ARRIENDO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_TRANSPORTE">
+        <PropertyRef Name="ID_ARRIENDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOLICITUD_TRANSPORTES_FK">
+    <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="1" />
+    <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_TRANSPORTE">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Principal>
+      <Dependent Role="TRANSPORTE_REALIZADO">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="TRANSPORTE_CONDUCTOR_FK">
     <End Role="CONDUCTOR" Type="Self.CONDUCTOR" Multiplicity="1" />
     <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
@@ -384,18 +432,6 @@
       </Principal>
       <Dependent Role="TRANSPORTE_REALIZADO">
         <PropertyRef Name="ID_CONDUCTOR" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TRANSPORTES_REALIZADOS_FK">
-    <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
-    <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ARRIENDO">
-        <PropertyRef Name="ID_ARRIENDO" />
-      </Principal>
-      <Dependent Role="TRANSPORTE_REALIZADO">
-        <PropertyRef Name="ID_ARRIENDO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -522,15 +558,15 @@
     <Parameter Name="P_TIPO_USUARIO" Type="varchar2" Mode="Out" />
   </Function>
   <Function Name="SP_UPDATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
-    <Parameter Name="ID_CLI" Type="number" Mode="In" />
-    <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-    <Parameter Name="FEC_RESERVA" Type="date" Mode="In" />
-    <Parameter Name="VALOR_RESERVA" Type="number" Mode="In" />
-    <Parameter Name="PAGADA" Type="char" Mode="In" />
-    <Parameter Name="FEC_INI" Type="date" Mode="In" />
-    <Parameter Name="FEC_FIN" Type="date" Mode="In" />
-    <Parameter Name="TOTAL" Type="number" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
+    <Parameter Name="P_ID_CLI" Type="number" Mode="In" />
+    <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+    <Parameter Name="P_FEC_RESERVA" Type="date" Mode="In" />
+    <Parameter Name="P_VALOR_RESERVA" Type="number" Mode="In" />
+    <Parameter Name="P_PAGADA" Type="char" Mode="In" />
+    <Parameter Name="P_FEC_INI" Type="date" Mode="In" />
+    <Parameter Name="P_FEC_FIN" Type="date" Mode="In" />
+    <Parameter Name="P_TOTAL" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -539,38 +575,38 @@
     <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
     <Parameter Name="P_ID_CIUDAD" Type="number" Mode="In" />
     <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
-    <Parameter Name="DIR" Type="varchar2" Mode="In" />
-    <Parameter Name="M2" Type="varchar2" Mode="In" />
+    <Parameter Name="P_DIR" Type="varchar2" Mode="In" />
+    <Parameter Name="P_M2" Type="varchar2" Mode="In" />
     <Parameter Name="P_NRO_DPTO" Type="varchar2" Mode="In" />
-    <Parameter Name="PRECIO" Type="number" Mode="In" />
-    <Parameter Name="DISP" Type="varchar2" Mode="In" />
-    <Parameter Name="COND" Type="varchar2" Mode="In" />
+    <Parameter Name="P_PRECIO" Type="number" Mode="In" />
+    <Parameter Name="P_DISP" Type="varchar2" Mode="In" />
+    <Parameter Name="P_COND" Type="varchar2" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
     <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-    <Parameter Name="ITEM" Type="varchar2" Mode="In" />
+    <Parameter Name="P_ITEM" Type="varchar2" Mode="In" />
     <Parameter Name="P_VALOR" Type="number" Mode="In" />
-    <Parameter Name="DISP" Type="varchar2" Mode="In" />
-    <Parameter Name="FEC_COMPRA" Type="date" Mode="In" />
+    <Parameter Name="P_DISP" Type="varchar2" Mode="In" />
+    <Parameter Name="P_FEC_COMPRA" Type="date" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
     <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-    <Parameter Name="FEC_INI" Type="date" Mode="In" />
-    <Parameter Name="FEC_TERM" Type="date" Mode="In" />
+    <Parameter Name="P_FEC_INI" Type="date" Mode="In" />
+    <Parameter Name="P_FEC_TERM" Type="date" Mode="In" />
     <Parameter Name="P_DESCRIPCION" Type="varchar2" Mode="In" />
     <Parameter Name="P_COSTO" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
-    <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
-    <Parameter Name="FECH" Type="date" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
+    <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="P_FECH" Type="date" Mode="In" />
     <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
-    <Parameter Name="ACOMP" Type="number" Mode="In" />
+    <Parameter Name="P_ACOMP" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -578,20 +614,20 @@
     <Parameter Name="P_COSTO" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="ID" Type="number" Mode="In" />
-    <Parameter Name="ID_TIPO" Type="number" Mode="In" />
-    <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
-    <Parameter Name="PATERNO" Type="varchar2" Mode="In" />
-    <Parameter Name="MATERNO" Type="varchar2" Mode="In" />
-    <Parameter Name="RUT" Type="number" Mode="In" />
-    <Parameter Name="DV" Type="char" Mode="In" />
-    <Parameter Name="DIRECCION" Type="varchar2" Mode="In" />
-    <Parameter Name="CIUDAD" Type="varchar2" Mode="In" />
-    <Parameter Name="TELEFONO" Type="varchar2" Mode="In" />
-    <Parameter Name="EMAIL" Type="varchar2" Mode="In" />
-    <Parameter Name="AREA" Type="varchar2" Mode="In" />
-    <Parameter Name="USUARIO" Type="varchar2" Mode="In" />
-    <Parameter Name="PASS" Type="varchar2" Mode="In" />
+    <Parameter Name="P_ID" Type="number" Mode="In" />
+    <Parameter Name="P_ID_TIPO" Type="number" Mode="In" />
+    <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+    <Parameter Name="P_PATERNO" Type="varchar2" Mode="In" />
+    <Parameter Name="P_MATERNO" Type="varchar2" Mode="In" />
+    <Parameter Name="P_RUT" Type="number" Mode="In" />
+    <Parameter Name="P_DV" Type="char" Mode="In" />
+    <Parameter Name="P_DIRECCION" Type="varchar2" Mode="In" />
+    <Parameter Name="P_CIUDAD" Type="varchar2" Mode="In" />
+    <Parameter Name="P_TELEFONO" Type="varchar2" Mode="In" />
+    <Parameter Name="P_EMAIL" Type="varchar2" Mode="In" />
+    <Parameter Name="P_AREA" Type="varchar2" Mode="In" />
+    <Parameter Name="P_USUARIO" Type="varchar2" Mode="In" />
+    <Parameter Name="P_PASS" Type="varchar2" Mode="In" />
   </Function>
   <EntityContainer Name="TurismoReal_ModelStoreContainer">
     <EntitySet Name="AMIGO" EntityType="Self.AMIGO" Schema="TURISMO_REAL" store:Type="Tables" />
@@ -611,6 +647,7 @@
     <EntitySet Name="RESERVA" EntityType="Self.RESERVA" Schema="TURISMO_REAL" store:Type="Tables" />
     <EntitySet Name="SERVICIO_CONTRATADO" EntityType="Self.SERVICIO_CONTRATADO" Schema="TURISMO_REAL" store:Type="Tables" />
     <EntitySet Name="SERVICIO_EXTRA" EntityType="Self.SERVICIO_EXTRA" Schema="TURISMO_REAL" store:Type="Tables" />
+    <EntitySet Name="SOLICITUD_TRANSPORTE" EntityType="Self.SOLICITUD_TRANSPORTE" Schema="TURISMO_REAL" store:Type="Tables" />
     <EntitySet Name="TIPO_USUARIO" EntityType="Self.TIPO_USUARIO" Schema="TURISMO_REAL" store:Type="Tables" />
     <EntitySet Name="TRANSPORTE_REALIZADO" EntityType="Self.TRANSPORTE_REALIZADO" Schema="TURISMO_REAL" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="TURISMO_REAL" store:Type="Tables" />
@@ -650,6 +687,10 @@
       <End Role="ARRIENDO" EntitySet="ARRIENDO" />
       <End Role="MULTA" EntitySet="MULTA" />
     </AssociationSet>
+    <AssociationSet Name="RESERVA_ARRIENDO_FK" Association="Self.RESERVA_ARRIENDO_FK">
+      <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+      <End Role="RESERVA" EntitySet="RESERVA" />
+    </AssociationSet>
     <AssociationSet Name="SERVCONTRAT_ARRIENDOS_FK" Association="Self.SERVCONTRAT_ARRIENDOS_FK">
       <End Role="ARRIENDO" EntitySet="ARRIENDO" />
       <End Role="SERVICIO_CONTRATADO" EntitySet="SERVICIO_CONTRATADO" />
@@ -666,12 +707,16 @@
       <End Role="SERVICIO_EXTRA" EntitySet="SERVICIO_EXTRA" />
       <End Role="DISPONIBILIDAD_SERVICIO" EntitySet="DISPONIBILIDAD_SERVICIO" />
     </AssociationSet>
-    <AssociationSet Name="TRANSPORTE_CONDUCTOR_FK" Association="Self.TRANSPORTE_CONDUCTOR_FK">
-      <End Role="CONDUCTOR" EntitySet="CONDUCTOR" />
+    <AssociationSet Name="SOLICITUD_ARRIENDO_FK" Association="Self.SOLICITUD_ARRIENDO_FK">
+      <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+      <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
+    </AssociationSet>
+    <AssociationSet Name="SOLICITUD_TRANSPORTES_FK" Association="Self.SOLICITUD_TRANSPORTES_FK">
+      <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
       <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
     </AssociationSet>
-    <AssociationSet Name="TRANSPORTES_REALIZADOS_FK" Association="Self.TRANSPORTES_REALIZADOS_FK">
-      <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+    <AssociationSet Name="TRANSPORTE_CONDUCTOR_FK" Association="Self.TRANSPORTE_CONDUCTOR_FK">
+      <End Role="CONDUCTOR" EntitySet="CONDUCTOR" />
       <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
     </AssociationSet>
     <AssociationSet Name="USUARIO_TIPOUSUARIO_FK" Association="Self.USUARIO_TIPOUSUARIO_FK">
