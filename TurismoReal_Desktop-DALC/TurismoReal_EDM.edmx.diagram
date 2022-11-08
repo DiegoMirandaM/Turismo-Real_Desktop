@@ -5,31 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="325332c1c61f40689bf8484d6f52bfef" Name="Diagram1" ZoomLevel="71">
-        <EntityTypeShape EntityType="TurismoReal_Model.AMIGO" Width="1.5" PointX="5.25" PointY="2.875" />
-        <EntityTypeShape EntityType="TurismoReal_Model.ARRIENDO" Width="1.5" PointX="5.25" PointY="7" />
-        <EntityTypeShape EntityType="TurismoReal_Model.ARRIENDO_AMIGO" Width="1.5" PointX="7.5" PointY="8.25" />
-        <EntityTypeShape EntityType="TurismoReal_Model.CIUDAD" Width="1.5" PointX="0.75" PointY="3.375" />
-        <EntityTypeShape EntityType="TurismoReal_Model.CONDUCTOR" Width="1.5" PointX="7.5" PointY="21.125" />
-        <EntityTypeShape EntityType="TurismoReal_Model.DEPARTAMENTO" Width="1.5" PointX="3" PointY="2.25" />
-        <EntityTypeShape EntityType="TurismoReal_Model.DISPONIBILIDAD_SERVICIO" Width="1.5" PointX="10.5" PointY="2.625" />
-        <EntityTypeShape EntityType="TurismoReal_Model.ERROR" Width="1.5" PointX="9.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TurismoReal_Model.HISTORICO_ARRIENDO" Width="1.5" PointX="11.75" PointY="11.75" />
-        <EntityTypeShape EntityType="TurismoReal_Model.HISTORICO_INGRESO" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TurismoReal_Model.IMAGEN" Width="1.5" PointX="5.25" PointY="18.5" />
-        <EntityTypeShape EntityType="TurismoReal_Model.INVENTARIO" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="TurismoReal_Model.MANTENCION" Width="1.5" PointX="5.25" PointY="12.25" />
-        <EntityTypeShape EntityType="TurismoReal_Model.MULTA" Width="1.5" PointX="7.5" PointY="4.625" />
-        <EntityTypeShape EntityType="TurismoReal_Model.RESERVA" Width="1.5" PointX="7.5" PointY="13.375" />
-        <EntityTypeShape EntityType="TurismoReal_Model.SERVICIO_CONTRATADO" Width="1.5" PointX="10.5" PointY="7.875" />
-        <EntityTypeShape EntityType="TurismoReal_Model.SERVICIO_EXTRA" Width="1.5" PointX="8.25" PointY="1.25" />
-        <EntityTypeShape EntityType="TurismoReal_Model.SOLICITUD_TRANSPORTE" Width="1.5" PointX="7.5" PointY="16.625" />
-        <EntityTypeShape EntityType="TurismoReal_Model.TIPO_USUARIO" Width="1.5" PointX="0.75" PointY="8.375" />
-        <EntityTypeShape EntityType="TurismoReal_Model.TRANSPORTE_REALIZADO" Width="1.5" PointX="9.75" PointY="17.125" />
-        <EntityTypeShape EntityType="TurismoReal_Model.USUARIO" Width="1.5" PointX="3" PointY="7.125" />
-        <AssociationConnector Association="TurismoReal_Model.ARRIENDOSAMIGOS_AMIGOS_FK" />
+        <EntityTypeShape EntityType="TurismoReal_Model.AMIGO" Width="1.5" PointX="6" PointY="6.25" />
+        <EntityTypeShape EntityType="TurismoReal_Model.ARRIENDO" Width="1.5" PointX="8.25" PointY="11.625" />
+        <EntityTypeShape EntityType="TurismoReal_Model.CIUDAD" Width="1.5" PointX="0.75" PointY="13.125" />
+        <EntityTypeShape EntityType="TurismoReal_Model.CONDUCTOR" Width="1.5" PointX="10.5" PointY="5.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.DEPARTAMENTO" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="TurismoReal_Model.DISPONIBILIDAD_SERVICIO" Width="1.5" PointX="5.25" PointY="12.875" />
+        <EntityTypeShape EntityType="TurismoReal_Model.ERROR" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.HISTORICO_ARRIENDO" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.HISTORICO_INGRESO" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.IMAGEN" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="TurismoReal_Model.INVENTARIO" Width="1.5" PointX="5.25" PointY="25.125" />
+        <EntityTypeShape EntityType="TurismoReal_Model.MANTENCION" Width="1.5" PointX="5.25" PointY="28.25" />
+        <EntityTypeShape EntityType="TurismoReal_Model.MULTA" Width="1.5" PointX="10.5" PointY="16.375" />
+        <EntityTypeShape EntityType="TurismoReal_Model.RESERVA" Width="1.5" PointX="10.5" PointY="19" />
+        <EntityTypeShape EntityType="TurismoReal_Model.SERVICIO_CONTRATADO" Width="1.5" PointX="13.5" PointY="13.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.SERVICIO_EXTRA" Width="1.5" PointX="11.25" PointY="22.875" />
+        <EntityTypeShape EntityType="TurismoReal_Model.SOLICITUD_TRANSPORTE" Width="1.5" PointX="10.5" PointY="9.375" />
+        <EntityTypeShape EntityType="TurismoReal_Model.TIPO_USUARIO" Width="1.5" PointX="3.75" PointY="18.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.TRANSPORTE_REALIZADO" Width="1.5" PointX="12.75" PointY="9.75" />
+        <EntityTypeShape EntityType="TurismoReal_Model.USUARIO" Width="1.5" PointX="6" PointY="17.5" />
         <AssociationConnector Association="TurismoReal_Model.ARRIENDO_DEPARTAMENTO_FK" />
         <AssociationConnector Association="TurismoReal_Model.ARRIENDO_USUARIO_FK" />
-        <AssociationConnector Association="TurismoReal_Model.ARRIENDOSAMIGOS_ARRIENDO_FK" />
         <AssociationConnector Association="TurismoReal_Model.MULTA_ARRIENDO_FK" />
         <AssociationConnector Association="TurismoReal_Model.RESERVA_ARRIENDO_FK" />
         <AssociationConnector Association="TurismoReal_Model.SERVCONTRAT_ARRIENDOS_FK" />
@@ -44,6 +41,7 @@
         <AssociationConnector Association="TurismoReal_Model.SERVCONTRAT_SERVICIOS_FK" />
         <AssociationConnector Association="TurismoReal_Model.SOLICITUD_TRANSPORTES_FK" />
         <AssociationConnector Association="TurismoReal_Model.USUARIO_TIPOUSUARIO_FK" />
+        <AssociationConnector Association="TurismoReal_Model.ARRIENDO_AMIGO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

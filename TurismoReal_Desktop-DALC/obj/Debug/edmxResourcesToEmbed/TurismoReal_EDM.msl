@@ -59,15 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ARRIENDO_AMIGO">
-      <EntityTypeMapping TypeName="TurismoReal_Model.ARRIENDO_AMIGO">
-        <MappingFragment StoreEntitySet="ARRIENDO_AMIGO">
-          <ScalarProperty Name="ID_AMIGOS" ColumnName="ID_AMIGOS" />
-          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CIUDAD">
       <EntityTypeMapping TypeName="TurismoReal_Model.CIUDAD">
         <MappingFragment StoreEntitySet="CIUDAD">
@@ -109,7 +100,6 @@
           <ScalarProperty Name="ACTUALMENTE_DISPONIBLE" ColumnName="ACTUALMENTE_DISPONIBLE" />
           <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
           <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -214,7 +204,6 @@
           <ScalarProperty Name="COSTO" ColumnName="COSTO" />
           <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
           <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -281,5 +270,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="ARRIENDO_AMIGO" TypeName="TurismoReal_Model.ARRIENDO_AMIGO" StoreEntitySet="ARRIENDO_AMIGO">
+      <EndProperty Name="ARRIENDO">
+        <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+      </EndProperty>
+      <EndProperty Name="AMIGO">
+        <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGOS" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
   </EntityContainerMapping>
 </Mapping>

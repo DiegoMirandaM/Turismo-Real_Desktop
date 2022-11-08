@@ -33,7 +33,7 @@ namespace TurismoReal_Desktop
             InitializeComponent();
             btn_tipoCliente_Click(null, null);
             Cargar_tipos_usuarios();
-            Alternar_habil_btns(false);
+            Alternar_habil_btns(Btn_updateDatos, false);
         }
 
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
@@ -51,6 +51,11 @@ namespace TurismoReal_Desktop
             dg_usuarios.ItemsSource = user.ListarUsuariosPorTipo(1);
             categoriaSeleccionada = 1;
 
+            Alternar_habil_btns(btn_tipoCliente, false);
+            Alternar_habil_btns(btn_tipoFuncionario, true);
+            Alternar_habil_btns(btn_tipoAdmin, true);
+            Alternar_habil_btns(btn_tipoDesactivados, true);
+
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
         private void btn_tipoFuncionario_Click(object sender, RoutedEventArgs e)
@@ -61,6 +66,11 @@ namespace TurismoReal_Desktop
             dg_usuarios.ItemsSource = user.ListarUsuariosPorTipo(2);
             categoriaSeleccionada = 2;
 
+            Alternar_habil_btns(btn_tipoCliente, true);
+            Alternar_habil_btns(btn_tipoFuncionario, false);
+            Alternar_habil_btns(btn_tipoAdmin, true);
+            Alternar_habil_btns(btn_tipoDesactivados, true);
+
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
         private void btn_tipoAdmin_Click(object sender, RoutedEventArgs e)
@@ -69,6 +79,11 @@ namespace TurismoReal_Desktop
             Usuario user = new Usuario();
             dg_usuarios.ItemsSource = user.ListarUsuariosPorTipo(3);
             categoriaSeleccionada = 3;
+
+            Alternar_habil_btns(btn_tipoCliente, true);
+            Alternar_habil_btns(btn_tipoFuncionario, true);
+            Alternar_habil_btns(btn_tipoAdmin, false);
+            Alternar_habil_btns(btn_tipoDesactivados, true);
 
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
@@ -79,6 +94,11 @@ namespace TurismoReal_Desktop
             Usuario user = new Usuario();
             dg_usuarios.ItemsSource = user.ListarUsuariosPorTipo(4);
             categoriaSeleccionada = 4;
+
+            Alternar_habil_btns(btn_tipoCliente, true);
+            Alternar_habil_btns(btn_tipoFuncionario, true);
+            Alternar_habil_btns(btn_tipoAdmin, true);
+            Alternar_habil_btns(btn_tipoDesactivados, false);
 
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
@@ -92,7 +112,7 @@ namespace TurismoReal_Desktop
 
                 if (Btn_updateDatos.IsEnabled == false)
                 {
-                    Alternar_habil_btns(true);
+                    Alternar_habil_btns(Btn_updateDatos, true);
                 }
 
                 seleccionado = dg_usuarios.SelectedItem as Usuario;
@@ -117,9 +137,9 @@ namespace TurismoReal_Desktop
             }
         }
 
-        private void Alternar_habil_btns(bool estado)
+        private void Alternar_habil_btns(Button boton, bool estado)
         {
-            Btn_updateDatos.IsEnabled = estado;
+            boton.IsEnabled = estado;
         }
 
         private void Cargar_tipos_usuarios()
@@ -276,6 +296,7 @@ namespace TurismoReal_Desktop
                 tb_ciudad.Text.Trim() == seleccionado.CIUDAD &&
                 tb_apeMat.Text.Trim() == seleccionado.APE_MAT &&
                 tb_telefono.Text.Trim() == seleccionado.TELEFONO &&
+                TR_Recursos.ConvertirSha256(tb_pass.Text.Trim()) == seleccionado.PASSWORD &&
                 ((Tipo_usuario)cb_tipoUsuario.SelectedItem).DESCRIPCION == seleccionado.TIPO_USUARIO.DESCRIPCION
             )
             {
@@ -285,7 +306,6 @@ namespace TurismoReal_Desktop
             else
             {
                 // Actualización de los datos del usuario 
-
                 actualizando = true;
 
                 Boolean resultado = seleccionado.updateUsuario(seleccionado.ID_USUARIO, idTipoUsuario, nombre, apePat, apeMat, finalRutInt, dv.ToString(), direccion, ciudad, telefono, email, area, username, TR_Recursos.ConvertirSha256(password));
@@ -324,7 +344,7 @@ namespace TurismoReal_Desktop
 
             dg_usuarios.SelectedItem = null;
 
-            Alternar_habil_btns(false);
+            Alternar_habil_btns(Btn_updateDatos, false);
 
             RecargarListadoUsuarios();
         }

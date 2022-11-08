@@ -122,5 +122,79 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
+        public Departamento ClonarDpto()
+        {
+            Departamento newDpto = new Departamento();
+
+            newDpto.ID_DPTO = this.ID_DPTO;
+
+            newDpto.ID_CIUDAD = this.ID_CIUDAD;
+            newDpto.NOMBRE = this.NOMBRE;
+            newDpto.DIRECCION = this.DIRECCION;
+            newDpto.SUPERFICIE_DPTO = this.SUPERFICIE_DPTO;
+            newDpto.NRO_DPTO = this.NRO_DPTO;
+            newDpto.PRECIO_DPTO = this.PRECIO_DPTO;
+            newDpto.DISPONIBLE = this.DISPONIBLE;
+            newDpto.ArrendableStr = this.ArrendableStr;
+            newDpto.CONDICION = this.CONDICION;
+            newDpto.ARRIENDO = this.ARRIENDO;
+            newDpto.Negocio_Ciudad = this.Negocio_Ciudad;
+            newDpto.IMAGEN = this.IMAGEN;
+            newDpto.INVENTARIO = this.INVENTARIO;
+            newDpto.MANTENCION = this.MANTENCION;
+            newDpto.DISPONIBILIDAD_SERVICIO = this.DISPONIBILIDAD_SERVICIO;
+            newDpto.disp_createOrUpdate = this.disp_createOrUpdate;
+            newDpto.disp_asociado = this.disp_asociado;
+            newDpto.disp_habilitado = this.disp_habilitado;
+
+            return newDpto;
+
+        }
+
+        public Boolean CreateAsociacionServExtra(decimal p_ID_DPTO, decimal p_ID_SERV, string p_ACTUALDISP)
+        {
+            try
+            {
+                conn.SP_CREATE_DISP_SERVICIO(p_ID_DPTO, p_ID_SERV, p_ACTUALDISP);
+                conn.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public Boolean UpdateAsociacionServExtra(decimal p_ID_DPTO, decimal p_ID_SERV, string p_ACTUALDISP)
+        {
+            try
+            {
+                conn.SP_UPDATE_DISP_SERVICIO(p_ID_DPTO, p_ID_SERV, p_ACTUALDISP);
+                conn.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public Boolean DeleteAsociacionServExtra(decimal p_ID_DPTO, decimal p_ID_SERV)
+        {
+            try
+            {
+                conn.SP_DELETE_DISP_SERVICIO(p_ID_DPTO, p_ID_SERV);
+                conn.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

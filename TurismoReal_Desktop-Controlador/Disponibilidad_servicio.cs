@@ -9,7 +9,6 @@ namespace TurismoReal_Desktop_Controlador
 {
     public class Disponibilidad_servicio
     {
-        public decimal ID { get; set; }
         public decimal ID_DPTO { get; set; }
         public decimal ID_SERVICIO { get; set; }
         public string ACTUALMENTE_DISPONIBLE { get; set; }
@@ -30,7 +29,6 @@ namespace TurismoReal_Desktop_Controlador
                 {
                     Disponibilidad_servicio disp = new Disponibilidad_servicio();
 
-                    disp.ID = dato.ID;
                     disp.ID_DPTO = dato.ID_DPTO;
                     disp.ID_SERVICIO = dato.ID_SERVICIO;
                     disp.ACTUALMENTE_DISPONIBLE = dato.ACTUALMENTE_DISPONIBLE;

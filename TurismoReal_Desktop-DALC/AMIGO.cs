@@ -16,7 +16,7 @@ namespace TurismoReal_Desktop_DALC
     {
         public AMIGO()
         {
-            this.ARRIENDO_AMIGO = new HashSet<ARRIENDO_AMIGO>();
+            this.ARRIENDO = new HashSet<ARRIENDO>();
         }
     
         public decimal ID_AMIGO { get; set; }
@@ -27,6 +27,6 @@ namespace TurismoReal_Desktop_DALC
         public string TELEFONO { get; set; }
         public string EMAIL { get; set; }
     
-        public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
+        public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
     }
 }

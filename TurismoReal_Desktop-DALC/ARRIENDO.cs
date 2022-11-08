@@ -16,11 +16,11 @@ namespace TurismoReal_Desktop_DALC
     {
         public ARRIENDO()
         {
-            this.ARRIENDO_AMIGO = new HashSet<ARRIENDO_AMIGO>();
             this.MULTA = new HashSet<MULTA>();
             this.RESERVA = new HashSet<RESERVA>();
             this.SERVICIO_CONTRATADO = new HashSet<SERVICIO_CONTRATADO>();
             this.SOLICITUD_TRANSPORTE = new HashSet<SOLICITUD_TRANSPORTE>();
+            this.AMIGO = new HashSet<AMIGO>();
         }
     
         public decimal ID_ARRIENDO { get; set; }
@@ -37,10 +37,10 @@ namespace TurismoReal_Desktop_DALC
     
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
-        public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
         public virtual ICollection<MULTA> MULTA { get; set; }
         public virtual ICollection<RESERVA> RESERVA { get; set; }
         public virtual ICollection<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
         public virtual ICollection<SOLICITUD_TRANSPORTE> SOLICITUD_TRANSPORTE { get; set; }
+        public virtual ICollection<AMIGO> AMIGO { get; set; }
     }
 }

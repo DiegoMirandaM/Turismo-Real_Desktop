@@ -35,9 +35,9 @@
         </EntityType>
         <EntityType Name="ARRIENDO_AMIGO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_AMIGOS" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_AMIGOS" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
@@ -75,9 +75,9 @@
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_DPTO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ACTUALMENTE_DISPONIBLE" Type="char" MaxLength="1" Nullable="false" />
@@ -169,9 +169,9 @@
         </EntityType>
         <EntityType Name="SERVICIO_CONTRATADO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
@@ -539,6 +539,10 @@
         <Function Name="SP_DELETE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_DELETE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_DELETE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
@@ -574,7 +578,6 @@
           <Parameter Name="P_TOTAL" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
           <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />
@@ -856,7 +859,6 @@
             <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
-            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
             <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
@@ -918,7 +920,6 @@
           </FunctionImport>
           <EntitySet Name="AMIGO" EntityType="TurismoReal_Model.AMIGO" />
           <EntitySet Name="ARRIENDO" EntityType="TurismoReal_Model.ARRIENDO" />
-          <EntitySet Name="ARRIENDO_AMIGO" EntityType="TurismoReal_Model.ARRIENDO_AMIGO" />
           <EntitySet Name="CIUDAD" EntityType="TurismoReal_Model.CIUDAD" />
           <EntitySet Name="CONDUCTOR" EntityType="TurismoReal_Model.CONDUCTOR" />
           <EntitySet Name="DEPARTAMENTO" EntityType="TurismoReal_Model.DEPARTAMENTO" />
@@ -937,10 +938,6 @@
           <EntitySet Name="TIPO_USUARIO" EntityType="TurismoReal_Model.TIPO_USUARIO" />
           <EntitySet Name="TRANSPORTE_REALIZADO" EntityType="TurismoReal_Model.TRANSPORTE_REALIZADO" />
           <EntitySet Name="USUARIO" EntityType="TurismoReal_Model.USUARIO" />
-          <AssociationSet Name="ARRIENDOSAMIGOS_AMIGOS_FK" Association="TurismoReal_Model.ARRIENDOSAMIGOS_AMIGOS_FK">
-            <End Role="AMIGO" EntitySet="AMIGO" />
-            <End Role="ARRIENDO_AMIGO" EntitySet="ARRIENDO_AMIGO" />
-          </AssociationSet>
           <AssociationSet Name="ARRIENDO_DEPARTAMENTO_FK" Association="TurismoReal_Model.ARRIENDO_DEPARTAMENTO_FK">
             <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
@@ -948,10 +945,6 @@
           <AssociationSet Name="ARRIENDO_USUARIO_FK" Association="TurismoReal_Model.ARRIENDO_USUARIO_FK">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-          </AssociationSet>
-          <AssociationSet Name="ARRIENDOSAMIGOS_ARRIENDO_FK" Association="TurismoReal_Model.ARRIENDOSAMIGOS_ARRIENDO_FK">
-            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-            <End Role="ARRIENDO_AMIGO" EntitySet="ARRIENDO_AMIGO" />
           </AssociationSet>
           <AssociationSet Name="MULTA_ARRIENDO_FK" Association="TurismoReal_Model.MULTA_ARRIENDO_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
@@ -1009,7 +1002,15 @@
             <End Role="TIPO_USUARIO" EntitySet="TIPO_USUARIO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="ARRIENDO_AMIGO" Association="TurismoReal_Model.ARRIENDO_AMIGO">
+            <End Role="AMIGO" EntitySet="AMIGO" />
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+          </AssociationSet>
+          <FunctionImport Name="SP_DELETE_DISP_SERVICIO">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          </EntityContainer>
         <EntityType Name="AMIGO">
           <Key>
             <PropertyRef Name="ID_AMIGO" />
@@ -1021,7 +1022,7 @@
           <Property Name="FEC_NAC" Type="DateTime" Nullable="false" />
           <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ARRIENDO_AMIGO" Relationship="TurismoReal_Model.ARRIENDOSAMIGOS_AMIGOS_FK" FromRole="AMIGO" ToRole="ARRIENDO_AMIGO" />
+          <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.ARRIENDO_AMIGO" FromRole="AMIGO" ToRole="ARRIENDO" />
         </EntityType>
         <EntityType Name="ARRIENDO">
           <Key>
@@ -1040,21 +1041,11 @@
           <Property Name="TOTAL_ARRIENDO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="DEPARTAMENTO" Relationship="TurismoReal_Model.ARRIENDO_DEPARTAMENTO_FK" FromRole="ARRIENDO" ToRole="DEPARTAMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="TurismoReal_Model.ARRIENDO_USUARIO_FK" FromRole="ARRIENDO" ToRole="USUARIO" />
-          <NavigationProperty Name="ARRIENDO_AMIGO" Relationship="TurismoReal_Model.ARRIENDOSAMIGOS_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="ARRIENDO_AMIGO" />
           <NavigationProperty Name="MULTA" Relationship="TurismoReal_Model.MULTA_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="MULTA" />
           <NavigationProperty Name="RESERVA" Relationship="TurismoReal_Model.RESERVA_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="RESERVA" />
           <NavigationProperty Name="SERVICIO_CONTRATADO" Relationship="TurismoReal_Model.SERVCONTRAT_ARRIENDOS_FK" FromRole="ARRIENDO" ToRole="SERVICIO_CONTRATADO" />
           <NavigationProperty Name="SOLICITUD_TRANSPORTE" Relationship="TurismoReal_Model.SOLICITUD_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="SOLICITUD_TRANSPORTE" />
-        </EntityType>
-        <EntityType Name="ARRIENDO_AMIGO">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="ID_ARRIENDO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="ID_AMIGOS" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <NavigationProperty Name="AMIGO" Relationship="TurismoReal_Model.ARRIENDOSAMIGOS_AMIGOS_FK" FromRole="ARRIENDO_AMIGO" ToRole="AMIGO" />
-          <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.ARRIENDOSAMIGOS_ARRIENDO_FK" FromRole="ARRIENDO_AMIGO" ToRole="ARRIENDO" />
+          <NavigationProperty Name="AMIGO" Relationship="TurismoReal_Model.ARRIENDO_AMIGO" FromRole="ARRIENDO" ToRole="AMIGO" />
         </EntityType>
         <EntityType Name="CIUDAD">
           <Key>
@@ -1098,9 +1089,9 @@
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_DPTO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ID_DPTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ID_SERVICIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ACTUALMENTE_DISPONIBLE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -1199,9 +1190,9 @@
         </EntityType>
         <EntityType Name="SERVICIO_CONTRATADO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ID_ARRIENDO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ID_SERVICIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="COSTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
@@ -1277,18 +1268,6 @@
           <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.ARRIENDO_USUARIO_FK" FromRole="USUARIO" ToRole="ARRIENDO" />
           <NavigationProperty Name="TIPO_USUARIO" Relationship="TurismoReal_Model.USUARIO_TIPOUSUARIO_FK" FromRole="USUARIO" ToRole="TIPO_USUARIO" />
         </EntityType>
-        <Association Name="ARRIENDOSAMIGOS_AMIGOS_FK">
-          <End Type="TurismoReal_Model.AMIGO" Role="AMIGO" Multiplicity="1" />
-          <End Type="TurismoReal_Model.ARRIENDO_AMIGO" Role="ARRIENDO_AMIGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AMIGO">
-              <PropertyRef Name="ID_AMIGO" />
-            </Principal>
-            <Dependent Role="ARRIENDO_AMIGO">
-              <PropertyRef Name="ID_AMIGOS" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ARRIENDO_DEPARTAMENTO_FK">
           <End Type="TurismoReal_Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
           <End Type="TurismoReal_Model.ARRIENDO" Role="ARRIENDO" Multiplicity="*" />
@@ -1310,18 +1289,6 @@
             </Principal>
             <Dependent Role="ARRIENDO">
               <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ARRIENDOSAMIGOS_ARRIENDO_FK">
-          <End Type="TurismoReal_Model.ARRIENDO" Role="ARRIENDO" Multiplicity="1" />
-          <End Type="TurismoReal_Model.ARRIENDO_AMIGO" Role="ARRIENDO_AMIGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ARRIENDO">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Principal>
-            <Dependent Role="ARRIENDO_AMIGO">
-              <PropertyRef Name="ID_ARRIENDO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1493,7 +1460,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="ARRIENDO_AMIGO">
+          <End Type="TurismoReal_Model.AMIGO" Role="AMIGO" Multiplicity="*" />
+          <End Type="TurismoReal_Model.ARRIENDO" Role="ARRIENDO" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1557,15 +1528,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ARRIENDO_AMIGO">
-            <EntityTypeMapping TypeName="TurismoReal_Model.ARRIENDO_AMIGO">
-              <MappingFragment StoreEntitySet="ARRIENDO_AMIGO">
-                <ScalarProperty Name="ID_AMIGOS" ColumnName="ID_AMIGOS" />
-                <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CIUDAD">
             <EntityTypeMapping TypeName="TurismoReal_Model.CIUDAD">
               <MappingFragment StoreEntitySet="CIUDAD">
@@ -1607,7 +1569,6 @@
                 <ScalarProperty Name="ACTUALMENTE_DISPONIBLE" ColumnName="ACTUALMENTE_DISPONIBLE" />
                 <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
                 <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1712,7 +1673,6 @@
                 <ScalarProperty Name="COSTO" ColumnName="COSTO" />
                 <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
                 <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1779,7 +1739,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <AssociationSetMapping Name="ARRIENDO_AMIGO" TypeName="TurismoReal_Model.ARRIENDO_AMIGO" StoreEntitySet="ARRIENDO_AMIGO">
+            <EndProperty Name="ARRIENDO">
+              <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+            </EndProperty>
+            <EndProperty Name="AMIGO">
+              <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGOS" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

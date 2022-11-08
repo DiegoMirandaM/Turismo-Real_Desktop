@@ -14,7 +14,6 @@ namespace TurismoReal_Desktop_DALC
     
     public partial class DISPONIBILIDAD_SERVICIO
     {
-        public decimal ID { get; set; }
         public decimal ID_DPTO { get; set; }
         public decimal ID_SERVICIO { get; set; }
         public string ACTUALMENTE_DISPONIBLE { get; set; }

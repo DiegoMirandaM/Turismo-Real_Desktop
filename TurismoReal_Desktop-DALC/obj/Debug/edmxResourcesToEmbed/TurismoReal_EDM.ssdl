@@ -30,9 +30,9 @@
   </EntityType>
   <EntityType Name="ARRIENDO_AMIGO">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_ARRIENDO" />
+      <PropertyRef Name="ID_AMIGOS" />
     </Key>
-    <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_AMIGOS" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
@@ -70,9 +70,9 @@
   </EntityType>
   <EntityType Name="DISPONIBILIDAD_SERVICIO">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_DPTO" />
+      <PropertyRef Name="ID_SERVICIO" />
     </Key>
-    <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ACTUALMENTE_DISPONIBLE" Type="char" MaxLength="1" Nullable="false" />
@@ -164,9 +164,9 @@
   </EntityType>
   <EntityType Name="SERVICIO_CONTRATADO">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ID_ARRIENDO" />
+      <PropertyRef Name="ID_SERVICIO" />
     </Key>
-    <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
@@ -534,6 +534,10 @@
   <Function Name="SP_DELETE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="ID" Type="number" Mode="In" />
   </Function>
+  <Function Name="SP_DELETE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+    <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+    <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
+  </Function>
   <Function Name="SP_DELETE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="ID" Type="number" Mode="In" />
   </Function>
@@ -569,7 +573,6 @@
     <Parameter Name="P_TOTAL" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
-    <Parameter Name="P_ID" Type="number" Mode="In" />
     <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
     <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
     <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />

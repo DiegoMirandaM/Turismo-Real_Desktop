@@ -30,7 +30,6 @@ namespace TurismoReal_Desktop_DALC
     
         public DbSet<AMIGO> AMIGO { get; set; }
         public DbSet<ARRIENDO> ARRIENDO { get; set; }
-        public DbSet<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
         public DbSet<CIUDAD> CIUDAD { get; set; }
         public DbSet<CONDUCTOR> CONDUCTOR { get; set; }
         public DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
@@ -455,12 +454,8 @@ namespace TurismoReal_Desktop_DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ARRIENDO", p_IDParameter, p_ID_CLIParameter, p_ID_DPTOParameter, p_FEC_RESERVAParameter, p_VALOR_RESERVAParameter, p_PAGADAParameter, p_FEC_INIParameter, p_FEC_FINParameter, p_TOTALParameter);
         }
     
-        public virtual int SP_UPDATE_DISP_SERVICIO(Nullable<decimal> p_ID, Nullable<decimal> p_ID_DPTO, Nullable<decimal> p_ID_SERV, string p_ACTUALDISP)
+        public virtual int SP_UPDATE_DISP_SERVICIO(Nullable<decimal> p_ID_DPTO, Nullable<decimal> p_ID_SERV, string p_ACTUALDISP)
         {
-            var p_IDParameter = p_ID.HasValue ?
-                new ObjectParameter("P_ID", p_ID) :
-                new ObjectParameter("P_ID", typeof(decimal));
-    
             var p_ID_DPTOParameter = p_ID_DPTO.HasValue ?
                 new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
                 new ObjectParameter("P_ID_DPTO", typeof(decimal));
@@ -473,7 +468,7 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_ACTUALDISP", p_ACTUALDISP) :
                 new ObjectParameter("P_ACTUALDISP", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_DISP_SERVICIO", p_IDParameter, p_ID_DPTOParameter, p_ID_SERVParameter, p_ACTUALDISPParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_DISP_SERVICIO", p_ID_DPTOParameter, p_ID_SERVParameter, p_ACTUALDISPParameter);
         }
     
         public virtual int SP_UPDATE_DPTO(Nullable<decimal> p_ID, Nullable<decimal> p_ID_CIUDAD, string p_NOMBRE, string p_DIR, string p_M2, string p_NRO_DPTO, Nullable<decimal> p_PRECIO, string p_DISP, string p_COND)
@@ -676,6 +671,19 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_PASS", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_USUARIO", p_IDParameter, p_ID_TIPOParameter, p_NOMBREParameter, p_PATERNOParameter, p_MATERNOParameter, p_RUTParameter, p_DVParameter, p_DIRECCIONParameter, p_CIUDADParameter, p_TELEFONOParameter, p_EMAILParameter, p_AREAParameter, p_USUARIOParameter, p_PASSParameter);
+        }
+    
+        public virtual int SP_DELETE_DISP_SERVICIO(Nullable<decimal> p_ID_DPTO, Nullable<decimal> p_ID_SERV)
+        {
+            var p_ID_DPTOParameter = p_ID_DPTO.HasValue ?
+                new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
+                new ObjectParameter("P_ID_DPTO", typeof(decimal));
+    
+            var p_ID_SERVParameter = p_ID_SERV.HasValue ?
+                new ObjectParameter("P_ID_SERV", p_ID_SERV) :
+                new ObjectParameter("P_ID_SERV", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_DISP_SERVICIO", p_ID_DPTOParameter, p_ID_SERVParameter);
         }
     }
 }

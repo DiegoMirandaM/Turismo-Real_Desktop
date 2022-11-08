@@ -57,9 +57,6 @@
     <Compile Include="ARRIENDO.cs">
       <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARRIENDO_AMIGO.cs">
-      <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="CIUDAD.cs">
       <DependentUpon>TurismoReal_EDM.tt</DependentUpon>
     </Compile>

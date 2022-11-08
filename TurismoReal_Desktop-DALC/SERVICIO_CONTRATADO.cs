@@ -14,7 +14,6 @@ namespace TurismoReal_Desktop_DALC
     
     public partial class SERVICIO_CONTRATADO
     {
-        public decimal ID { get; set; }
         public decimal ID_ARRIENDO { get; set; }
         public decimal ID_SERVICIO { get; set; }
         public decimal COSTO { get; set; }

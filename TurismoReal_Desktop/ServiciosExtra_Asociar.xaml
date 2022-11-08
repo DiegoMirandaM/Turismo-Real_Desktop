@@ -48,8 +48,8 @@
                 <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="0.9*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="Núm. Depto" Width="0.5*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Negocio_Ciudad.NOMBRE}" Header="Ciudad" Width="0.7*" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn  Header="¿Ofrecido aquí?" Width="0.6*"/>
-                <DataGridCheckBoxColumn  Header="¿Disponible?" Width="0.6*"/>
+                <DataGridCheckBoxColumn Binding="{Binding disp_asociado}" Header="¿Ofrecido aquí?" Width="0.6*"/>
+                <DataGridCheckBoxColumn Binding="{Binding disp_habilitado}" Header="¿Disponible?" Width="0.6*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -66,7 +66,7 @@
         </Viewbox>
 
         <Viewbox Grid.Column="4" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="55">
-            <Button Name="btn_guardarCambios" Content="Guardar cambios" VerticalAlignment="Center" BorderBrush="#fe7a4a" Width="80"  Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" FontSize="8" mah:ControlsHelper.ContentCharacterCasing="Normal"/>
+            <Button Name="btn_guardarCambios" Content="Guardar cambios" VerticalAlignment="Center" BorderBrush="#fe7a4a" Width="80"  Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" FontSize="8" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="Btn_guardarCambios_Click"/>
         </Viewbox>
 
         
