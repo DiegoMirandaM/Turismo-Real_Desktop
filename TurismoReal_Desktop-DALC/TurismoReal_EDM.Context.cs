@@ -685,5 +685,27 @@ namespace TurismoReal_Desktop_DALC
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_DISP_SERVICIO", p_ID_DPTOParameter, p_ID_SERVParameter);
         }
+    
+        public virtual int SP_CREATE_IMAGEN(Nullable<decimal> p_ID_DPTO, byte[] p_FOTO)
+        {
+            var p_ID_DPTOParameter = p_ID_DPTO.HasValue ?
+                new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
+                new ObjectParameter("P_ID_DPTO", typeof(decimal));
+    
+            var p_FOTOParameter = p_FOTO != null ?
+                new ObjectParameter("P_FOTO", p_FOTO) :
+                new ObjectParameter("P_FOTO", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_IMAGEN", p_ID_DPTOParameter, p_FOTOParameter);
+        }
+    
+        public virtual int SP_DELETE_IMAGEN(Nullable<decimal> p_ID_IMAGEN)
+        {
+            var p_ID_IMAGENParameter = p_ID_IMAGEN.HasValue ?
+                new ObjectParameter("P_ID_IMAGEN", p_ID_IMAGEN) :
+                new ObjectParameter("P_ID_IMAGEN", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_IMAGEN", p_ID_IMAGENParameter);
+        }
     }
 }

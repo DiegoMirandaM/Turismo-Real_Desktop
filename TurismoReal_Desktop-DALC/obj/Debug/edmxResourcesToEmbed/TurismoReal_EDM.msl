@@ -279,5 +279,7 @@
       </EndProperty>
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
   </EntityContainerMapping>
 </Mapping>

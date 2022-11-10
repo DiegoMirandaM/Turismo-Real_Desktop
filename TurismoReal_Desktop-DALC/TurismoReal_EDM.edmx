@@ -490,6 +490,10 @@
           <Parameter Name="COND" Type="varchar2" Mode="In" />
           <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
         </Function>
+        <Function Name="SP_CREATE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_FOTO" Type="blob" Mode="In" />
+        </Function>
         <Function Name="SP_CREATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="ITEM" Type="varchar2" Mode="In" />
@@ -545,6 +549,9 @@
         </Function>
         <Function Name="SP_DELETE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SP_DELETE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="P_ID_IMAGEN" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_DELETE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -1009,6 +1016,13 @@
           <FunctionImport Name="SP_DELETE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_IMAGEN">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FOTO" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DELETE_IMAGEN">
+            <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="AMIGO">
@@ -1748,6 +1762,8 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
+          <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

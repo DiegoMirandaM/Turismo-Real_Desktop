@@ -248,7 +248,7 @@ namespace TurismoReal_Desktop
 
         private void btn_gestImagenes_Click(object sender, RoutedEventArgs e)
         {
-            Dpto_imagenes win_imagenes = new Dpto_imagenes();
+            Dpto_imagenes win_imagenes = new Dpto_imagenes(seleccionado);
             win_imagenes.ShowDialog();
         }
 

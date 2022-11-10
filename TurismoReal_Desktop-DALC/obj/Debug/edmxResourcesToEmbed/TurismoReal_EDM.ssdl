@@ -485,6 +485,10 @@
     <Parameter Name="COND" Type="varchar2" Mode="In" />
     <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
   </Function>
+  <Function Name="SP_CREATE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+    <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+    <Parameter Name="P_FOTO" Type="blob" Mode="In" />
+  </Function>
   <Function Name="SP_CREATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="ID_DPTO" Type="number" Mode="In" />
     <Parameter Name="ITEM" Type="varchar2" Mode="In" />
@@ -540,6 +544,9 @@
   </Function>
   <Function Name="SP_DELETE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="ID" Type="number" Mode="In" />
+  </Function>
+  <Function Name="SP_DELETE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+    <Parameter Name="P_ID_IMAGEN" Type="number" Mode="In" />
   </Function>
   <Function Name="SP_DELETE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
     <Parameter Name="ID" Type="number" Mode="In" />

@@ -274,6 +274,13 @@
       <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
       <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="SP_CREATE_IMAGEN">
+      <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+      <Parameter Name="P_FOTO" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_IMAGEN">
+      <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="AMIGO">
     <Key>

@@ -25,9 +25,6 @@ namespace TurismoReal_Desktop_Controlador
             try
             {
                 List<Mantencion> listMantencion = new List<Mantencion>();
-                //List<MANTENCION> listDatos = conn.MANTENCION.ToList<MANTENCION>(); 
-                // Ocultado esto porque una opcion es recuperarlos todos y filtrar luego, o filtrar al tiro en la consulta. 
-
                 var listDatos = conn.MANTENCION.Where(mantencion => mantencion.ID_DPTO == ID_DPTO);
 
                 foreach (MANTENCION dato in listDatos)

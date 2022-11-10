@@ -49,6 +49,7 @@
     <Compile Include="Ciudad.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Disponibilidad_servicio.cs" />
+    <Compile Include="Imagen.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mantencion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

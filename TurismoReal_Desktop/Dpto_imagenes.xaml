@@ -5,11 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal_Desktop"
         mc:Ignorable="d"
+                 
+                 MinHeight="550" MinWidth="650"
+                 Height="700" Width="800"
         
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Imagenes del departamento - Turismo Real" TitleCharacterCasing="Normal" Height="450" Width="800" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
-    <Grid>
+        Title="Imagenes del departamento - Turismo Real" TitleCharacterCasing="Normal"  BorderBrush="Black" WindowTitleBrush="#fe7a4a">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="3*" Name="row_imagenPrincipal"/>
+            <RowDefinition Height="1*" Name="row_otrasImagenes"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.3*" Name="row_rutaNuevaImg"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Content="Imagenes" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
+        <Label Grid.Column="1" Grid.Row="1" Content="Agrega o remueve imagenes del departamento." HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Medium" Foreground="#04aba3"/>
+
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Center"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
+        </Button>
+
+        <DockPanel Grid.Column="1" Grid.Row="2"  Background="#fe7a4a">
+            <Image Name="img_principal" Margin="5"/>
+        </DockPanel>
+
+
+        <StackPanel Name="stk_imagenes" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Width="150" Background="Gray">
+        </StackPanel>
+
+        <ScrollBar Grid.Column="1" Grid.Row="4" Orientation="Horizontal" ViewportSize="1" BorderBrush="#fe7a4a" BorderThickness="1"/>
+
+
+
+
+
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+            <Label Content="Ruta nueva imagen:" VerticalAlignment="Center"/>
+            <TextBox Name="tb_rutaImg" Width="300" MaxHeight="15" VerticalAlignment="Center" IsReadOnly="True" Focusable="False"/>
+            
+            
+        </StackPanel>
+        
+
+        <Viewbox Grid.Column="1" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
+            <Button Name="btn_buscarArchivo" Content="Buscar imagen..." VerticalAlignment="Center" FontSize="11" Width="Auto" Height="Auto" MaxHeight="30" BorderThickness="1" BorderBrush="#fe7a4a" Foreground="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal"  Click="btn_buscarArchivo_Click"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="1" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="50">
+            <Button Name="btn_subirImagen" Content="Subir imagen" IsEnabled="False" VerticalAlignment="Center" FontSize="11" Width="Auto" Height="Auto" MaxHeight="30" BorderThickness="1" BorderBrush="#fe7a4a" Foreground="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_subirImagen_Click"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="1" Grid.Row="6" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="50">
+            <Button Name="btn_eliminarImagen" Content="Eliminar imagen" VerticalAlignment="Center" FontSize="11" Width="Auto" Height="Auto" MaxHeight="30" BorderThickness="1" BorderBrush="#fe7a4a" Foreground="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal"/>
+        </Viewbox>
         
     </Grid>
 </mah:MetroWindow>
