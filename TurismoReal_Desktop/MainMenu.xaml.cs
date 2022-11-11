@@ -28,8 +28,6 @@ namespace TurismoReal_Desktop
         {
             MessageBoxResult res = MessageBox.Show("¿Estás seguro de que quieres salir?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
 
-
-
             if (res == MessageBoxResult.Yes)
             {
                 System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;

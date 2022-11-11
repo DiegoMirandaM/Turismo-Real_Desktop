@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador
@@ -12,6 +13,8 @@ namespace TurismoReal_Desktop_Controlador
         public decimal ID_IMAGEN { get; set; }
         public decimal ID_DPTO { get; set; }
         public byte[] FOTO { get; set; }
+
+        public ImageSource fotoImg { get; set; }
 
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
 
@@ -32,6 +35,7 @@ namespace TurismoReal_Desktop_Controlador
                     img.ID_DPTO = dato.ID_DPTO;
                     img.FOTO = dato.FOTO;
                     img.DEPARTAMENTO = dato.DEPARTAMENTO;
+                    img.fotoImg = TR_Recursos.ByteToImage(dato.FOTO);
 
                     listImagenes.Add(img);
                 }

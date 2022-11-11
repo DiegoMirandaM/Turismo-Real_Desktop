@@ -87,13 +87,16 @@ namespace TurismoReal_Desktop
             {
                 foreach (Departamento depto in listDptosOriginal)
                 {
-                    dpto.disp_createOrUpdate = "CREATE";
-                    dpto.disp_asociado = false;
-                    dpto.disp_habilitado = false;
+                    depto.disp_createOrUpdate = "CREATE";
+                    depto.disp_asociado = false;
+                    depto.disp_habilitado = false;
                 }
 
-                // Se hace una copia para comparar luego el original y el posiblemente modificado. ERROR: ESTO ES UNA COPIA SUPERFICIAL, DEBE SER PROFUNDA PARA QUE SIRVA!!
-                //listDptosModificable = listDptosOriginal; 
+                // Se hace una copia del listado original para compararlo con el posiblemente modificado.
+                foreach (Departamento depto in listDptosOriginal)
+                {
+                    listDptosModificable.Add(depto.ClonarDpto());
+                }
 
                 // Se carga el datagrid con los dptos modificables.
                 dg_relacionDptos.ItemsSource = listDptosModificable;
@@ -128,13 +131,11 @@ namespace TurismoReal_Desktop
                 }
 
             }
-            // Se hace una copia del original para comparar luego el este con el posiblemente modificado.
+            // Se hace una copia del listado original para compararlo con el posiblemente modificado.
             foreach (Departamento depto in listDptosOriginal)
             {
                 listDptosModificable.Add(depto.ClonarDpto());
             }
-
-            
 
             // Se carga el datagrid con los dptos modificables.
             dg_relacionDptos.ItemsSource = listDptosModificable;

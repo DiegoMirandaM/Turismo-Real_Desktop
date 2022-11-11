@@ -42,6 +42,7 @@ namespace TurismoReal_Desktop
 
             RecargarImagenesDpto(null, null);
             btn_subirImagen.IsEnabled = false;
+            btn_eliminarImagen.IsEnabled = false;
         }
 
         private async void btn_buscarArchivo_Click(object sender, RoutedEventArgs e)
@@ -50,7 +51,7 @@ namespace TurismoReal_Desktop
             openFileDialog.Multiselect = false;
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
-            openFileDialog.Filter = "Imagenes (*.jpg;*.jpeg;*.png)|*.jpg;*jpeg;*.png|Todos los archivos (*.*)|*.*";
+            openFileDialog.Filter = "Imagenes (*.jpg;*.jpeg;*.png)|*.jpg;*jpeg;*.png";
 
             // Si se selecciona un archivo, guardar la imagen como byte array, y la ruta del archivo.
             if (openFileDialog.ShowDialog() == true)
@@ -58,9 +59,7 @@ namespace TurismoReal_Desktop
                 try
                 {
                     System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
-                    
-                    // Linea comentada toma imagen especificada y la carga como img principal de la ventana.
-                    //img_principal.Source = ByteToImage(File.ReadAllBytes(openFileDialog.FileName)); 
+
                     tb_rutaImg.Text = openFileDialog.FileName;
                     btn_subirImagen.IsEnabled = true;
                     nuevaImg = File.ReadAllBytes(openFileDialog.FileName);
@@ -72,7 +71,6 @@ namespace TurismoReal_Desktop
                     await this.ShowMessageAsync("Tipo de archivo incorrecto", "Por favor, seleccione solo imagenes con extensión .jpg, .jpeg o .png.");
                     return;
                 }
-                
             }
         }
 
@@ -81,55 +79,22 @@ namespace TurismoReal_Desktop
             this.Close();
         }
 
-        private static ImageSource ByteToImage(byte[] imageData)
-        {
-            BitmapImage biImg = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imageData);
-            biImg.BeginInit();
-            biImg.StreamSource = ms;
-            biImg.EndInit();
-
-            ImageSource imgSrc = biImg as ImageSource;
-
-            return imgSrc;
-        }
-
         private void RecargarImagenesDpto(object sender, MouseButtonEventArgs e)
         {
             Imagen imgn = new Imagen();
             List<Imagen> listadoImagenes = imgn.ObtenerImgsDeUnDpto(selectedDpto.ID_DPTO);
 
+            // Si no hay imagenes del depto
             if (listadoImagenes.Count < 1)
             {
                 img_principal.Source = null;
                 return;
             }
 
-            foreach (var img in listadoImagenes)
-            {
-                /* Tengo que iterar por cada imagen, y agregarla como elemento imagen dentro del stackpanel, agregandoles
-                 * el evento Image_MouseDown que haga que cambie la principal y seleccionada por la clicada, para ver mas 
-                 * grande y para eliminar tambien.
-                 * 
-                 * TESTEAR ESTO!!
-                */
+            dg_imagenes.ItemsSource = listadoImagenes;
 
-                Image newImage = new Image();
-                newImage.Source = ByteToImage(img.FOTO);
-                newImage.MouseDown += Image_MouseDown;
+            img_principal.Source = listadoImagenes[0].fotoImg;
 
-                stk_imagenes.Children.Add(newImage);
-            }
-            img_principal.Source = (stk_imagenes.Children[0] as Image).Source;
-
-        }
-
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            // ERROR: ESTO NO ESTA PUDIENDO CAMBIAR LA IMAGEN SELECCIONADA AÚN. 
-
-            img_principal.Source = e.Source as ImageSource;
-            selectedImg = e.Source as Imagen;
         }
 
         private async void btn_subirImagen_Click(object sender, RoutedEventArgs e)
@@ -151,6 +116,31 @@ namespace TurismoReal_Desktop
             }
 
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
+        }
+
+        private async void btn_eliminarImagen_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("¿Estás seguro que quieres eliminar PERMANENTEMENTE la imagen seleccionada?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            if (res == MessageBoxResult.Yes)
+            {
+                Boolean resultado = selectedImg.DeleteImagenDpto(selectedImg.ID_IMAGEN);
+
+                if (resultado)
+                {
+                    RecargarImagenesDpto(null, null);
+                    btn_eliminarImagen.IsEnabled = false;
+                    selectedImg = null;
+                    await this.ShowMessageAsync("Imagen borrada", "La imagen seleccionada ha sido borrada exitosamente.");
+                }
+            }
+        }
+
+        private void dg_imagenes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            selectedImg = dg_imagenes.SelectedItem as Imagen;
+            img_principal.Source = selectedImg.fotoImg;
+            btn_eliminarImagen.IsEnabled = true;
         }
     }
 }
