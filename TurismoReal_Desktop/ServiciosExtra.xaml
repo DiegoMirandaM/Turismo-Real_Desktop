@@ -41,7 +41,7 @@
         <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Servicios extra" FontSize="35" Foreground="#fe7a4a" FontWeight="Bold"/>
         <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Por favor, seleccione un servicio..." FontSize="18" FontWeight="DemiBold" Foreground="#04aba3"/>
 
-        <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="WhiteSmoke" GridLinesVisibility="All" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dg_servicios_SelectionChanged">
+        <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="WhiteSmoke" GridLinesVisibility="All" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" MouseDoubleClick="dg_servicios_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DESCRIPCION}" Header="Servicio extra" Width="*"/>
                 <DataGridTextColumn Binding="{Binding COSTO_ACTUAL}" Header="Costo diario actual" Width="1.1*"/>

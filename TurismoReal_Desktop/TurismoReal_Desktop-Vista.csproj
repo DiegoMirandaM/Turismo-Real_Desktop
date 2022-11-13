@@ -92,6 +92,9 @@
     <Compile Include="Dpto_mantenciones.xaml.cs">
       <DependentUpon>Dpto_mantenciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reportes.xaml.cs">
+      <DependentUpon>Reportes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServiciosExtra.xaml.cs">
       <DependentUpon>ServiciosExtra.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reportes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

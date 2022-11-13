@@ -161,24 +161,7 @@ namespace TurismoReal_Desktop
             ServiciosExtra_Asociar win_asociacionServicio = new ServiciosExtra_Asociar(seleccionado);
             win_asociacionServicio.ShowDialog();
         }
-
-        private void dg_servicios_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
-            if (actualizando == false)
-            {
-                if (btn_actualizarServicio.IsEnabled == false)
-                {
-                    Alternar_habil_btns(true);
-                }
-
-                seleccionado = (Servicio_extra)e.AddedItems[0];
-
-                tb_nombre.Text = seleccionado.DESCRIPCION;
-                tb_costo.Text = seleccionado.COSTO_ACTUAL.ToString();
-            }
-        }
-
+        
         private void Alternar_habil_btns(bool estado)
         {
             btn_actualizarServicio.IsEnabled = estado;
@@ -188,6 +171,23 @@ namespace TurismoReal_Desktop
         private void tb_costo_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Aquí podría ir una manera de permitir solo caracteres numéricos, para facilitar que solo se coloquen numeros en precio. 
+        }
+
+        private void dg_servicios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
+            if (actualizando == false)
+            {
+                if (btn_actualizarServicio.IsEnabled == false)
+                {
+                    Alternar_habil_btns(true);
+                }
+
+                seleccionado = dg_servicios.SelectedItem as Servicio_extra;
+
+                tb_nombre.Text = seleccionado.DESCRIPCION;
+                tb_costo.Text = seleccionado.COSTO_ACTUAL.ToString();
+            }
         }
     }
 }

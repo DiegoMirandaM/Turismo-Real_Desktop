@@ -221,11 +221,11 @@ namespace TurismoReal_Desktop
             Recargar_listado_mantenciones();
         }
 
-        private void dg_mantenciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dg_mantenciones_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (actualizando == false)
             {
-                selectedMantencion = (Mantencion)e.AddedItems[0];
+                selectedMantencion = dg_mantenciones.SelectedItem as Mantencion;
 
                 //Recien aqui habilita boton de actualizar
                 Alternar_habil_btns(true);
@@ -236,6 +236,5 @@ namespace TurismoReal_Desktop
                 tb_costo.Text = selectedMantencion.COSTO.ToString();
             }
         }
-
     }
 }

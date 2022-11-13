@@ -15,7 +15,6 @@
         WindowStartupLocation="CenterScreen"
         Title="Departamentos - Turismo Real" TitleCharacterCasing="Normal" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
     <Grid ShowGridLines="False">
-
         <Grid.RowDefinitions>
             <RowDefinition Name="rw_titulo" Height="0.65*"/>
             <RowDefinition Name="rw_tabla_dpto" Height="1.6*"/>
@@ -38,7 +37,7 @@
             <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
-        <DataGrid Name="dg_listaDptos" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Background="WhiteSmoke" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionChanged="dg_listaDptos_SelectionChanged" CanUserResizeRows="False" IsReadOnly="True">
+        <DataGrid Name="dg_listaDptos" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Background="WhiteSmoke" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" MouseDoubleClick="dg_listaDptos_MouseDoubleClick" CanUserResizeRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre Depto" Width="*"/>
                 <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="*"/>

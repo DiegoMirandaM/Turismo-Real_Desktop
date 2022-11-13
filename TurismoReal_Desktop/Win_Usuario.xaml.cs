@@ -108,7 +108,7 @@ namespace TurismoReal_Desktop
             // Tomar datos y usuario seleccionado para actualizarlo al hacer doble clic:
             if (actualizando == false)
             {
-                if (dg_usuarios.SelectedItem == null) return; 
+                if (dg_usuarios.SelectedItem == null) return;
 
                 if (Btn_updateDatos.IsEnabled == false)
                 {
@@ -130,9 +130,6 @@ namespace TurismoReal_Desktop
 
                 // Si el area esta vacia, dejar el textbox vacio. Si tiene datos, tomarlos:                
                 tb_area.Text = string.IsNullOrWhiteSpace(seleccionado.AREA_FUNCIONARIO) ? null : seleccionado.AREA_FUNCIONARIO;
-
-                // ESTÁ DIFÍCIL MANEJAR PASSWORD PUES HASH NO SE SUPONE QUE SE PUEDA "DESHASHEAR" COMO PARA OBTENER ORIGINAL. 
-                //tb_pass.Text =  seleccionado.PASSWORD; 
 
             }
         }

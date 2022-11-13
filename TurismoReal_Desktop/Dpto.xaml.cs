@@ -201,44 +201,12 @@ namespace TurismoReal_Desktop
             cb_ciudad.ItemsSource = city.listarTodo();
         }
 
+        /*
         private void dg_listaDptos_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
-            if(actualizando == false) {
-
-                if (btn_gestInventario.IsEnabled == false)
-                {
-                    Alternar_habil_btns(true);
-                }
-
-                seleccionado = (Departamento)e.AddedItems[0];
-
-                // Si el departamento está disponible, solo se podrá cambiar a no disponible, y vice versa. 
-                if (seleccionado.DISPONIBLE == "1")
-                {
-                    btn_noDisp.IsEnabled = true;
-                    btn_disp.IsEnabled = false;
-                }
-                else
-                {
-                    btn_noDisp.IsEnabled = false;
-                    btn_disp.IsEnabled = true;
-                }
-
-                tb_nombre.Text = seleccionado.NOMBRE;
-                tb_direccion.Text = seleccionado.DIRECCION;
-                cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;
-                tb_numDpto.Text = seleccionado.NRO_DPTO;
-                tb_superficie.Text = seleccionado.SUPERFICIE_DPTO;
-                tb_precio.Text = seleccionado.PRECIO_DPTO.ToString();
-
-                tb_estadoActual.Text = seleccionado.CONDICION;
-
-                Inventario inv = new Inventario();
-
-                dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(seleccionado.ID_DPTO);
-            }
+            
         }
+        */
 
         private void btn_gestMantenciones_Click(object sender, RoutedEventArgs e)
         {
@@ -294,6 +262,46 @@ namespace TurismoReal_Desktop
             }
 
             
+        }
+
+        private void dg_listaDptos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
+            if (actualizando == false)
+            {
+
+                if (btn_gestInventario.IsEnabled == false)
+                {
+                    Alternar_habil_btns(true);
+                }
+
+                seleccionado = dg_listaDptos.SelectedItem as Departamento;
+
+                // Si el departamento está disponible, solo se podrá cambiar a no disponible, y vice versa. 
+                if (seleccionado.DISPONIBLE == "1")
+                {
+                    btn_noDisp.IsEnabled = true;
+                    btn_disp.IsEnabled = false;
+                }
+                else
+                {
+                    btn_noDisp.IsEnabled = false;
+                    btn_disp.IsEnabled = true;
+                }
+
+                tb_nombre.Text = seleccionado.NOMBRE;
+                tb_direccion.Text = seleccionado.DIRECCION;
+                cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;
+                tb_numDpto.Text = seleccionado.NRO_DPTO;
+                tb_superficie.Text = seleccionado.SUPERFICIE_DPTO;
+                tb_precio.Text = seleccionado.PRECIO_DPTO.ToString();
+
+                tb_estadoActual.Text = seleccionado.CONDICION;
+
+                Inventario inv = new Inventario();
+
+                dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(seleccionado.ID_DPTO);
+            }
         }
     }
 }

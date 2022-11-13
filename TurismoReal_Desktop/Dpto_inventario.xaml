@@ -48,7 +48,7 @@
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Content="Por favor, especifique los elementos que componen el inventario del departamento..." HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Medium" Foreground="#04aba3"/>
         <Label Name="lb_selectedDpto" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" Content="" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="14" FontWeight="Medium" Foreground="#04aba3"/>
 
-        <DataGrid Name="dg_inventario" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#d7f2ef" IsReadOnly="True" SelectionChanged="dg_inventario_SelectionChanged">
+        <DataGrid Name="dg_inventario" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="LightGray" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" AlternatingRowBackground="#d7f2ef" IsReadOnly="True" MouseDoubleClick="dg_inventario_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.4*"/>
                 <DataGridTextColumn Binding="{Binding VALOR}" Header="Valor" Width="0.3*"/>

@@ -82,7 +82,7 @@
 
         </Grid>
 
-        <DataGrid Name="dg_mantenciones" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" GridLinesVisibility="All" BorderBrush="Black" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionChanged="dg_mantenciones_SelectionChanged">
+        <DataGrid Name="dg_mantenciones" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" GridLinesVisibility="All" BorderBrush="Black" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="dg_mantenciones_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FECHA_INICIO}" Width="0.96*" Header="Fecha inicio"/>
                 <DataGridTextColumn Binding="{Binding FECHA_FIN}" Width="0.8*" Header="Fecha fin"/>

@@ -206,11 +206,11 @@ namespace TurismoReal_Desktop
             dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(selectedDpto.ID_DPTO);
         }
 
-        private void dg_inventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dg_inventario_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (actualizando == false)
             {
-                selectedInventario = (Inventario)e.AddedItems[0];
+                selectedInventario = dg_inventario.SelectedItem as Inventario;
 
                 //Recien aqui habilita boton de actualizar
                 Alternar_habil_btns(true);
@@ -221,7 +221,5 @@ namespace TurismoReal_Desktop
                 ck_disponible.IsChecked = selectedInventario.DISPONIBLE == "1" ? true : false;
             }
         }
-
-
     }
 }
