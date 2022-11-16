@@ -15,9 +15,9 @@ namespace TurismoReal_Desktop_DALC
     public partial class RESERVA
     {
         public decimal ID_RESERVA { get; set; }
-        public string NOM_PERSONA { get; set; }
-        public System.DateTime FECH_ARRIENDO { get; set; }
         public decimal ID_ARRIENDO { get; set; }
+        public string NOM_PERSONA { get; set; }
+        public System.DateTime FECHA_RESERVA { get; set; }
         public decimal ACOMPANANTES { get; set; }
         public decimal COSTO_RESERVA { get; set; }
         public string VIGENTE { get; set; }

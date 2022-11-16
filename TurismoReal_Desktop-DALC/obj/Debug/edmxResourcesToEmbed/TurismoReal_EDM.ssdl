@@ -19,14 +19,12 @@
     <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_CLIENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="FECHA_RESERVA" Type="date" Nullable="false" />
-    <Property Name="VALOR_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="RESERVA_PAGADA" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
     <Property Name="FECHA_FIN" Type="date" Nullable="false" />
     <Property Name="CHECK_IN" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="CHECK_OUT" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="TOTAL_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TOTAL_SERVICIOS" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <EntityType Name="ARRIENDO_AMIGO">
     <Key>
@@ -155,9 +153,9 @@
       <PropertyRef Name="ID_RESERVA" />
     </Key>
     <Property Name="ID_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="NOM_PERSONA" Type="varchar2" MaxLength="100" Nullable="false" />
-    <Property Name="FECH_ARRIENDO" Type="date" Nullable="false" />
     <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NOM_PERSONA" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="FECHA_RESERVA" Type="date" Nullable="false" />
     <Property Name="ACOMPANANTES" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="COSTO_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="VIGENTE" Type="char" MaxLength="1" Nullable="false" />
@@ -172,6 +170,7 @@
     <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="FECHA_REALIZACION" Type="date" />
     <Property Name="REALIZADO" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="POST_CHECK_IN" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="SERVICIO_EXTRA">
     <Key>

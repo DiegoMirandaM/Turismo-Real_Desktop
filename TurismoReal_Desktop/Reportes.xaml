@@ -4,16 +4,136 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal_Desktop"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        mc:Ignorable="d"
+                 
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+                 
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:fa="http://schemas.fontawesome.io/icons/"
+                 mc:Ignorable="d"
         
-        Height="700" Width="1000"
-        MinHeight="700" MinWidth="1000"
+        Height="600" Width="800"
+        MinHeight="600" MinWidth="800"
         
         WindowStartupLocation="CenterScreen"
-        Title="Reportes - Turismo Real" TitleCharacterCasing="Normal" BorderBrush="Black" WindowTitleBrush="#fe7a4a">
-    
-    <Grid>
+        Title="Reportes - Turismo Real" WindowTitleBrush="#fe7a4a">
 
-    </Grid> 
+    
+    <mah:MetroWindow.DataContext>
+        <local:DatosParaReporte/>
+    </mah:MetroWindow.DataContext>
+    
+    
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+        
+        
+        
+
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Name="btn_retroceder" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Left"  Click="btn_retroceder_Click" >
+            <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
+        </Button>
+
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Margin="20,0,0,0" Content="Resumen financiero" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="32" FontWeight="Bold"  Foreground="#fe7a4a"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <Label Content="Fecha de inicio:" VerticalAlignment="Center" FontSize="12"/>
+            <DatePicker Name="dp_fecInicio" VerticalAlignment="Center" Width="120"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="30,0,0,0">
+            <Label Content="Fecha de término:" VerticalAlignment="Center" FontSize="12"/>
+            <DatePicker Name="dp_fecFin" VerticalAlignment="Center" Width="120"/>
+        </StackPanel>
+
+        <Viewbox Grid.Column="4" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="50">
+            <Button Name="btn_actualizar" Content="Actualizar" VerticalAlignment="Center" Width="100" Height="Auto" Background="White" BorderBrush="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_actualizar_Click"/>
+        </Viewbox>
+
+        <Rectangle Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Fill="Gray" Margin="0,10,0,0"/>
+
+        <Rectangle Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Fill="Gray" />
+
+        <Rectangle Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Fill="Gray" Margin="0,10,0,0"/>
+
+        <Rectangle Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Fill="Gray" />
+
+        <Grid Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="5" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Grid.Column="0" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
+            <Viewbox Grid.Column="0" VerticalAlignment="Bottom" Height="50">
+                <Label Content="Arriendos en periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
+            </Viewbox>
+            <Viewbox Grid.Column="0" VerticalAlignment="Top" Height="50">
+                <Label Content="{Binding cantidadArriendos}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
+            </Viewbox>
+
+            <Rectangle Grid.Column="2" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
+            <Viewbox Grid.Column="2" VerticalAlignment="Bottom" Height="50">
+                <Label Content="Ingresos del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Green"/>
+            </Viewbox>
+            <Viewbox Grid.Column="2" VerticalAlignment="Top" Height="50">
+                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Green"/>
+            </Viewbox>
+
+            <Rectangle Grid.Column="4" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
+            <Viewbox Grid.Column="4" VerticalAlignment="Bottom" Height="50">
+                <Label Content="Egresos del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
+            </Viewbox>
+            <Viewbox Grid.Column="4" VerticalAlignment="Top" Height="50">
+                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
+            </Viewbox>
+
+            <Rectangle Grid.Column="6" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
+            <Viewbox Grid.Column="6" VerticalAlignment="Bottom" Height="50">
+                <Label Content="Ganancias del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
+            </Viewbox>
+            <Viewbox Grid.Column="6" VerticalAlignment="Top" Height="50">
+                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
+            </Viewbox>
+
+
+
+
+        </Grid>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--<lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Series="{Binding Series}"/>-->
+
+
+
+    </Grid>
 </mah:MetroWindow>

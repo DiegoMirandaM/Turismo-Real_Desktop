@@ -53,7 +53,7 @@
         </Border>
 
         <Border Grid.Row="2" Grid.Column="3" Background="#fe7a4a" CornerRadius="15" Margin="10,0,10,0">
-            <mah:Tile Title="REPORTES" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" FontWeight="Bold" HorizontalTitleAlignment="Center" TitleFontSize="14">
+            <mah:Tile Name="btn_reportes" Title="REPORTES" Width="Auto" Height="Auto" Background="Transparent" Foreground="#f4c3b5" FontWeight="Bold" HorizontalTitleAlignment="Center" TitleFontSize="14" Click="btn_reportes_Click">
                 <Image Source="images\dinero_icono.png" Stretch="None" Margin="0,0,0,40"/>
             </mah:Tile>
         </Border>

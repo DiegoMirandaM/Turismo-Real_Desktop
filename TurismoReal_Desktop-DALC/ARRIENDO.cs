@@ -26,14 +26,12 @@ namespace TurismoReal_Desktop_DALC
         public decimal ID_ARRIENDO { get; set; }
         public decimal ID_CLIENTE { get; set; }
         public decimal ID_DPTO { get; set; }
-        public System.DateTime FECHA_RESERVA { get; set; }
-        public decimal VALOR_RESERVA { get; set; }
-        public string RESERVA_PAGADA { get; set; }
         public System.DateTime FECHA_INICIO { get; set; }
         public System.DateTime FECHA_FIN { get; set; }
         public string CHECK_IN { get; set; }
         public string CHECK_OUT { get; set; }
         public decimal TOTAL_ARRIENDO { get; set; }
+        public decimal TOTAL_SERVICIOS { get; set; }
     
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }

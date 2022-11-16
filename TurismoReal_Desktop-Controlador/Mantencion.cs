@@ -79,7 +79,37 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
+        public List<Mantencion> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                List<Mantencion> listMantenciones = new List<Mantencion>();
+                // Recuperar mantenciones que se hayan efectuado entre las fechas especificadas: 
+                var listDatos = conn.MANTENCION.Where(manten =>
+                manten.FECHA_INICIO >= fechaInicio &&
+                manten.FECHA_INICIO <= fechaFin);
 
+                foreach (MANTENCION dato in listDatos)
+                {
+                    Mantencion newManten = new Mantencion();
+
+                    newManten.ID_MANTENCION = dato.ID_MANTENCION;
+                    newManten.ID_DPTO = dato.ID_DPTO;
+                    newManten.FECHA_INICIO = dato.FECHA_INICIO;
+                    newManten.FECHA_FIN = dato.FECHA_FIN;
+                    newManten.DESCRIPCION = dato.DESCRIPCION;
+                    newManten.COSTO = dato.COSTO;
+                    newManten.DEPARTAMENTO = dato.DEPARTAMENTO;
+
+                    listMantenciones.Add(newManten);
+                }
+                return listMantenciones;
+            }
+            catch (Exception)
+            {
+                return new List<Mantencion>();
+            }
+        }
 
     }
 }

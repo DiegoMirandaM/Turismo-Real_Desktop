@@ -201,13 +201,6 @@ namespace TurismoReal_Desktop
             cb_ciudad.ItemsSource = city.listarTodo();
         }
 
-        /*
-        private void dg_listaDptos_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            
-        }
-        */
-
         private void btn_gestMantenciones_Click(object sender, RoutedEventArgs e)
         {
             Dpto_mantenciones win_mantencion = new Dpto_mantenciones(seleccionado);

@@ -29,6 +29,9 @@
     <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVA" FunctionName="TurismoReal_Model.Store.SP_UPDATE_RESERVA" />
     <FunctionImportMapping FunctionImportName="SP_UPDATE_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_UPDATE_SERVICIO" />
     <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="TurismoReal_Model.Store.SP_UPDATE_USUARIO" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
     <EntitySetMapping Name="AMIGO">
       <EntityTypeMapping TypeName="TurismoReal_Model.AMIGO">
         <MappingFragment StoreEntitySet="AMIGO">
@@ -45,14 +48,12 @@
     <EntitySetMapping Name="ARRIENDO">
       <EntityTypeMapping TypeName="TurismoReal_Model.ARRIENDO">
         <MappingFragment StoreEntitySet="ARRIENDO">
+          <ScalarProperty Name="TOTAL_SERVICIOS" ColumnName="TOTAL_SERVICIOS" />
           <ScalarProperty Name="TOTAL_ARRIENDO" ColumnName="TOTAL_ARRIENDO" />
           <ScalarProperty Name="CHECK_OUT" ColumnName="CHECK_OUT" />
           <ScalarProperty Name="CHECK_IN" ColumnName="CHECK_IN" />
           <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
           <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
-          <ScalarProperty Name="RESERVA_PAGADA" ColumnName="RESERVA_PAGADA" />
-          <ScalarProperty Name="VALOR_RESERVA" ColumnName="VALOR_RESERVA" />
-          <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
           <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
           <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
           <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
@@ -189,9 +190,9 @@
           <ScalarProperty Name="VIGENTE" ColumnName="VIGENTE" />
           <ScalarProperty Name="COSTO_RESERVA" ColumnName="COSTO_RESERVA" />
           <ScalarProperty Name="ACOMPANANTES" ColumnName="ACOMPANANTES" />
-          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-          <ScalarProperty Name="FECH_ARRIENDO" ColumnName="FECH_ARRIENDO" />
+          <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
           <ScalarProperty Name="NOM_PERSONA" ColumnName="NOM_PERSONA" />
+          <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
           <ScalarProperty Name="ID_RESERVA" ColumnName="ID_RESERVA" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -199,6 +200,7 @@
     <EntitySetMapping Name="SERVICIO_CONTRATADO">
       <EntityTypeMapping TypeName="TurismoReal_Model.SERVICIO_CONTRATADO">
         <MappingFragment StoreEntitySet="SERVICIO_CONTRATADO">
+          <ScalarProperty Name="POST_CHECK_IN" ColumnName="POST_CHECK_IN" />
           <ScalarProperty Name="REALIZADO" ColumnName="REALIZADO" />
           <ScalarProperty Name="FECHA_REALIZACION" ColumnName="FECHA_REALIZACION" />
           <ScalarProperty Name="COSTO" ColumnName="COSTO" />
@@ -278,8 +280,5 @@
         <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGOS" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
-    <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
-    <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
   </EntityContainerMapping>
 </Mapping>

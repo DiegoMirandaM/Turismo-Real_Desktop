@@ -69,5 +69,15 @@ namespace TurismoReal_Desktop
             this.Close();
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
+
+        private void btn_reportes_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+
+            Reportes win_reportes = new Reportes();
+            win_reportes.Show();
+            this.Close();
+            System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
+        }
     }
 }

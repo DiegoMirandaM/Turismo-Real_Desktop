@@ -19,6 +19,7 @@ namespace TurismoReal_Desktop_DALC
         public decimal COSTO { get; set; }
         public Nullable<System.DateTime> FECHA_REALIZACION { get; set; }
         public string REALIZADO { get; set; }
+        public string POST_CHECK_IN { get; set; }
     
         public virtual ARRIENDO ARRIENDO { get; set; }
         public virtual SERVICIO_EXTRA SERVICIO_EXTRA { get; set; }

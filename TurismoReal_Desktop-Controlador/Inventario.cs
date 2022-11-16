@@ -82,5 +82,38 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
+        public List<Inventario> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                List<Inventario> listInventario = new List<Inventario>();
+                // Recuperar inventario comprado entre las fechas especificadas: 
+                var listDatos = conn.INVENTARIO.Where(invent =>
+                invent.FECHA_COMPRA >= fechaInicio &&
+                invent.FECHA_COMPRA <= fechaFin);
+
+                foreach (INVENTARIO dato in listDatos)
+                {
+                    Inventario newInventario = new Inventario();
+
+                    newInventario.ID_INVENTARIO = dato.ID_INVENTARIO;
+                    newInventario.ID_DPTO = dato.ID_DPTO;
+                    newInventario.NOMBRE = dato.NOMBRE;
+                    newInventario.VALOR = dato.VALOR;
+                    newInventario.DISPONIBLE = dato.DISPONIBLE;
+                    newInventario.DisponibleStr = dato.DISPONIBLE == "0" ? "No" : "Sí";
+                    newInventario.FECHA_COMPRA = dato.FECHA_COMPRA;
+                    newInventario.DEPARTAMENTO = dato.DEPARTAMENTO;
+
+                    listInventario.Add(newInventario);
+                }
+                return listInventario;
+            }
+            catch (Exception)
+            {
+                return new List<Inventario>();
+            }
+        }
+
     }
 }

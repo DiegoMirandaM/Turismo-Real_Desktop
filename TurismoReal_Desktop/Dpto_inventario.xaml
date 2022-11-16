@@ -88,12 +88,9 @@
             <CheckBox Name="ck_disponible" Grid.Row="5" Grid.Column="2" VerticalAlignment="Bottom"/>
             <DatePicker Name="dt_compra" Grid.Row="7" Grid.Column="2" VerticalAlignment="Bottom"/>
 
-            
-            
             <Viewbox Grid.Row="9" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
                 <Button Content="Registrar nuevo" VerticalAlignment="Center" Width="100" Height="Auto" Background="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#d4e8e6" Click="btn_nuevoInventario_Click"/>
             </Viewbox>
-
 
             <Viewbox Grid.Row="9" Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Center" MaxHeight="50">
                 <Button Name="btn_actualizar" Content="Actualizar" VerticalAlignment="Center" Width="100" Height="Auto" Background="White" BorderBrush="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_actualizar_Click"/>

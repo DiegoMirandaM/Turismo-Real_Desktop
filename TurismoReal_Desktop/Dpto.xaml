@@ -73,25 +73,19 @@
                 <Label Content="Nombre:" FontSize="12"/>
                 <TextBox Name="tb_nombre" mah:TextBoxHelper.Watermark="Dpto Providencia 01" mah:TextBoxHelper.ClearTextButton="True" Width="Auto" FontSize="12" VerticalContentAlignment="Center"/>
 
-
                 <Label FontSize="12" Content="Dirección:"/>
                 <TextBox Name="tb_direccion" Width="Auto" mah:TextBoxHelper.Watermark="Antonio Varas 650" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
 
-
                 <Label Content="Ciudad:" FontSize="12"/>
                 <ComboBox Name="cb_ciudad" DisplayMemberPath="NOMBRE" Control:TextBoxHelper.Watermark="Providencia" FontSize="12" SelectedValuePath="ID_CIUDAD" VerticalContentAlignment="Center" Width="Auto"/>
-
             </StackPanel>
 
             <StackPanel Name="sp_datosDepto2" Grid.Column="2" Grid.Row="2" Orientation="Vertical">
-
                 <Label FontSize="12" Content="Número departamento:"/>
                 <TextBox Name="tb_numDpto" Width="Auto" mah:TextBoxHelper.Watermark="78" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center"/>
 
-
                 <Label Content="Superficie depto:" FontSize="12"/>
                 <TextBox Name="tb_superficie" Width="Auto" mah:TextBoxHelper.Watermark="34" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center"/>
-
 
                 <Label FontSize="12" Content="Precio por día:"/>
                 <TextBox Name="tb_precio" FontSize="12" mah:TextBoxHelper.Watermark="45000" mah:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" Width="Auto"/>
