@@ -43,7 +43,7 @@
                 <DataGridTextColumn Binding="{Binding DIRECCION}" Header="Dirección" Width="*"/>
                 <DataGridTextColumn Binding="{Binding NRO_DPTO}" Header="N° Depto" Width="0.6*"/>
                 <DataGridTextColumn Binding="{Binding Negocio_Ciudad.NOMBRE}" Header="Ciudad" Width="0.7*"/>
-                <DataGridTextColumn Binding="{Binding PRECIO_DPTO}"  Header="Precio (día)" Width="0.7*"/>
+                <DataGridTextColumn Binding="{Binding Path=PRECIO_DPTO, StringFormat={}{0:c0}}" Header="Precio (día)" Width="0.7*"/>
                 <DataGridTextColumn Binding="{Binding ArrendableStr}" Header="¿Arrendable?" Width="0.75*"/>
                 <DataGridTextColumn Binding="{Binding CONDICION}" Header="Estado actual" Width="1.1*"/>
             </DataGrid.Columns>
@@ -130,8 +130,8 @@
             <DataGrid Name="dg_inventario" Grid.Column="0" HorizontalAlignment="Left" Background="WhiteSmoke" Margin="0,0,0,15" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False"  IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding NOMBRE}" Header="Nombre" Width="0.4*"/>
-                    <DataGridTextColumn Binding="{Binding VALOR}" Header="Valor" Width="0.3*"/>
-                    <DataGridTextColumn Binding="{Binding FECHA_COMPRA}" Header="Fecha de compra" Width="0.52*"/>
+                    <DataGridTextColumn Binding="{Binding VALOR, StringFormat={}{0:c0}}" Header="Valor" Width="0.3*"/>
+                    <DataGridTextColumn Binding="{Binding FECHA_COMPRA, StringFormat='dd/MM/yyyy'}" Header="Fecha de compra" Width="0.52*"/>
                     <DataGridTextColumn Binding="{Binding DisponibleStr}" Header="¿Disponible?" Width="0.4*"/>
                 </DataGrid.Columns>
             </DataGrid>

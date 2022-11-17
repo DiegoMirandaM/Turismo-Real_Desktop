@@ -82,8 +82,9 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
-        public List<Inventario> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        public List<Inventario> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal costo_inventarios)
         {
+            costo_inventarios = 0;
             try
             {
                 List<Inventario> listInventario = new List<Inventario>();
@@ -104,6 +105,8 @@ namespace TurismoReal_Desktop_Controlador
                     newInventario.DisponibleStr = dato.DISPONIBLE == "0" ? "No" : "Sí";
                     newInventario.FECHA_COMPRA = dato.FECHA_COMPRA;
                     newInventario.DEPARTAMENTO = dato.DEPARTAMENTO;
+
+                    costo_inventarios += dato.VALOR;
 
                     listInventario.Add(newInventario);
                 }

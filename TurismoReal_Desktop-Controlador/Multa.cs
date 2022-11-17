@@ -18,8 +18,9 @@ namespace TurismoReal_Desktop_Controlador
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
-        public List<Multa> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        public List<Multa> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal aporteMultas)
         {
+            aporteMultas = 0;
             try
             {
                 List<Multa> listMultas = new List<Multa>();
@@ -37,6 +38,8 @@ namespace TurismoReal_Desktop_Controlador
                     newMulta.MONTO_MULTA = dato.MONTO_MULTA;
                     newMulta.DESCRIPCION = dato.DESCRIPCION;
                     newMulta.ARRIENDO = dato.ARRIENDO;
+
+                    aporteMultas += dato.MONTO_MULTA;
 
                     listMultas.Add(newMulta);
                 }

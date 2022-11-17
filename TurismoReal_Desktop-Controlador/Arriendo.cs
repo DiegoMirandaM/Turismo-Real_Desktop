@@ -29,14 +29,17 @@ namespace TurismoReal_Desktop_Controlador
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
-        public List<Arriendo> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        public List<Arriendo> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal aporteIngresos, out decimal aporteServicios)
         {
+            aporteIngresos = 0;
+            aporteServicios = 0;
+
             try
             {
                 List<Arriendo> listArr = new List<Arriendo>();
-                // Recuperar arriendos que hayan empezado entre las fechas especificadas: 
+                // Recuperar arriendos que hayan empezado realmente (check_in == 1) entre las fechas especificadas: 
 
-                var listDatos = conn.ARRIENDO.Where(arrndo => 
+                var listDatos = conn.ARRIENDO.Where(arrndo =>
                     arrndo.FECHA_INICIO >= fechaInicio &&
                     arrndo.FECHA_INICIO <= fechaFin &&
                     arrndo.CHECK_IN == "1");
@@ -65,8 +68,15 @@ namespace TurismoReal_Desktop_Controlador
                     arr.SOLICITUD_TRANSPORTE = dato.SOLICITUD_TRANSPORTE;
                     arr.AMIGO = dato.AMIGO;
 
+                    aporteIngresos += dato.TOTAL_ARRIENDO;
+
+                    aporteServicios += dato.TOTAL_SERVICIOS;
+
+
                     listArr.Add(arr);
                 }
+
+
                 return listArr;
             }
             catch (Exception)

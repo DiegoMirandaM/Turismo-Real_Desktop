@@ -27,6 +27,8 @@ namespace TurismoReal_Desktop
         public Mantencion selectedMantencion;
         private bool actualizando;
 
+        public string costoManten;
+
         public Dpto_mantenciones()
         {
             InitializeComponent();

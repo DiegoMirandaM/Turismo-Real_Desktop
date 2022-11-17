@@ -24,8 +24,9 @@ namespace TurismoReal_Desktop_Controlador
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
-        public List<Solicitud_transporte> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        public List<Solicitud_transporte> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal aporteTraslados)
         {
+            aporteTraslados = 0;
             try
             {
                 List<Solicitud_transporte> listTransportes = new List<Solicitud_transporte>();
@@ -48,7 +49,10 @@ namespace TurismoReal_Desktop_Controlador
                     solicitudTransp.COSTO = dato.COSTO;
                     solicitudTransp.ARRIENDO = dato.ARRIENDO;
                     solicitudTransp.TRANSPORTE_REALIZADO = dato.TRANSPORTE_REALIZADO;
-                    
+
+                    aporteTraslados += (decimal)dato.COSTO;
+
+
                     listTransportes.Add(solicitudTransp);
                 }
                 return listTransportes;

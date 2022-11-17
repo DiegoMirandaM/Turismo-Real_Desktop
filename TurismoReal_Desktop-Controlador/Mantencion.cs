@@ -79,8 +79,9 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
-        public List<Mantencion> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        public List<Mantencion> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal costoMantenciones)
         {
+            costoMantenciones = 0;
             try
             {
                 List<Mantencion> listMantenciones = new List<Mantencion>();
@@ -100,6 +101,8 @@ namespace TurismoReal_Desktop_Controlador
                     newManten.DESCRIPCION = dato.DESCRIPCION;
                     newManten.COSTO = dato.COSTO;
                     newManten.DEPARTAMENTO = dato.DEPARTAMENTO;
+
+                    costoMantenciones += dato.COSTO;
 
                     listMantenciones.Add(newManten);
                 }

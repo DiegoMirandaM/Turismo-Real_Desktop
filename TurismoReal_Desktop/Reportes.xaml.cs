@@ -18,7 +18,7 @@ using MahApps.Metro.Controls.Dialogs;
 
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
-
+using LiveChartsCore.VisualElements;
 
 namespace TurismoReal_Desktop
 {
@@ -27,28 +27,20 @@ namespace TurismoReal_Desktop
     /// </summary>
     public partial class Reportes : MetroWindow
     {
-        private DatosParaReporte datosReportes;
-
         public Reportes()
         {
-
             DateTime inicioAnio = DateTime.Parse("01/01/" + DateTime.Now.Year.ToString());
             DateTime fechaActual = DateTime.Now;
-
-            datosReportes = new DatosParaReporte();
-
-            DataContext = datosReportes;
 
             InitializeComponent();
 
             dp_fecInicio.SelectedDate = inicioAnio;
             dp_fecFin.SelectedDate = fechaActual;
 
-            
-
         }
 
-        
+
+
 
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
         {
@@ -57,15 +49,25 @@ namespace TurismoReal_Desktop
             this.Close();
         }
 
-        private void btn_actualizar_Click(object sender, RoutedEventArgs e)
+        private async void btn_actualizar_Click(object sender, RoutedEventArgs e)
         {
-            return;
+            if (dp_fecInicio.SelectedDate == null ||
+                dp_fecFin.SelectedDate == null)
+            {
+                await this.ShowMessageAsync("Datos incompletos", "Debes ingresar tanto fecha de inicio como fecha de fin.");
+                return;
+            }
+
+            DateTime fecha_inicio = (DateTime)dp_fecInicio.SelectedDate;
+            DateTime fecha_fin = (DateTime)dp_fecFin.SelectedDate;
+
+            DatosParaReporte datosRep = new DatosParaReporte(fecha_inicio, fecha_fin);
+
+            DataContext = datosRep;
+            
         }
 
-        //DateTime.Parse("01/01/")
-
-
-        //var resultado = DatosParaReporte.ConsultarDatosEnRango();
+        
 
 
 

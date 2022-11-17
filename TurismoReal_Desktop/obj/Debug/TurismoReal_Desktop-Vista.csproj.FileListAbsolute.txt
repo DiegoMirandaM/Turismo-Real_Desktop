@@ -52,7 +52,6 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop\o
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop-Vista.csproj.CopyComplete
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.exe
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.pdb
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\EntityFramework.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\libHarfBuzzSharp.dylib
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\x86\libHarfBuzzSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\x64\libHarfBuzzSharp.dll
@@ -92,6 +91,7 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\TurismoReal_Desktop-DALC.dll.config
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\ControlzEx.pdb
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\ControlzEx.xml
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\EntityFramework.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\FontAwesome.WPF.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\HarfBuzzSharp.pdb
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\HarfBuzzSharp.xml

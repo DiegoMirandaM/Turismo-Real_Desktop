@@ -44,7 +44,7 @@
         <DataGrid Name="dg_servicios" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Background="WhiteSmoke" GridLinesVisibility="All" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" MouseDoubleClick="dg_servicios_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DESCRIPCION}" Header="Servicio extra" Width="*"/>
-                <DataGridTextColumn Binding="{Binding COSTO_ACTUAL}" Header="Costo diario actual" Width="1.1*"/>
+                <DataGridTextColumn Binding="{Binding COSTO_ACTUAL , StringFormat={}{0:c0} }" Header="Costo diario actual" Width="1.1*"/>
             </DataGrid.Columns>
         </DataGrid>
 

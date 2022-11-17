@@ -20,14 +20,21 @@ namespace TurismoReal_Desktop_Controlador
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
-        public List<Servicio_contratado> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin)
+        /* No es necesario buscar aporte de servicios puesto que, sean antes o despues de check in, igual terminan todos sumados 
+         * a total_servicios en tabla arriendo.
+         
+        public List<Servicio_contratado> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal aporteServicios)
         {
+            aporteServicios = 0;
             try
             {
                 List<Servicio_contratado> listServs = new List<Servicio_contratado>();
-                // Recuperar Servicios contratados que hayan ocurrido entre las fechas especificadas: 
+                // Recuperar Servicios contratados (solo post Check In porque los contratados antes del check In ya estan contabilizados en total_servicios
+                // de tabla arriendos) que hayan ocurrido entre las fechas especificadas: 
                 var listDatos = conn.SERVICIO_CONTRATADO.Where(servCont =>
-                servCont.FECHA_REALIZACION >= fechaInicio && servCont.FECHA_REALIZACION <= fechaFin && servCont.REALIZADO == "1");
+                servCont.FECHA_REALIZACION >= fechaInicio && servCont.FECHA_REALIZACION <= fechaFin && 
+                servCont.REALIZADO == "1" &&
+                servCont.POST_CHECK_IN == "1");
 
                 foreach (SERVICIO_CONTRATADO dato in listDatos)
                 {
@@ -42,6 +49,8 @@ namespace TurismoReal_Desktop_Controlador
                     servCont.ARRIENDO = dato.ARRIENDO;
                     servCont.SERVICIO_EXTRA= dato.SERVICIO_EXTRA;
 
+                    aporteServicios += dato.COSTO;
+
                     listServs.Add(servCont);
                 }
                 return listServs;
@@ -51,7 +60,7 @@ namespace TurismoReal_Desktop_Controlador
                 return new List<Servicio_contratado>();
             }
         }
-
+        */
 
     }
 }

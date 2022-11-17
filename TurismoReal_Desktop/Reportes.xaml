@@ -67,15 +67,24 @@
             <Button Name="btn_actualizar" Content="Actualizar" VerticalAlignment="Center" Width="100" Height="Auto" Background="White" BorderBrush="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_actualizar_Click"/>
         </Viewbox>
 
-        <Rectangle Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Fill="Gray" Margin="0,10,0,0"/>
+        <Rectangle Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Fill="LightGray" Margin="0,10,0,0"/>
+        
+        <Rectangle Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Fill="LightGray" Margin="0,10,0,0"/>
 
-        <Rectangle Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Fill="Gray" />
+        <Rectangle Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Fill="LightGray" />
 
-        <Rectangle Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Fill="Gray" Margin="0,10,0,0"/>
+        <Rectangle Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Fill="LightGray" />
 
-        <Rectangle Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Fill="Gray" />
+        <lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Series="{Binding Series}"  Margin="0,20,0,0"/>
+        <Label Content="Top 5 Deptos con mayores ingresos en periodo" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
 
-        <Grid Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="5" ShowGridLines="True">
+        <lvc:PieChart Name="gfo_egresosCat" Series="{Binding serie_EgresosCategoria}" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
+        <Label Content="Ingresos por categoría" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
+        
+        <lvc:PieChart Name="gfo_ingresosCat" Series="{Binding serie_IngresosCategoria}" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
+        <Label Content="Egresos por categoría" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <Grid Name="grid_cards" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="5" ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.1*"/>
@@ -90,7 +99,7 @@
             <Viewbox Grid.Column="0" VerticalAlignment="Bottom" Height="50">
                 <Label Content="Arriendos en periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
             </Viewbox>
-            <Viewbox Grid.Column="0" VerticalAlignment="Top" Height="50">
+            <Viewbox Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,25" Height="50">
                 <Label Content="{Binding cantidadArriendos}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
             </Viewbox>
 
@@ -98,29 +107,25 @@
             <Viewbox Grid.Column="2" VerticalAlignment="Bottom" Height="50">
                 <Label Content="Ingresos del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Green"/>
             </Viewbox>
-            <Viewbox Grid.Column="2" VerticalAlignment="Top" Height="50">
-                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Green"/>
+            <Viewbox Grid.Column="2" VerticalAlignment="Center" Margin="0,0,0,25" Height="50">
+                <Label Content="{Binding ingresosTotales}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Green"/>
             </Viewbox>
 
             <Rectangle Grid.Column="4" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
             <Viewbox Grid.Column="4" VerticalAlignment="Bottom" Height="50">
                 <Label Content="Egresos del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
             </Viewbox>
-            <Viewbox Grid.Column="4" VerticalAlignment="Top" Height="50">
-                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
+            <Viewbox Grid.Column="4" VerticalAlignment="Center" Margin="0,0,0,25" Height="50">
+                <Label Content="{Binding egresosTotales}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
             </Viewbox>
 
             <Rectangle Grid.Column="6" MaxWidth="270" Fill="#FFC9C9C9" Stroke="Black"/>
             <Viewbox Grid.Column="6" VerticalAlignment="Bottom" Height="50">
                 <Label Content="Ganancias del periodo" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
             </Viewbox>
-            <Viewbox Grid.Column="6" VerticalAlignment="Top" Height="50">
-                <Label Content="$0" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
+            <Viewbox Grid.Column="6" VerticalAlignment="Center" Margin="0,0,0,25" Height="50">
+                <Label Content="{Binding gananciasTotales}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
             </Viewbox>
-
-
-
-
         </Grid>
 
         
