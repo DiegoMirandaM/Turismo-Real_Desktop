@@ -44,9 +44,6 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         
-        
-        
-
         <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Name="btn_retroceder" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Left"  Click="btn_retroceder_Click" >
             <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
@@ -75,7 +72,10 @@
 
         <Rectangle Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Fill="LightGray" />
 
-        <lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Series="{Binding Series}"  Margin="0,20,0,0"/>
+        <lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"
+        Series="{Binding serie_Top5Dptos}"  />
+        
+
         <Label Content="Top 5 Deptos con mayores ingresos en periodo" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
 
         <lvc:PieChart Name="gfo_egresosCat" Series="{Binding serie_EgresosCategoria}" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
@@ -128,15 +128,7 @@
             </Viewbox>
         </Grid>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        <!--<lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Series="{Binding Series}"/>-->
+       
 
 
 

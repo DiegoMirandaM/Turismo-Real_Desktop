@@ -11,11 +11,11 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-C
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Negocio.csproj.CopyComplete
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Controlador.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\TurismoReal_Desktop-Controlador\obj\Debug\TurismoReal_Desktop-Controlador.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\libSkiaSharp.dylib
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\libHarfBuzzSharp.dylib
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\x86\libHarfBuzzSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\x64\libHarfBuzzSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\arm64\libHarfBuzzSharp.dll
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\libSkiaSharp.dylib
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\x86\libSkiaSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\x64\libSkiaSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\arm64\libSkiaSharp.dll
@@ -28,6 +28,7 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\LiveChartsCore.SkiaSharpView.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\LiveChartsCore.SkiaSharpView.WPF.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\Newtonsoft.Json.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\Oracle.ManagedDataAccess.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\SkiaSharp.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\SkiaSharp.HarfBuzz.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-Controlador\bin\Debug\SkiaSharp.Views.Desktop.Common.dll

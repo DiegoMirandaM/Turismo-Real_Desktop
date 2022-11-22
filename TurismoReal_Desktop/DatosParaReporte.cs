@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+
+
 using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
@@ -16,12 +16,10 @@ namespace TurismoReal_Desktop
     {
         public List<Arriendo> arriendosEnRango { get; set; }
         public List<Multa> multasEnRango { get; set; }
-        //public List<Servicio_contratado> serviciosContratadosEnRango { get; set; }
         public List<Solicitud_transporte> transportesEnRango { get; set; }
         public List<Reserva> reservasEnRango { get; set; }
         public List<Mantencion> mantencionesEnRango { get; set; }
         public List<Inventario> inventariosEnRango { get; set; }
-
         public decimal cantidadArriendos { get; set; }
         public string ingresosTotales { get; set; }
         public decimal ingresosTotales_num { get; set; }
@@ -29,34 +27,35 @@ namespace TurismoReal_Desktop
         public decimal egresosTotales_num { get; set; }
         public string gananciasTotales { get; set; }
         public decimal gananciasTotales_num { get; set; }
+        public List<string> categoriaGastos { get; set; }
+        public List<decimal> gastosPorCategoria { get; set; }
+        public IEnumerable<ISeries> serie_IngresosCategoria { get; set; }
+        public IEnumerable<ISeries> serie_EgresosCategoria { get; set; }
+        // De aqui para arriba estaria funcionando y usandose los datos: ---^
 
 
         public string[] categoriaIngresos { get; set; }
         public decimal[] ingresosPorCategoria { get; set; }
-
-        public List<string> categoriaGastos { get; set; }
-        public List<decimal> gastosPorCategoria { get; set; }
-
         public string[] ciudades { get; set; }
         public decimal[] ingresosPorCiudad { get; set; }
 
         public string[] deptos { get; set; }
         public decimal[] ingresosPorDpto { get; set; }
 
-        List<decimal> ingresosCat;
-        List<string> categoriasIng;
+        public List<decimal> ingresosCat { get; set; }
+        public List<string> categoriasIng { get; set; }
 
-        List<Arriendo> top5Dptos;
-        List<string> top5Dptos_name;
-        List<decimal> top5Dptos_num;
 
-        public IEnumerable<ISeries> serie_IngresosCategoria { get; set; }
+        public List<IngresosDeDpto> top5Deptos { get; set; }
+        public ISeries[] serie_Top5Dptos { get; set; }
 
-        public IEnumerable<ISeries> serie_EgresosCategoria { get; set; }
+        public ISeries[] SeriesCollection { get; set; }
 
-        public IEnumerable<ISeries> serie_top5Dptos { get; set; }
 
-        public Axis[] top5Dptos_XAxes { get; set; } 
+
+
+        public Axis XAxes { get; set; }
+        public Axis YAxes { get; set; }
 
 
 
@@ -92,51 +91,54 @@ namespace TurismoReal_Desktop
                 cantidadArriendos = arriendosEnRango.Count;
 
                 // Calcula ingresos totales, egresos y diferencia como ganancias del periodo. Guarda resultado tanto en decimal como en texto formateado a dinero:
-
                 ingresosTotales_num = aporte_Arriendo + aporte_Servicios + aporte_Multa + aporte_traslados + aporte_Reservas;
                 egresosTotales_num = costo_mantenciones + costo_inventario;
-                gananciasTotales_num = ingresosTotales_num -egresosTotales_num;
+                gananciasTotales_num = ingresosTotales_num - egresosTotales_num;
 
                 ingresosTotales = ingresosTotales_num.ToString("C", new System.Globalization.CultureInfo("es-CL"));
                 egresosTotales = egresosTotales_num.ToString("C", new System.Globalization.CultureInfo("es-CL"));
                 gananciasTotales = gananciasTotales_num.ToString("C", new System.Globalization.CultureInfo("es-CL"));
 
                 // Ingresar las categorias de ingresos y sus valores para mostrarlo en grafico de torta:
-                categoriasIng = new List<string>();
-                categoriasIng.Add("Arriendos");
-                categoriasIng.Add("Multas");
-                categoriasIng.Add("Servicios Extra");
-                categoriasIng.Add("Reservas canceladas");
-                categoriasIng.Add("Traslados");
+                categoriasIng = new List<string>
+                {
+                    "Arriendos",
+                    "Multas",
+                    "Servicios Extra",
+                    "Reservas canceladas",
+                    "Traslados"
+                };
 
-                ingresosCat = new List<decimal>();
-                ingresosCat.Add(aporte_Arriendo);
-                ingresosCat.Add(aporte_Multa);
-                ingresosCat.Add(aporte_Servicios);
-                ingresosCat.Add(aporte_Reservas);
-                ingresosCat.Add(aporte_traslados);
+                ingresosCat = new List<decimal>
+                {
+                    aporte_Arriendo,
+                    aporte_Multa,
+                    aporte_Servicios,
+                    aporte_Reservas,
+                    aporte_traslados
+                };
 
                 // Ingresar las categorias de gastos para hacer lo mismo que arriba:
-                categoriaGastos = new List<string>();
-                categoriaGastos.Add("Mantenciones");
-                categoriaGastos.Add("Compra inventario");
-
-                gastosPorCategoria = new List<decimal>();
-                gastosPorCategoria.Add(costo_mantenciones);
-                gastosPorCategoria.Add(costo_inventario);
-
-                // Falta ciudades e ingresos por ciudades, y dptos e ingresos por dpto
-                top5Dptos = new List<Arriendo>();
-                top5Dptos_name = new List<string>();
-                top5Dptos_num = new List<decimal>();
-
-                top5Dptos = arriendosEnRango.OrderByDescending(arr => arr.TOTAL_ARRIENDO + arr.TOTAL_SERVICIOS).Take(5).ToList();
-
-                foreach (Arriendo arr in top5Dptos)
+                categoriaGastos = new List<string>
                 {
-                    top5Dptos_name.Add(arr.DEPARTAMENTO.NOMBRE);
-                    top5Dptos_num.Add(arr.TOTAL_ARRIENDO + arr.TOTAL_SERVICIOS);
-                }
+                    "Mantenciones",
+                    "Compra inventario"
+                };
+
+                gastosPorCategoria = new List<decimal>
+                {
+                    costo_mantenciones,
+                    costo_inventario
+                };
+
+                // Esto consigue el top 5 de departamentos por ingresos totales en el periodo:
+                top5Deptos = new IngresosDeDpto().ListarTodoEnFechas(fechaInicio, fechaFin);
+
+
+                // ERROR: Falta ciudades e ingresos por ciudades, y dptos e ingresos por dpto
+
+
+
 
 
 
@@ -150,105 +152,109 @@ namespace TurismoReal_Desktop
 
         public void recargarGraficos()
         {
-            int ixCatIngreso = 0;
+            // Genera serie de valores para el grafico ingresos por categoria. Se intento filtrar por porcentaje
+            // para mostrar solo los mayores a 1%, pero no funciono. Solo se salto los pasos de especificarle
+            // nombre y detalles, pero aparece detodas formas en el piechart.
+            int ixCatIngreso = -1;
             serie_IngresosCategoria = ingresosCat.AsLiveChartsPieSeries((value, series) =>
             {
-                if(value > 0)
+                ixCatIngreso++;
+                if (value > 0)
                 {
-                    // Solo poner el valor si es mayor a 1%
-                    double porcentaje = (double)((value * 100) / ingresosTotales_num);
-                    if (porcentaje >= 1)
-                    {
-                        series.Name = categoriasIng[ixCatIngreso];
-                        ixCatIngreso++;
-                        series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                        series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
-                        series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
+                    series.Name = categoriasIng[ixCatIngreso];
+                    series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
+                    series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
+                    series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
+                    series.TooltipLabelFormatter =
 
-                        series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
-                    }
+                    series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
                 }
             });
 
+            // Genera valores para gastos por categoria: 
             int ixGastosCategoria = 0;
             serie_EgresosCategoria = gastosPorCategoria.AsLiveChartsPieSeries((value, series) =>
             {
                 if (value > 0)
                 {
-                    // Solo poner el valor si es mayor a 1%
-                    double porcentaje = (double)((value * 100) / egresosTotales_num);
-                    if (porcentaje >= 1)
-                    {
-                        series.Name = categoriaGastos[ixGastosCategoria];
-                        ixGastosCategoria++;
-                        series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                        series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
-                        series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
+                    series.Name = categoriaGastos[ixGastosCategoria];
+                    ixGastosCategoria++;
+                    series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
+                    series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
+                    series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
 
-                        series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
-                    }
+                    series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
                 }
             });
 
-            int ix_top5Dptos = 0;
+            // Funciona, acomoda las cosas de manera algo mejorable, pero funciona al menos:
+            //serie_Top5Dptos = new ISeries[]
+            //{
+            //    new ColumnSeries<decimal>
+            //    {
+            //        Name = top5Deptos[0].nombreDpto,
+            //        Values = new []{top5Deptos[0].totalIngresos}
+            //        //Values = new []{ 2, 5, 4, 2, 6 }
+            //    },
+            //    new ColumnSeries<decimal>
+            //    {
+            //        Name = top5Deptos[1].nombreDpto,
+            //        Values = new []{top5Deptos[1].totalIngresos}
+            //        //Values = new []{ 2, 5, 4, 2, 6 }
+            //    },
+            //    new ColumnSeries<decimal>
+            //    {
+            //        Name = top5Deptos[2].nombreDpto,
+            //        Values = new []{top5Deptos[2].totalIngresos}
+            //        //Values = new []{ 2, 5, 4, 2, 6 }
+            //    },
+            //    new ColumnSeries<decimal>
+            //    {
+            //        Name = top5Deptos[3].nombreDpto,
+            //        Values = new []{top5Deptos[3].totalIngresos}
+            //        //Values = new []{ 2, 5, 4, 2, 6 }
+            //    },
+            //    new ColumnSeries<decimal>
+            //    {
+            //        Name = top5Deptos[4].nombreDpto,
+            //        Values = new []{top5Deptos[4].totalIngresos}
+            //        //Values = new []{ 2, 5, 4, 2, 6 }
+            //    }
+            //};
 
 
 
-            /*
-            serie_top5Dptos = top5Dptos_num.AsLiveChartsPieSeries((value, series) =>
+            // ERROR: Distancia las barras, si, pero no puede asignar mas de un nombre a los elementos de la serie, imposibilitando diferenciar los deptos:
+            serie_Top5Dptos = new ISeries[]
             {
-                if (value > 0)
+                new ColumnSeries<decimal>
                 {
-                    // Solo poner el valor si es mayor a 1%
-                    double porcentaje = (double)((value * 100) / ingresosTotales_num);
-                    if (porcentaje >= 1)
-                    {
-                        series.Name = top5Dptos_name[ix_top5Dptos];
-                        ix_top5Dptos++;
-                        series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
-                        series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
-                        series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
-
-                        series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
-                    }
-                }
-            });
-            */
-            //top5Dptos_XAxes =  //new Axis(); // { Labels = new string[] { "Category 1", "Category 2", "Category 3" } };
-
-
-
-
-            /*
-           // Ejemplo de formato donde toma datos y los muestra en el grafico de puntos. 
-           public ISeries[] Series { get; set; }
-               = new ISeries[]
-               {
-                   new LineSeries<double>
-                   {
-                       Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                       Fill = null
-                   }
-               };
-           */
+                    //Name = new [] {top5Deptos[0].nombreDpto, top5Deptos[1].nombreDpto, },
+                    Values = new []{top5Deptos[0].totalIngresos, top5Deptos[1].totalIngresos, top5Deptos[2].totalIngresos, top5Deptos[3].totalIngresos, top5Deptos[4].totalIngresos, }
+                    //Values = new []{ 2, 5, 4, 2, 6 }
+                },
+                
+            };
 
         }
 
-
         public ISeries[] Series { get; set; } =
         {
-            new ColumnSeries<double>
-            {
-                Name = "Mary",
-                Values = new double[] { 2, 5, 4 }
-            },
-            new ColumnSeries<double>
-            {
-                Name = "Ana",
-                Values = new double[] { 3, 1, 6 }
-            }
-        };
+        new ColumnSeries<double>
+        {
+            Name = "Mary",
+            Values = new double[] { 2, 5, 4 }
+        },
+        new ColumnSeries<double>
+        {
+            Name = "Ana",
+            Values = new double[] { 3, 1, 6 }
+        }
+    };
 
-        
+
+
+
     }
 }
+

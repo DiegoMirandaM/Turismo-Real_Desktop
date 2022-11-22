@@ -39,9 +39,6 @@ namespace TurismoReal_Desktop
 
         }
 
-
-
-
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
         {
             MainMenu win_mainMenu = new MainMenu();
@@ -66,11 +63,6 @@ namespace TurismoReal_Desktop
             DataContext = datosRep;
             
         }
-
-        
-
-
-
 
     }
 }

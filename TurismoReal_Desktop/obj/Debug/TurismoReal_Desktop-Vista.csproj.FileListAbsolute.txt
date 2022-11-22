@@ -152,3 +152,6 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop-Vista.csproj.CopyComplete
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.exe
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.xml

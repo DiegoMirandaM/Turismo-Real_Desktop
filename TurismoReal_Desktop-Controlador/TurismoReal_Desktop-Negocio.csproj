@@ -52,6 +52,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\TurismoReal_Desktop\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\TurismoReal_Desktop\packages\Oracle.ManagedDataAccess.19.9.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SkiaSharp, Version=2.88.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\TurismoReal_Desktop\packages\SkiaSharp.2.88.3\lib\net462\SkiaSharp.dll</HintPath>
@@ -100,6 +103,7 @@
     <Compile Include="Departamento.cs" />
     <Compile Include="Disponibilidad_servicio.cs" />
     <Compile Include="Imagen.cs" />
+    <Compile Include="IngresosDeDpto.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mantencion.cs" />
     <Compile Include="Multa.cs" />
