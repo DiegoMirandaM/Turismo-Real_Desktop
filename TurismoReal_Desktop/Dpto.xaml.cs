@@ -282,6 +282,7 @@ namespace TurismoReal_Desktop
                     btn_disp.IsEnabled = true;
                 }
 
+                // Tomar los valores del objeto seleccionado, y ponerlos en las cajas de texto:
                 tb_nombre.Text = seleccionado.NOMBRE;
                 tb_direccion.Text = seleccionado.DIRECCION;
                 cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;

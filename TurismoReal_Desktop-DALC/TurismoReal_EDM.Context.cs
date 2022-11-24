@@ -89,7 +89,7 @@ namespace TurismoReal_Desktop_DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_CLIParameter);
         }
     
-        public virtual int SP_CREATE_ARRIENDO(Nullable<decimal> iD_CLI, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_RESERVA, Nullable<decimal> vALOR_RESERVA, string pAGADA, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_FIN, Nullable<decimal> tOTAL)
+        public virtual int SP_CREATE_ARRIENDO(Nullable<decimal> iD_CLI, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_FIN, Nullable<decimal> tOTAL_ARRI, Nullable<decimal> tOTAL_SERV)
         {
             var iD_CLIParameter = iD_CLI.HasValue ?
                 new ObjectParameter("ID_CLI", iD_CLI) :
@@ -99,18 +99,6 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("ID_DPTO", iD_DPTO) :
                 new ObjectParameter("ID_DPTO", typeof(decimal));
     
-            var fEC_RESERVAParameter = fEC_RESERVA.HasValue ?
-                new ObjectParameter("FEC_RESERVA", fEC_RESERVA) :
-                new ObjectParameter("FEC_RESERVA", typeof(System.DateTime));
-    
-            var vALOR_RESERVAParameter = vALOR_RESERVA.HasValue ?
-                new ObjectParameter("VALOR_RESERVA", vALOR_RESERVA) :
-                new ObjectParameter("VALOR_RESERVA", typeof(decimal));
-    
-            var pAGADAParameter = pAGADA != null ?
-                new ObjectParameter("PAGADA", pAGADA) :
-                new ObjectParameter("PAGADA", typeof(string));
-    
             var fEC_INIParameter = fEC_INI.HasValue ?
                 new ObjectParameter("FEC_INI", fEC_INI) :
                 new ObjectParameter("FEC_INI", typeof(System.DateTime));
@@ -119,11 +107,15 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("FEC_FIN", fEC_FIN) :
                 new ObjectParameter("FEC_FIN", typeof(System.DateTime));
     
-            var tOTALParameter = tOTAL.HasValue ?
-                new ObjectParameter("TOTAL", tOTAL) :
-                new ObjectParameter("TOTAL", typeof(decimal));
+            var tOTAL_ARRIParameter = tOTAL_ARRI.HasValue ?
+                new ObjectParameter("TOTAL_ARRI", tOTAL_ARRI) :
+                new ObjectParameter("TOTAL_ARRI", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_ARRIENDO", iD_CLIParameter, iD_DPTOParameter, fEC_RESERVAParameter, vALOR_RESERVAParameter, pAGADAParameter, fEC_INIParameter, fEC_FINParameter, tOTALParameter);
+            var tOTAL_SERVParameter = tOTAL_SERV.HasValue ?
+                new ObjectParameter("TOTAL_SERV", tOTAL_SERV) :
+                new ObjectParameter("TOTAL_SERV", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_ARRIENDO", iD_CLIParameter, iD_DPTOParameter, fEC_INIParameter, fEC_FINParameter, tOTAL_ARRIParameter, tOTAL_SERVParameter);
         }
     
         public virtual int SP_CREATE_DISP_SERVICIO(Nullable<decimal> p_ID_DPTO, Nullable<decimal> p_ID_SERV, string p_ACTUALDISP)
@@ -413,7 +405,7 @@ namespace TurismoReal_Desktop_DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_LOGIN", p_USERParameter, p_PASSParameter, p_NOMBRE, p_APE_PAT, p_ID_USUARIO, p_TIPO_USUARIO);
         }
     
-        public virtual int SP_UPDATE_ARRIENDO(Nullable<decimal> p_ID, Nullable<decimal> p_ID_CLI, Nullable<decimal> p_ID_DPTO, Nullable<System.DateTime> p_FEC_RESERVA, Nullable<decimal> p_VALOR_RESERVA, string p_PAGADA, Nullable<System.DateTime> p_FEC_INI, Nullable<System.DateTime> p_FEC_FIN, Nullable<decimal> p_TOTAL)
+        public virtual int SP_UPDATE_ARRIENDO(Nullable<decimal> p_ID, Nullable<decimal> p_ID_CLI, Nullable<decimal> p_ID_DPTO, Nullable<System.DateTime> p_FEC_INI, Nullable<System.DateTime> p_FEC_FIN, Nullable<decimal> p_TOTAL_ARRI, Nullable<decimal> p_TOTAL_SERV)
         {
             var p_IDParameter = p_ID.HasValue ?
                 new ObjectParameter("P_ID", p_ID) :
@@ -427,18 +419,6 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
                 new ObjectParameter("P_ID_DPTO", typeof(decimal));
     
-            var p_FEC_RESERVAParameter = p_FEC_RESERVA.HasValue ?
-                new ObjectParameter("P_FEC_RESERVA", p_FEC_RESERVA) :
-                new ObjectParameter("P_FEC_RESERVA", typeof(System.DateTime));
-    
-            var p_VALOR_RESERVAParameter = p_VALOR_RESERVA.HasValue ?
-                new ObjectParameter("P_VALOR_RESERVA", p_VALOR_RESERVA) :
-                new ObjectParameter("P_VALOR_RESERVA", typeof(decimal));
-    
-            var p_PAGADAParameter = p_PAGADA != null ?
-                new ObjectParameter("P_PAGADA", p_PAGADA) :
-                new ObjectParameter("P_PAGADA", typeof(string));
-    
             var p_FEC_INIParameter = p_FEC_INI.HasValue ?
                 new ObjectParameter("P_FEC_INI", p_FEC_INI) :
                 new ObjectParameter("P_FEC_INI", typeof(System.DateTime));
@@ -447,11 +427,15 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_FEC_FIN", p_FEC_FIN) :
                 new ObjectParameter("P_FEC_FIN", typeof(System.DateTime));
     
-            var p_TOTALParameter = p_TOTAL.HasValue ?
-                new ObjectParameter("P_TOTAL", p_TOTAL) :
-                new ObjectParameter("P_TOTAL", typeof(decimal));
+            var p_TOTAL_ARRIParameter = p_TOTAL_ARRI.HasValue ?
+                new ObjectParameter("P_TOTAL_ARRI", p_TOTAL_ARRI) :
+                new ObjectParameter("P_TOTAL_ARRI", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ARRIENDO", p_IDParameter, p_ID_CLIParameter, p_ID_DPTOParameter, p_FEC_RESERVAParameter, p_VALOR_RESERVAParameter, p_PAGADAParameter, p_FEC_INIParameter, p_FEC_FINParameter, p_TOTALParameter);
+            var p_TOTAL_SERVParameter = p_TOTAL_SERV.HasValue ?
+                new ObjectParameter("P_TOTAL_SERV", p_TOTAL_SERV) :
+                new ObjectParameter("P_TOTAL_SERV", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ARRIENDO", p_IDParameter, p_ID_CLIParameter, p_ID_DPTOParameter, p_FEC_INIParameter, p_FEC_FINParameter, p_TOTAL_ARRIParameter, p_TOTAL_SERVParameter);
         }
     
         public virtual int SP_UPDATE_DISP_SERVICIO(Nullable<decimal> p_ID_DPTO, Nullable<decimal> p_ID_SERV, string p_ACTUALDISP)
@@ -706,6 +690,66 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_ID_IMAGEN", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_IMAGEN", p_ID_IMAGENParameter);
+        }
+    
+        public virtual int SP_CANCEL_ARRIENDO(Nullable<decimal> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_ARRIENDO", iDParameter);
+        }
+    
+        public virtual int SP_CONTRATA_SERVICIO(Nullable<decimal> iD_ARRI, Nullable<decimal> iD_SERV, Nullable<decimal> s_COSTO, Nullable<System.DateTime> fECHA, string rEALIZADO, string pOSTCHK)
+        {
+            var iD_ARRIParameter = iD_ARRI.HasValue ?
+                new ObjectParameter("ID_ARRI", iD_ARRI) :
+                new ObjectParameter("ID_ARRI", typeof(decimal));
+    
+            var iD_SERVParameter = iD_SERV.HasValue ?
+                new ObjectParameter("ID_SERV", iD_SERV) :
+                new ObjectParameter("ID_SERV", typeof(decimal));
+    
+            var s_COSTOParameter = s_COSTO.HasValue ?
+                new ObjectParameter("S_COSTO", s_COSTO) :
+                new ObjectParameter("S_COSTO", typeof(decimal));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var rEALIZADOParameter = rEALIZADO != null ?
+                new ObjectParameter("REALIZADO", rEALIZADO) :
+                new ObjectParameter("REALIZADO", typeof(string));
+    
+            var pOSTCHKParameter = pOSTCHK != null ?
+                new ObjectParameter("POSTCHK", pOSTCHK) :
+                new ObjectParameter("POSTCHK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CONTRATA_SERVICIO", iD_ARRIParameter, iD_SERVParameter, s_COSTOParameter, fECHAParameter, rEALIZADOParameter, pOSTCHKParameter);
+        }
+    
+        public virtual int SP_ESTADO_RESERVA(Nullable<decimal> p_ID_ARRIENDO)
+        {
+            var p_ID_ARRIENDOParameter = p_ID_ARRIENDO.HasValue ?
+                new ObjectParameter("P_ID_ARRIENDO", p_ID_ARRIENDO) :
+                new ObjectParameter("P_ID_ARRIENDO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ESTADO_RESERVA", p_ID_ARRIENDOParameter);
+        }
+    
+        public virtual int SP_MONTO_SERVICIOS(Nullable<decimal> p_ID, Nullable<decimal> p_TOTAL_SERV)
+        {
+            var p_IDParameter = p_ID.HasValue ?
+                new ObjectParameter("P_ID", p_ID) :
+                new ObjectParameter("P_ID", typeof(decimal));
+    
+            var p_TOTAL_SERVParameter = p_TOTAL_SERV.HasValue ?
+                new ObjectParameter("P_TOTAL_SERV", p_TOTAL_SERV) :
+                new ObjectParameter("P_TOTAL_SERV", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MONTO_SERVICIOS", p_IDParameter, p_TOTAL_SERVParameter);
         }
     }
 }

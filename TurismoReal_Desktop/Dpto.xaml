@@ -77,7 +77,7 @@
                 <TextBox Name="tb_direccion" Width="Auto" mah:TextBoxHelper.Watermark="Antonio Varas 650" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
 
                 <Label Content="Ciudad:" FontSize="12"/>
-                <ComboBox Name="cb_ciudad" DisplayMemberPath="NOMBRE" Control:TextBoxHelper.Watermark="Providencia" FontSize="12" SelectedValuePath="ID_CIUDAD" VerticalContentAlignment="Center" Width="Auto"/>
+                <ComboBox Name="cb_ciudad" DisplayMemberPath="NOMBRE" Control:TextBoxHelper.Watermark="Providencia" SelectedValuePath="ID_CIUDAD" FontSize="12" VerticalContentAlignment="Center" Width="Auto"/>
             </StackPanel>
 
             <StackPanel Name="sp_datosDepto2" Grid.Column="2" Grid.Row="2" Orientation="Vertical">

@@ -1,5 +1,6 @@
 ﻿<mah:MetroWindow x:Class="TurismoReal_Desktop.Transporte"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Control="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,66 +8,157 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" 
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Title="Transportes - Turismo Real" BorderBrush="Black" Height="700" Width="800" TitleCharacterCasing="Normal" WindowTitleBrush="#fe7a4a">
     
     <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.18*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.3*"/>
-            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.14*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.03*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
 
 
-        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}"  Name="btn_retroceder" Grid.Column="0" Grid.Row="0" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Left"  Click="btn_retroceder_Click" >
+        <Button Style="{DynamicResource MahApps.Styles.Button.Circle}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Name="btn_retroceder" Width="55" Height="55" VerticalAlignment="Center" HorizontalAlignment="Left"  Click="btn_retroceder_Click" >
             <fa:ImageAwesome Icon="SignOut" Width="40" Rotation="180" Foreground="#fe7a4a"/>
         </Button>
 
 
-        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,20" Content="Planificació de traslados" FontSize="35" Foreground="#fe7a4a" FontWeight="Bold"/>
-        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,70,0,0" Content="Por favor, seleccione solicitud de transporte..." FontWeight="DemiBold" FontSize="18" Foreground="#04aba3"/>
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Left"  Content="Planificación de traslados" FontSize="35" Foreground="#fe7a4a" FontWeight="Bold"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Por favor, seleccione solicitud de transporte..." FontWeight="DemiBold" FontSize="18" Foreground="#04aba3"/>
 
-        <DataGrid Name="db_listaSolicitudes" Grid.Row="1"  Margin="15,0,15,0" HorizontalAlignment="Left" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" AlternatingRowBackground="SlateGray" Background="LightGray" IsReadOnly="True">
+        <DataGrid Name="dg_listaSolicitudes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" Background="#FFD4E8E6" IsReadOnly="True" MouseDoubleClick="dg_listaSolicitudes_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Cliente" Width="*"/>
-                <DataGridTextColumn Header="Departamento" Width="*"/>
-                <DataGridTextColumn Header="Pasajeros" Width="*"/>
-                <DataGridTextColumn Header="Inicio arriendo" Width="*"/>
-                <DataGridTextColumn Header="¿Traslado ida?" Width="*"/>
-                <DataGridTextColumn Header="¿Traslado vuelta?" Width="1.1*"/>
+                <DataGridTextColumn Binding="{Binding nomCliente}" Header="Cliente" Width="*"/>
+                <DataGridTextColumn Binding="{Binding nomDepto}" Header="Departamento" Width="*"/>
+                <DataGridTextColumn Binding="{Binding PASAJEROS}" Header="Pasajeros" Width="0.56*"/>
+                <DataGridTextColumn Binding="{Binding FECHA_INICIO, StringFormat='dd/MM/yyyy'}" Header="Inicio arriendo" Width="0.8*"/>
+                <DataGridTextColumn Binding="{Binding COSTO, StringFormat={}{0:c0}}" Header="Costo" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="0.2*"/>
-            </Grid.RowDefinitions>
-
-            
-            <Border Grid.Column="0" Background="#d4e8e6" CornerRadius="30" Margin="25,50,10,0">
+        <Border Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" Background="Transparent" BorderBrush="#04aba3" BorderThickness="2" CornerRadius="5">
+            <StackPanel Orientation="Vertical" Margin="20,40,20,10">
                 
-            </Border>
-            <Label Grid.Column="0" Content="Ida" FontSize="30" Margin="50,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Dirección de origen:"/>
+                    <TextBox Name="tb_dirOrigen_ida" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
+                </StackPanel>
 
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Dirección de destino:"/>
+                    <TextBox Name="tb_dirDest_ida" Width="150" IsReadOnly="True" Focusable="False"/>
+                </StackPanel>
 
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Fecha de ida:"/>
+                    <TextBox Name="tb_fecIda" Width="150" IsReadOnly="True" Margin="40,0,0,0" Focusable="False"/>
+                </StackPanel>
 
-            <Border Grid.Column="1" Background="#d4e8e6" CornerRadius="30" Margin="10,50,25,0">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Total pasajeros:"/>
+                    <TextBox Name="tb_pasajIda" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
+                </StackPanel>
 
-            </Border>
-            <Label Grid.Column="1" Content="Vuelta" FontSize="30" Margin="50,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Descripción vehículo:"/>
+                    <TextBox Name="tb_descVehIda" Width="150"/>
+                </StackPanel>
 
-            <Label Grid.Row="1" VerticalAlignment="Center" Content="Total traslado(s):" FontSize="30" Margin="20,0,0,0" FontWeight="Bold"/>
-            <TextBox Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Height="30" Width="110" BorderBrush="Black"/>
+                <StackPanel Orientation="Horizontal" Margin="70,0,0,7">
+                    <Label Content="Patente:"/>
+                    <TextBox Name="tb_patenteIda" Width="150"/>
+                </StackPanel>
 
-        </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Conductor designado:"/>
+                    <ComboBox Name="cb_conductorIda" Width="150" DisplayMemberPath="FULL_NAME" Control:TextBoxHelper.Watermark="Nombre conductor" SelectedValuePath="ID_CONDUCTOR"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Precio del traslado:"/>
+                    <TextBox Name="tb_precioIda" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </Border>
         
+        <Border Grid.Column="1" Grid.Row="4" Background="#04aba3" CornerRadius="5"/>
+        <Label Grid.Column="1" Grid.Row="4" Foreground="#d5e8e6" Content="Viaje de ida" HorizontalAlignment="Left" FontSize="20"/>
+
+        <Border Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" Background="Transparent" BorderBrush="#04aba3" BorderThickness="2" CornerRadius="5">
+
+            <StackPanel Orientation="Vertical" Margin="20,40,20,10">
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Dirección de origen:"/>
+                    <TextBox Name="tb_dirOrigen_vuelta" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Dirección de destino:"/>
+                    <TextBox Name="tb_dirDest_vuelta" Width="150" IsReadOnly="True" Focusable="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Fecha de ida:"/>
+                    <TextBox Name="tb_fecVuelta" Width="150" IsReadOnly="True" Margin="40,0,0,0" Focusable="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Total pasajeros:"/>
+                    <TextBox Name="tb_pasajVuelta" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Descripción vehículo:"/>
+                    <TextBox Name="tb_descVehVuelta" Width="150"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="70,0,0,7">
+                    <Label Content="Patente:"/>
+                    <TextBox Name="tb_patenteVuelta" Width="150"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Conductor designado:"/>
+                    <ComboBox Name="cb_conductorVuelta" Width="150" DisplayMemberPath="FULL_NAME" Control:TextBoxHelper.Watermark="Nombre conductor" SelectedValuePath="ID_CONDUCTOR"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                    <Label Content="Precio del traslado:"/>
+                    <TextBox Name="tb_precioVuelta" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Border>
         
-        
+        <Border Grid.Column="3" Grid.Row="4" Background="#04aba3" CornerRadius="5"/>
+        <Label Grid.Column="3" Grid.Row="4" Foreground="#d5e8e6" Content="Viaje de vuelta" HorizontalAlignment="Left" FontSize="20"/>
+
+        <Viewbox Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="40">
+            <Button Name="btn_actualizarTraslado" Content="Actualizar traslado" VerticalAlignment="Center" BorderBrush="#fe7a4a"  Width="120"  Background="White" Foreground="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_actualizarTraslado_Click"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="3" Grid.Row="7" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="40">
+            <Button Name="btn_registrarTraslado" Content="Registrar traslado" VerticalAlignment="Center" Width="120" Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_registrarTraslado_Click"/>
+        </Viewbox>
+
+
+
     </Grid>
 </mah:MetroWindow>

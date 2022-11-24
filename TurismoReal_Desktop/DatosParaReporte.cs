@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.Painting.Effects;
 using SkiaSharp;
-
-
+using System.Runtime.CompilerServices;
 using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
@@ -31,32 +32,84 @@ namespace TurismoReal_Desktop
         public List<decimal> gastosPorCategoria { get; set; }
         public IEnumerable<ISeries> serie_IngresosCategoria { get; set; }
         public IEnumerable<ISeries> serie_EgresosCategoria { get; set; }
-        // De aqui para arriba estaria funcionando y usandose los datos: ---^
-
-
-        public string[] categoriaIngresos { get; set; }
-        public decimal[] ingresosPorCategoria { get; set; }
-        public string[] ciudades { get; set; }
-        public decimal[] ingresosPorCiudad { get; set; }
-
-        public string[] deptos { get; set; }
-        public decimal[] ingresosPorDpto { get; set; }
 
         public List<decimal> ingresosCat { get; set; }
         public List<string> categoriasIng { get; set; }
 
-
         public List<IngresosDeDpto> top5Deptos { get; set; }
         public ISeries[] serie_Top5Dptos { get; set; }
 
-        public ISeries[] SeriesCollection { get; set; }
+        public Axis[] XAxes_top5Dptos { get; set; }
+            = new Axis[]
+            {
+                new Axis
+                {
+                    Name = "Departamentos",
+                    NamePaint = new SolidColorPaint(SKColors.Black),
 
+                    LabelsPaint = new SolidColorPaint(SKColors.Blue),
+                    TextSize = 0,
 
+                }
+            };
+        public Axis[] YAxes_top5Dptos { get; set; }
+            = new Axis[]
+            {
+                new Axis
+                {
+                    Name = "Ingresos",
+                    NamePaint = new SolidColorPaint(SKColors.Red),
 
+                    LabelsPaint = new SolidColorPaint(SKColors.Green),
+                    TextSize = 12,
 
-        public Axis XAxes { get; set; }
-        public Axis YAxes { get; set; }
+                    Labeler = Labelers.Currency,
 
+                    SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray)
+                    {
+                        StrokeThickness = 1,
+                        PathEffect = new DashEffect(new float[] { 3, 3 })
+                    }
+                }
+            };
+
+        public List<IngresosDeCiudad> top5Ciudades { get; set; }
+        public ISeries[] serie_Top5Ciudades { get; set; }
+
+        public Axis[] XAxes_top5Ciudades { get; set; }
+            = new Axis[]
+            {
+                new Axis
+                {
+                    Name = "Ciudades",
+                    NamePaint = new SolidColorPaint(SKColors.Black),
+
+                    LabelsPaint = new SolidColorPaint(SKColors.Blue),
+                    TextSize = 0,
+                }
+            };
+        public Axis[] YAxes_top5Ciudades { get; set; }
+            = new Axis[]
+            {
+                new Axis
+                {
+                    Name = "Ingresos",
+                    NamePaint = new SolidColorPaint(SKColors.Red),
+
+                    LabelsPaint = new SolidColorPaint(SKColors.Green),
+                    TextSize = 12,
+
+                    Labeler = Labelers.Currency,
+
+                    SeparatorsPaint = new SolidColorPaint(SKColors.LightSlateGray)
+                    {
+                        StrokeThickness = 1,
+                        PathEffect = new DashEffect(new float[] { 3, 3 })
+                    }
+                }
+            };
+
+        // De aqui para arriba estaria funcionando y usandose los datos: ---^
 
 
         public DatosParaReporte()
@@ -65,12 +118,12 @@ namespace TurismoReal_Desktop
             DateTime fechaActual = DateTime.Now;
 
             ConsultarDatosEnRango(inicioAnio, fechaActual);
-            recargarGraficos();
+            RecargarGraficos();
         }
         public DatosParaReporte(DateTime inicio, DateTime fin)
         {
             ConsultarDatosEnRango(inicio, fin);
-            recargarGraficos();
+            RecargarGraficos();
         }
 
         public Boolean ConsultarDatosEnRango(DateTime fechaInicio, DateTime fechaFin)
@@ -134,8 +187,7 @@ namespace TurismoReal_Desktop
                 // Esto consigue el top 5 de departamentos por ingresos totales en el periodo:
                 top5Deptos = new IngresosDeDpto().ListarTodoEnFechas(fechaInicio, fechaFin);
 
-
-                // ERROR: Falta ciudades e ingresos por ciudades, y dptos e ingresos por dpto
+                top5Ciudades = new IngresosDeCiudad().ListarTodoEnFechas(fechaInicio, fechaFin);
 
 
 
@@ -150,107 +202,117 @@ namespace TurismoReal_Desktop
             }
         }
 
-        public void recargarGraficos()
+        public void RecargarGraficos()
         {
-            // Genera serie de valores para el grafico ingresos por categoria. Se intento filtrar por porcentaje
-            // para mostrar solo los mayores a 1%, pero no funciono. Solo se salto los pasos de especificarle
-            // nombre y detalles, pero aparece detodas formas en el piechart.
+            // ERROR: LAS CANTIDADES MOSTRADAS EN LOS GRAFICOS DE BARRA NO COINCIDEN CON LAS TARJETAS Y EL GRAFICO DE TORTA DE INGRESOS.
+
+            // Genera serie de valores para el grafico ingresos por categoria: 
             int ixCatIngreso = -1;
             serie_IngresosCategoria = ingresosCat.AsLiveChartsPieSeries((value, series) =>
             {
-                ixCatIngreso++;
-                if (value > 0)
+                if(value > 0)
                 {
-                    series.Name = categoriasIng[ixCatIngreso];
+                    ixCatIngreso++;
+
+                    string catNameIn = categoriasIng[ixCatIngreso];
+
+                    series.Name = catNameIn;
                     series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
                     series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
                     series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
-                    series.TooltipLabelFormatter =
 
                     series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
+                    series.TooltipLabelFormatter = p => $" {catNameIn} ({p.PrimaryValue.ToString("C", new System.Globalization.CultureInfo("es-CL"))})";
                 }
             });
 
             // Genera valores para gastos por categoria: 
-            int ixGastosCategoria = 0;
+            int ixGastosCategoria = -1;
             serie_EgresosCategoria = gastosPorCategoria.AsLiveChartsPieSeries((value, series) =>
             {
                 if (value > 0)
                 {
-                    series.Name = categoriaGastos[ixGastosCategoria];
                     ixGastosCategoria++;
+
+                    string catName = categoriaGastos[ixGastosCategoria];
+
+                    series.Name = catName;
                     series.DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30));
                     series.DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Outer;
                     series.DataLabelsPadding = new LiveChartsCore.Drawing.Padding(10, 0);
 
                     series.DataLabelsFormatter = p => $"({p.StackedValue.Share:P1})";
+                    series.TooltipLabelFormatter = p => $" {catName} ({p.PrimaryValue.ToString("C", new System.Globalization.CultureInfo("es-CL"))})";
                 }
             });
 
-            // Funciona, acomoda las cosas de manera algo mejorable, pero funciona al menos:
-            //serie_Top5Dptos = new ISeries[]
-            //{
-            //    new ColumnSeries<decimal>
-            //    {
-            //        Name = top5Deptos[0].nombreDpto,
-            //        Values = new []{top5Deptos[0].totalIngresos}
-            //        //Values = new []{ 2, 5, 4, 2, 6 }
-            //    },
-            //    new ColumnSeries<decimal>
-            //    {
-            //        Name = top5Deptos[1].nombreDpto,
-            //        Values = new []{top5Deptos[1].totalIngresos}
-            //        //Values = new []{ 2, 5, 4, 2, 6 }
-            //    },
-            //    new ColumnSeries<decimal>
-            //    {
-            //        Name = top5Deptos[2].nombreDpto,
-            //        Values = new []{top5Deptos[2].totalIngresos}
-            //        //Values = new []{ 2, 5, 4, 2, 6 }
-            //    },
-            //    new ColumnSeries<decimal>
-            //    {
-            //        Name = top5Deptos[3].nombreDpto,
-            //        Values = new []{top5Deptos[3].totalIngresos}
-            //        //Values = new []{ 2, 5, 4, 2, 6 }
-            //    },
-            //    new ColumnSeries<decimal>
-            //    {
-            //        Name = top5Deptos[4].nombreDpto,
-            //        Values = new []{top5Deptos[4].totalIngresos}
-            //        //Values = new []{ 2, 5, 4, 2, 6 }
-            //    }
-            //};
+            // Si no hay deptos en el conjunto, omitir lo de abajo:
+            if (top5Deptos.Count == 0) return;
 
+            // Crear un array de columnSeries dependiendo de la cantidad de elementos en top5Deptos:
+            ColumnSeries<decimal>[] preSerie_Top5Dptos = new ColumnSeries<decimal>[top5Deptos.Count()];
 
-
-            // ERROR: Distancia las barras, si, pero no puede asignar mas de un nombre a los elementos de la serie, imposibilitando diferenciar los deptos:
-            serie_Top5Dptos = new ISeries[]
+            // Variable de indice que se utiliza para agregar los elementos columnSeries al conjunto:
+            int ixTop5Dpto = -1;
+            foreach (IngresosDeDpto depto in top5Deptos)
             {
-                new ColumnSeries<decimal>
+                ixTop5Dpto++;
+                ColumnSeries<decimal> columna = new ColumnSeries<decimal>
                 {
-                    //Name = new [] {top5Deptos[0].nombreDpto, top5Deptos[1].nombreDpto, },
-                    Values = new []{top5Deptos[0].totalIngresos, top5Deptos[1].totalIngresos, top5Deptos[2].totalIngresos, top5Deptos[3].totalIngresos, top5Deptos[4].totalIngresos, }
-                    //Values = new []{ 2, 5, 4, 2, 6 }
-                },
-                
-            };
+                    Name = depto.nombreDpto,
+                    Values = new[] { depto.totalIngresos },
+                    TooltipLabelFormatter = p => $" {depto.nombreDpto} ({p.PrimaryValue.ToString("C", new System.Globalization.CultureInfo("es-CL"))})"
+                };
+
+                preSerie_Top5Dptos[ixTop5Dpto] = columna;
+            }
+
+            // Asigna el conjunto de columnSeries al elemento que carga los datos en el grafico. Se intento cargar grafico directamente con preSerie, pero eso no funciona.
+            serie_Top5Dptos = preSerie_Top5Dptos;
+
+
+
+
+
+
+
+
+
+
+            // Si no hay ciudades en el conjunto, omitir lo de abajo:
+            if (top5Ciudades.Count == 0) return;
+
+            // Crear un array de columnSeries dependiendo de la cantidad de elementos en top5Ciudades:
+            ColumnSeries<decimal>[] preSerie_Top5Ciudades = new ColumnSeries<decimal>[top5Ciudades.Count()];
+
+            // Variable de indice que se utiliza para agregar los elementos columnSeries al conjunto:
+            int ixTop5Ciudad = -1;
+            foreach (IngresosDeCiudad ciudad in top5Ciudades)
+            {
+                ixTop5Ciudad++;
+                ColumnSeries<decimal> columna = new ColumnSeries<decimal>
+                {
+                    Name = ciudad.nombreCiudad,
+                    Values = new[] { ciudad.totalIngresos },
+                    TooltipLabelFormatter = p => $" {ciudad.nombreCiudad} ({p.PrimaryValue.ToString("C", new System.Globalization.CultureInfo("es-CL"))})"
+                };
+
+
+                preSerie_Top5Ciudades[ixTop5Ciudad] = columna;
+            }
+
+            // Asigna el conjunto de columnSeries al elemento que carga los datos en el grafico. Se intento cargar grafico directamente con preSerie, pero eso no funciona.
+            serie_Top5Ciudades = preSerie_Top5Ciudades;
+
+
+
 
         }
 
-        public ISeries[] Series { get; set; } =
-        {
-        new ColumnSeries<double>
-        {
-            Name = "Mary",
-            Values = new double[] { 2, 5, 4 }
-        },
-        new ColumnSeries<double>
-        {
-            Name = "Ana",
-            Values = new double[] { 3, 1, 6 }
-        }
-    };
+        
+
+
+
 
 
 

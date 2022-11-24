@@ -17,12 +17,10 @@
     <FunctionImport Name="SP_CREATE_ARRIENDO">
       <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
       <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-      <Parameter Name="FEC_RESERVA" Mode="In" Type="DateTime" />
-      <Parameter Name="VALOR_RESERVA" Mode="In" Type="Decimal" />
-      <Parameter Name="PAGADA" Mode="In" Type="String" />
       <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
       <Parameter Name="FEC_FIN" Mode="In" Type="DateTime" />
-      <Parameter Name="TOTAL" Mode="In" Type="Decimal" />
+      <Parameter Name="TOTAL_ARRI" Mode="In" Type="Decimal" />
+      <Parameter Name="TOTAL_SERV" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="SP_CREATE_DISP_SERVICIO">
       <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
@@ -115,12 +113,10 @@
       <Parameter Name="P_ID" Mode="In" Type="Decimal" />
       <Parameter Name="P_ID_CLI" Mode="In" Type="Decimal" />
       <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
-      <Parameter Name="P_FEC_RESERVA" Mode="In" Type="DateTime" />
-      <Parameter Name="P_VALOR_RESERVA" Mode="In" Type="Decimal" />
-      <Parameter Name="P_PAGADA" Mode="In" Type="String" />
       <Parameter Name="P_FEC_INI" Mode="In" Type="DateTime" />
       <Parameter Name="P_FEC_FIN" Mode="In" Type="DateTime" />
-      <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
+      <Parameter Name="P_TOTAL_ARRI" Mode="In" Type="Decimal" />
+      <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
       <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
@@ -192,6 +188,24 @@
     </FunctionImport>
     <FunctionImport Name="SP_DELETE_IMAGEN">
       <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CANCEL_ARRIENDO">
+      <Parameter Name="ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CONTRATA_SERVICIO">
+      <Parameter Name="ID_ARRI" Mode="In" Type="Decimal" />
+      <Parameter Name="ID_SERV" Mode="In" Type="Decimal" />
+      <Parameter Name="S_COSTO" Mode="In" Type="Decimal" />
+      <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+      <Parameter Name="REALIZADO" Mode="In" Type="String" />
+      <Parameter Name="POSTCHK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ESTADO_RESERVA">
+      <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_MONTO_SERVICIOS">
+      <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
     </FunctionImport>
     <EntitySet Name="AMIGO" EntityType="TurismoReal_Model.AMIGO" />
     <EntitySet Name="ARRIENDO" EntityType="TurismoReal_Model.ARRIENDO" />
@@ -494,6 +508,7 @@
     <Property Name="KMS_DISTANCIA" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="ACEPTADA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SENTIDO_VIAJE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.SOLICITUD_ARRIENDO_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="ARRIENDO" />
     <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="TurismoReal_Model.SOLICITUD_TRANSPORTES_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="TRANSPORTE_REALIZADO" />
   </EntityType>

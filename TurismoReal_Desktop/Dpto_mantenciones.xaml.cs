@@ -48,6 +48,7 @@ namespace TurismoReal_Desktop
         private void Alternar_habil_btns(bool estado)
         {
             btn_actualizar.IsEnabled = estado;
+            btn_eliminar.IsEnabled = estado;
         }
 
         private void Recargar_listado_mantenciones()
@@ -237,6 +238,39 @@ namespace TurismoReal_Desktop
                 tb_descripcion.Text = selectedMantencion.DESCRIPCION;
                 tb_costo.Text = selectedMantencion.COSTO.ToString();
             }
+        }
+
+        private async void btn_eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedMantencion == null)
+            {
+                return;
+            }
+
+            MessageBoxResult res = MessageBox.Show("¿Estás seguro que quieres eliminar PERMANENTEMENTE la mantención seleccionada?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            if (res == MessageBoxResult.Yes)
+            {
+                // Borrar mantencion
+                Boolean resultado = selectedMantencion.DeleteMantencion(selectedMantencion.ID_MANTENCION);
+
+                if (resultado)
+                {
+                    btn_eliminar.IsEnabled = false;
+                    selectedMantencion = null;
+                    limpiarCampos();
+                    await this.ShowMessageAsync("Mantenimiento eliminado", "El mantenimiento seleccionado ha sido eliminado exitosamente.");
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Eliminación fallida", "Algo salió mal, verifique conexión a la base de datos e intente nuevamente. \nSi el problema persiste, contacte a un administrador.");
+                }
+            }
+
+            
+
+
+
         }
     }
 }

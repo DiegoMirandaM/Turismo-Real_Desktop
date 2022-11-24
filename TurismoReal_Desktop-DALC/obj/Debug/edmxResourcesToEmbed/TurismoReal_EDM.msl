@@ -32,6 +32,10 @@
     <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
     <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
     <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
+    <FunctionImportMapping FunctionImportName="SP_CANCEL_ARRIENDO" FunctionName="TurismoReal_Model.Store.SP_CANCEL_ARRIENDO" />
+    <FunctionImportMapping FunctionImportName="SP_CONTRATA_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_CONTRATA_SERVICIO" />
+    <FunctionImportMapping FunctionImportName="SP_ESTADO_RESERVA" FunctionName="TurismoReal_Model.Store.SP_ESTADO_RESERVA" />
+    <FunctionImportMapping FunctionImportName="SP_MONTO_SERVICIOS" FunctionName="TurismoReal_Model.Store.SP_MONTO_SERVICIOS" />
     <EntitySetMapping Name="AMIGO">
       <EntityTypeMapping TypeName="TurismoReal_Model.AMIGO">
         <MappingFragment StoreEntitySet="AMIGO">
@@ -221,6 +225,7 @@
     <EntitySetMapping Name="SOLICITUD_TRANSPORTE">
       <EntityTypeMapping TypeName="TurismoReal_Model.SOLICITUD_TRANSPORTE">
         <MappingFragment StoreEntitySet="SOLICITUD_TRANSPORTE">
+          <ScalarProperty Name="SENTIDO_VIAJE" ColumnName="SENTIDO_VIAJE" />
           <ScalarProperty Name="COSTO" ColumnName="COSTO" />
           <ScalarProperty Name="ACEPTADA" ColumnName="ACEPTADA" />
           <ScalarProperty Name="KMS_DISTANCIA" ColumnName="KMS_DISTANCIA" />

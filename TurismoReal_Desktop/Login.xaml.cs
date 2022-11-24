@@ -64,12 +64,12 @@ namespace TurismoReal_Desktop
             if (id_usuario == -1)
             {
                 System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
-                await this.ShowMessageAsync("Datos incorrectos", "Los datos ingresados no corresponden a ningun usuario.\n\nPor favor, intentelo nuevamente");
+                await this.ShowMessageAsync("Datos incorrectos", "Los datos ingresados no corresponden a un usuario administrador valido.\n\nPor favor, intentelo nuevamente.");
             }
             else if (id_usuario > 0 && p_tipo_usuario.Value.ToString() != "Administrador")
             {
                 System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
-                await this.ShowMessageAsync("Usuario no es administrador", "Esta aplicación es de uso exclusivo de los administradores");
+                await this.ShowMessageAsync("Usuario no administrador", "Esta aplicación es de uso exclusivo de los administradores.\n\nEl usuario ingresado existe, pero no figura actualmente como administrador.");
             }
             else
             {

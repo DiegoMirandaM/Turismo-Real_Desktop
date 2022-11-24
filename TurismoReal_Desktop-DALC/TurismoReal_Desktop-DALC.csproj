@@ -129,6 +129,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\TurismoReal_Desktop\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="App.Config" />
     <None Include="packages.config" />
     <EntityDeploy Include="TurismoReal_EDM.edmx">

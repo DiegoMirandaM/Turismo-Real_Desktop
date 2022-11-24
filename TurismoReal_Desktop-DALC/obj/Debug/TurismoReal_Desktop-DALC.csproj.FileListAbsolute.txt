@@ -14,8 +14,8 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\bin\Debug\EntityFramework.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\bin\Debug\Oracle.ManagedDataAccess.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\bin\Debug\EntityFramework.xml
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.csproj.AssemblyReference.cache
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.csproj.CoreCompileInputs.cache
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.csproj.CopyComplete
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop-DALC\obj\Debug\TurismoReal_Desktop-DALC.csproj.AssemblyReference.cache

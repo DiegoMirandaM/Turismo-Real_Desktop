@@ -28,6 +28,7 @@ namespace TurismoReal_Desktop_DALC
         public Nullable<decimal> KMS_DISTANCIA { get; set; }
         public string ACEPTADA { get; set; }
         public Nullable<decimal> COSTO { get; set; }
+        public string SENTIDO_VIAJE { get; set; }
     
         public virtual ARRIENDO ARRIENDO { get; set; }
         public virtual ICollection<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }

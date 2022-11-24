@@ -79,6 +79,22 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
+        public Boolean DeleteMantencion(decimal ID)
+        {
+            try
+            {
+                conn.SP_DELETE_MANTEN(ID);
+                conn.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
         public List<Mantencion> ListarTodoEnFechas(DateTime fechaInicio, DateTime fechaFin, out decimal costoMantenciones)
         {
             costoMantenciones = 0;

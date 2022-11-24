@@ -198,6 +198,7 @@
           <Property Name="KMS_DISTANCIA" Type="number" Precision="38" Scale="0" />
           <Property Name="ACEPTADA" Type="char" MaxLength="1" />
           <Property Name="COSTO" Type="number" Precision="38" Scale="0" />
+          <Property Name="SENTIDO_VIAJE" Type="varchar2" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="TIPO_USUARIO">
           <Key>
@@ -455,6 +456,9 @@
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="P_DISPONIBLE" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_CANCEL_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="ID" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_CANCEL_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
@@ -464,15 +468,21 @@
         <Function Name="SP_CHECKOUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_CONTRATA_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="ID_ARRI" Type="number" Mode="In" />
+          <Parameter Name="ID_SERV" Type="number" Mode="In" />
+          <Parameter Name="S_COSTO" Type="number" Mode="In" />
+          <Parameter Name="FECHA" Type="date" Mode="In" />
+          <Parameter Name="REALIZADO" Type="char" Mode="In" />
+          <Parameter Name="POSTCHK" Type="char" Mode="In" />
+        </Function>
         <Function Name="SP_CREATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="FEC_RESERVA" Type="date" Mode="In" />
-          <Parameter Name="VALOR_RESERVA" Type="number" Mode="In" />
-          <Parameter Name="PAGADA" Type="char" Mode="In" />
           <Parameter Name="FEC_INI" Type="date" Mode="In" />
           <Parameter Name="FEC_FIN" Type="date" Mode="In" />
-          <Parameter Name="TOTAL" Type="number" Mode="In" />
+          <Parameter Name="TOTAL_ARRI" Type="number" Mode="In" />
+          <Parameter Name="TOTAL_SERV" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
@@ -564,6 +574,9 @@
         <Function Name="SP_DELETE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_ESTADO_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="P_USER" Type="varchar2" Mode="In" />
           <Parameter Name="P_PASS" Type="varchar2" Mode="In" />
@@ -572,16 +585,18 @@
           <Parameter Name="P_ID_USUARIO" Type="number" Mode="Out" />
           <Parameter Name="P_TIPO_USUARIO" Type="varchar2" Mode="Out" />
         </Function>
+        <Function Name="SP_MONTO_SERVICIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL_SERV" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_UPDATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_CLI" Type="number" Mode="In" />
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="P_FEC_RESERVA" Type="date" Mode="In" />
-          <Parameter Name="P_VALOR_RESERVA" Type="number" Mode="In" />
-          <Parameter Name="P_PAGADA" Type="char" Mode="In" />
           <Parameter Name="P_FEC_INI" Type="date" Mode="In" />
           <Parameter Name="P_FEC_FIN" Type="date" Mode="In" />
-          <Parameter Name="P_TOTAL" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL_ARRI" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL_SERV" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="TURISMO_REAL">
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
@@ -759,12 +774,10 @@
           <FunctionImport Name="SP_CREATE_ARRIENDO">
             <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
             <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="FEC_RESERVA" Mode="In" Type="DateTime" />
-            <Parameter Name="VALOR_RESERVA" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGADA" Mode="In" Type="String" />
             <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
             <Parameter Name="FEC_FIN" Mode="In" Type="DateTime" />
-            <Parameter Name="TOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="TOTAL_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="TOTAL_SERV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
@@ -857,12 +870,10 @@
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_CLI" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_FEC_RESERVA" Mode="In" Type="DateTime" />
-            <Parameter Name="P_VALOR_RESERVA" Mode="In" Type="Decimal" />
-            <Parameter Name="P_PAGADA" Mode="In" Type="String" />
             <Parameter Name="P_FEC_INI" Mode="In" Type="DateTime" />
             <Parameter Name="P_FEC_FIN" Mode="In" Type="DateTime" />
-            <Parameter Name="P_TOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
@@ -934,6 +945,24 @@
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_IMAGEN">
           <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CANCEL_ARRIENDO">
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONTRATA_SERVICIO">
+            <Parameter Name="ID_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_SERV" Mode="In" Type="Decimal" />
+            <Parameter Name="S_COSTO" Mode="In" Type="Decimal" />
+            <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="REALIZADO" Mode="In" Type="String" />
+            <Parameter Name="POSTCHK" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ESTADO_RESERVA">
+          <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MONTO_SERVICIOS">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <EntitySet Name="AMIGO" EntityType="TurismoReal_Model.AMIGO" />
           <EntitySet Name="ARRIENDO" EntityType="TurismoReal_Model.ARRIENDO" />
@@ -1236,6 +1265,7 @@
           <Property Name="KMS_DISTANCIA" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="ACEPTADA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SENTIDO_VIAJE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.SOLICITUD_ARRIENDO_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="ARRIENDO" />
           <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="TurismoReal_Model.SOLICITUD_TRANSPORTES_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="TRANSPORTE_REALIZADO" />
         </EntityType>
@@ -1513,6 +1543,10 @@
           <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_DELETE_DISP_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_CREATE_IMAGEN" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="TurismoReal_Model.Store.SP_DELETE_IMAGEN" />
+          <FunctionImportMapping FunctionImportName="SP_CANCEL_ARRIENDO" FunctionName="TurismoReal_Model.Store.SP_CANCEL_ARRIENDO" />
+          <FunctionImportMapping FunctionImportName="SP_CONTRATA_SERVICIO" FunctionName="TurismoReal_Model.Store.SP_CONTRATA_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_ESTADO_RESERVA" FunctionName="TurismoReal_Model.Store.SP_ESTADO_RESERVA" />
+          <FunctionImportMapping FunctionImportName="SP_MONTO_SERVICIOS" FunctionName="TurismoReal_Model.Store.SP_MONTO_SERVICIOS" />
           <EntitySetMapping Name="AMIGO">
             <EntityTypeMapping TypeName="TurismoReal_Model.AMIGO">
               <MappingFragment StoreEntitySet="AMIGO">
@@ -1702,6 +1736,7 @@
           <EntitySetMapping Name="SOLICITUD_TRANSPORTE">
             <EntityTypeMapping TypeName="TurismoReal_Model.SOLICITUD_TRANSPORTE">
               <MappingFragment StoreEntitySet="SOLICITUD_TRANSPORTE">
+                <ScalarProperty Name="SENTIDO_VIAJE" ColumnName="SENTIDO_VIAJE" />
                 <ScalarProperty Name="COSTO" ColumnName="COSTO" />
                 <ScalarProperty Name="ACEPTADA" ColumnName="ACEPTADA" />
                 <ScalarProperty Name="KMS_DISTANCIA" ColumnName="KMS_DISTANCIA" />

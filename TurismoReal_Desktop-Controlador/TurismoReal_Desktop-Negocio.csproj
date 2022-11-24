@@ -100,9 +100,11 @@
   <ItemGroup>
     <Compile Include="Arriendo.cs" />
     <Compile Include="Ciudad.cs" />
+    <Compile Include="Conductor.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Disponibilidad_servicio.cs" />
     <Compile Include="Imagen.cs" />
+    <Compile Include="IngresosDeCiudad.cs" />
     <Compile Include="IngresosDeDpto.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mantencion.cs" />

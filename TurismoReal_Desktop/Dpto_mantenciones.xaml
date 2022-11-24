@@ -80,6 +80,10 @@
                 <Button Name="btn_actualizar" Content="Actualizar" VerticalAlignment="Center" FontSize="20" Width="150" BorderThickness="2" Height="Auto" BorderBrush="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_actualizar_Click"/>
             </Viewbox>
 
+            <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="50">
+                <Button Name="btn_eliminar" Content="Eliminar" VerticalAlignment="Center" FontSize="20" Width="150" BorderThickness="2" Height="Auto" BorderBrush="#fe7a4a" Background="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Foreground="#fe7a4a" Click="btn_eliminar_Click"/>
+            </Viewbox>
+
         </Grid>
 
         <DataGrid Name="dg_mantenciones" Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" GridLinesVisibility="All" BorderBrush="Black" Background="WhiteSmoke" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="dg_mantenciones_MouseDoubleClick">

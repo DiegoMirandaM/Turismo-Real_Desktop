@@ -273,8 +273,8 @@ namespace TurismoReal_Desktop
             // Si el tipo de usuario no es funcionario, dejar null el area de trabajo: 
             string area = idTipoUsuario == 2 ? tb_area.Text.Trim() : null;
 
-            // Si se especifico contraseña para sobreescribir, usar esa. Si no, usar rut sin puntos ni guion. 
-            string password = string.IsNullOrWhiteSpace(tb_pass.Text.Trim()) ? finalRutInt.ToString() : tb_pass.Text.Trim();
+            // Si se especifico contraseña para sobreescribir, usar esa. Si no, usar la actual. 
+            string password = string.IsNullOrWhiteSpace(tb_pass.Text.Trim()) ? seleccionado.PASSWORD : TR_Recursos.ConvertirSha256(tb_pass.Text.Trim());
 
             // Si es funcionario, requerir area. Si no es funcionario, ignorar area: 
             if (idTipoUsuario == 2 && string.IsNullOrWhiteSpace(area))
@@ -305,7 +305,7 @@ namespace TurismoReal_Desktop
                 // Actualización de los datos del usuario 
                 actualizando = true;
 
-                Boolean resultado = seleccionado.updateUsuario(seleccionado.ID_USUARIO, idTipoUsuario, nombre, apePat, apeMat, finalRutInt, dv.ToString(), direccion, ciudad, telefono, email, area, username, TR_Recursos.ConvertirSha256(password));
+                Boolean resultado = seleccionado.updateUsuario(seleccionado.ID_USUARIO, idTipoUsuario, nombre, apePat, apeMat, finalRutInt, dv.ToString(), direccion, ciudad, telefono, email, area, username, password);
 
                 if (resultado)
                 {

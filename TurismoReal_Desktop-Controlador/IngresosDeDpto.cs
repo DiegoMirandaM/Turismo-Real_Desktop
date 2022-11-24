@@ -32,7 +32,7 @@ namespace TurismoReal_Desktop_Controlador
                 // Obtiene el resumen de ingresos por departamento para todos los departamentos en el rango dado:
                 var result = from T1 in conn.ARRIENDO
                           join T2 in conn.DEPARTAMENTO on T1.ID_DPTO equals T2.ID_DPTO
-                          where T1.FECHA_INICIO >= fechaInicio && T1.FECHA_INICIO <= fechaFin
+                          where T1.FECHA_INICIO >= fechaInicio && T1.FECHA_INICIO <= fechaFin && T1.CHECK_IN == "1"
                           group T1 by T1.ID_DPTO into depto
                           select new
                           {
