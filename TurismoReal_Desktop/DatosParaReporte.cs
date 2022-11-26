@@ -109,9 +109,6 @@ namespace TurismoReal_Desktop
                 }
             };
 
-        // De aqui para arriba estaria funcionando y usandose los datos: ---^
-
-
         public DatosParaReporte()
         {
             DateTime inicioAnio = DateTime.Parse("01/01/" + DateTime.Now.Year.ToString());
@@ -189,11 +186,6 @@ namespace TurismoReal_Desktop
 
                 top5Ciudades = new IngresosDeCiudad().ListarTodoEnFechas(fechaInicio, fechaFin);
 
-
-
-
-
-
                 return true;
             }
             catch (Exception)
@@ -204,8 +196,6 @@ namespace TurismoReal_Desktop
 
         public void RecargarGraficos()
         {
-            // ERROR: LAS CANTIDADES MOSTRADAS EN LOS GRAFICOS DE BARRA NO COINCIDEN CON LAS TARJETAS Y EL GRAFICO DE TORTA DE INGRESOS.
-
             // Genera serie de valores para el grafico ingresos por categoria: 
             int ixCatIngreso = -1;
             serie_IngresosCategoria = ingresosCat.AsLiveChartsPieSeries((value, series) =>
@@ -270,15 +260,6 @@ namespace TurismoReal_Desktop
             // Asigna el conjunto de columnSeries al elemento que carga los datos en el grafico. Se intento cargar grafico directamente con preSerie, pero eso no funciona.
             serie_Top5Dptos = preSerie_Top5Dptos;
 
-
-
-
-
-
-
-
-
-
             // Si no hay ciudades en el conjunto, omitir lo de abajo:
             if (top5Ciudades.Count == 0) return;
 
@@ -297,25 +278,13 @@ namespace TurismoReal_Desktop
                     TooltipLabelFormatter = p => $" {ciudad.nombreCiudad} ({p.PrimaryValue.ToString("C", new System.Globalization.CultureInfo("es-CL"))})"
                 };
 
-
                 preSerie_Top5Ciudades[ixTop5Ciudad] = columna;
             }
 
             // Asigna el conjunto de columnSeries al elemento que carga los datos en el grafico. Se intento cargar grafico directamente con preSerie, pero eso no funciona.
             serie_Top5Ciudades = preSerie_Top5Ciudades;
 
-
-
-
         }
-
-        
-
-
-
-
-
-
 
     }
 }

@@ -7,7 +7,7 @@ using MahApps.Metro.Controls.Dialogs;
 
 using System.Collections.Generic;
 using TurismoReal_Desktop_Controlador;
-
+using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -46,7 +46,7 @@ namespace TurismoReal_Desktop
 
         private async void btn_nuevoDpto_Click(object sender, RoutedEventArgs e)
         {
-            // Verifica que no falten datos antes de proceder
+            // Verifica que no falten datos antes de proceder.
             if (String.IsNullOrWhiteSpace(tb_nombre.Text.Trim()) || String.IsNullOrWhiteSpace(tb_direccion.Text.Trim()) || cb_ciudad.SelectedItem == null || String.IsNullOrWhiteSpace(tb_numDpto.Text.Trim()) || String.IsNullOrWhiteSpace(tb_superficie.Text.Trim()) || String.IsNullOrWhiteSpace(tb_precio.Text.Trim()) || String.IsNullOrWhiteSpace(tb_estadoActual.Text.Trim()))
             {
                 await this.ShowMessageAsync ("Registro fallido", "Por favor, complete todos los campos e intente nuevamente.");
@@ -59,7 +59,7 @@ namespace TurismoReal_Desktop
             Decimal.TryParse(cb_ciudad.SelectedValue.ToString(), out decimal idCiudad);
             string nroDpto = tb_numDpto.Text.Trim();
             string newDpto_SUPERFICIE_DPTO = tb_superficie.Text.Trim();
-            Decimal.TryParse(tb_precio.Text.Trim(), out decimal precioDecimal);
+            Decimal.TryParse(tb_precio.Text.Replace("$", "").Replace(".", "").Trim(), out decimal precioDecimal); // Al precio se le remueve el signo '$' y los puntos para convertirlo a decimal.
 
             string newDpto_CONDICION = tb_estadoActual.Text.Trim();
 
@@ -93,7 +93,6 @@ namespace TurismoReal_Desktop
             actualizando = false;
         }
 
-        // PROBLEMA: Validar que no se puedan insertar letras en campos numericos! 
         private async void btn_actualizarDpto_Click(object sender, RoutedEventArgs e)
         {
             // Si faltan datos, detener actualizacion 
@@ -115,7 +114,7 @@ namespace TurismoReal_Desktop
             Decimal.TryParse(cb_ciudad.SelectedValue.ToString(), out decimal idCiudad);
             string nroDpto = tb_numDpto.Text.Trim();
             var newDpto_SUPERFICIE_DPTO = tb_superficie.Text.Trim();
-            Decimal.TryParse(tb_precio.Text.Trim(), out decimal precioDecimal);
+            Decimal.TryParse(tb_precio.Text.Replace("$", "").Replace(".", ""), out decimal precioDecimal);
             string newDpto_estado = tb_estadoActual.Text.Trim();
 
             // Validar que los campos numero dpto, superficie y precio por dia sean mayores a 0 y no contengan letras.
@@ -215,7 +214,7 @@ namespace TurismoReal_Desktop
 
         private void btn_gestInventario_Click(object sender, RoutedEventArgs e)
         {
-            Dpto_inventario win_inventario = new Dpto_inventario(seleccionado);
+            Dpto_inventario win_inventario = new Dpto_inventario(seleccionado, this);
             win_inventario.ShowDialog(); 
 
         }
@@ -288,14 +287,42 @@ namespace TurismoReal_Desktop
                 cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;
                 tb_numDpto.Text = seleccionado.NRO_DPTO;
                 tb_superficie.Text = seleccionado.SUPERFICIE_DPTO;
-                tb_precio.Text = seleccionado.PRECIO_DPTO.ToString();
+                tb_precio.Text = seleccionado.PRECIO_DPTO.ToString("C", new System.Globalization.CultureInfo("es-CL"));
 
                 tb_estadoActual.Text = seleccionado.CONDICION;
 
-                Inventario inv = new Inventario();
-
-                dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(seleccionado.ID_DPTO);
+                RecargarInventario();
             }
+        }
+
+        public void RecargarInventario()
+        {
+            Inventario inv = new Inventario();
+            dg_inventario.ItemsSource = inv.ListarInventarioDeDpto(seleccionado.ID_DPTO);
+        }
+
+        private void tb_numDpto_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void tb_superficie_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void tb_precio_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void tb_precio_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Double value;
+            if (Double.TryParse(tb_precio.Text.Replace("$","").Replace(".",""), out value))
+                tb_precio.Text = value.ToString("C", new System.Globalization.CultureInfo("es-CL"));
+            else
+                tb_precio.Text = String.Empty;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace TurismoReal_Desktop_Controlador
         public bool bool_aceptada { get; set; }
         public bool bool_cancelada { get; set; }
 
-        public Nullable<decimal> COSTO { get; set; }
+        public decimal COSTO { get; set; }
         public virtual ARRIENDO ARRIENDO { get; set; }
 
         public string nomCliente { get; set; }
@@ -138,10 +138,10 @@ namespace TurismoReal_Desktop_Controlador
                     sol.nomDepto = res.DeptoSolicitado;
 
                     // La aceptacion de la solicitud de transporte puede ser:
-                    // null = Ni aceptado ni rechazado.
+                    // 0 = Ni aceptado ni rechazado;
                     // 1 = Aceptado;
-                    // 0 = Rechazado;
-                    if (res.Acepta == null)
+                    // 2 = Rechazado;
+                    if (res.Acepta == "0")
                     {
                         sol.bool_aceptada = false;
                         sol.bool_cancelada = false;
@@ -151,7 +151,7 @@ namespace TurismoReal_Desktop_Controlador
                         sol.bool_aceptada = true;
                         sol.bool_cancelada = false;
                     }
-                    else if (res.Acepta == "0")
+                    else if (res.Acepta == "2")
                     {
                         sol.bool_aceptada = false;
                         sol.bool_cancelada = true;
@@ -219,7 +219,7 @@ namespace TurismoReal_Desktop_Controlador
             // Si no habia sido aceptado previamente, solo actualizar aceptada con 0.
             try
             {
-                conn.SP_UPDATE_ESTADO_SOL_TRANSP(id_solicitud, "0");
+                conn.SP_UPDATE_ESTADO_SOL_TRANSP(id_solicitud, "2");
 
                 if (estabaAceptado) conn.SP_DELETE_TRANSP_REALIZADO(id_solicitud);
 

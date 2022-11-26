@@ -36,7 +36,6 @@ namespace TurismoReal_Desktop
 
             dp_fecInicio.SelectedDate = inicioAnio;
             dp_fecFin.SelectedDate = fechaActual;
-
         }
 
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
@@ -58,10 +57,21 @@ namespace TurismoReal_Desktop
             DateTime fecha_inicio = (DateTime)dp_fecInicio.SelectedDate;
             DateTime fecha_fin = (DateTime)dp_fecFin.SelectedDate;
 
+            // Si las fechas estan al reves, y la fecha de fin es anterior a la fecha de inicio, invertir las fechas y consultar:
+            if (fecha_fin < fecha_inicio)
+            {
+                DateTime temp = fecha_inicio;
+                fecha_inicio = fecha_fin;
+                fecha_fin = temp;
+
+                dp_fecInicio.SelectedDate = fecha_inicio;
+                dp_fecFin.SelectedDate = fecha_fin;
+            }
+
             DatosParaReporte datosRep = new DatosParaReporte(fecha_inicio, fecha_fin);
 
             DataContext = datosRep;
-            
+
         }
 
     }

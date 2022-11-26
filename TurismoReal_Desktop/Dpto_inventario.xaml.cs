@@ -16,6 +16,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Behaviors;
 using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
+using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -28,6 +29,8 @@ namespace TurismoReal_Desktop
         private Inventario selectedInventario;
         private bool actualizando;
 
+        private Dpto win_Dpto;
+
         public Dpto_inventario()
         {
             InitializeComponent();
@@ -36,13 +39,15 @@ namespace TurismoReal_Desktop
             Alternar_habil_btns(false);
         }
 
-        public Dpto_inventario(Departamento dpto)
+        public Dpto_inventario(Departamento dpto, Dpto ventana_Dpto)
         {
             InitializeComponent();
             selectedDpto = dpto;
             lb_selectedDpto.Content = ArmarLabel();
             Recargar_listado_inventario();
             Alternar_habil_btns(false);
+
+            win_Dpto = ventana_Dpto;
         }
 
         private string ArmarLabel()
@@ -67,7 +72,7 @@ namespace TurismoReal_Desktop
             var fecCompra = dt_compra.SelectedDate;
 
             // Intenta extraer y convertir valor, y valida que valor solo contenga numeros! 
-            if (Decimal.TryParse(tb_valor.Text.Trim(), out decimal valor) == false)
+            if (Decimal.TryParse(tb_valor.Text.Replace("$", "").Replace(".", "").Trim(), out decimal valor) == false)
             {
                 await this.ShowMessageAsync("Datos incorrectos", "Por favor, ingrese solo números en el valor del objeto de inventario.");
                 return;
@@ -101,6 +106,8 @@ namespace TurismoReal_Desktop
 
                 limpiarCampos();
                 actualizando = false;
+
+                win_Dpto.RecargarInventario();
 
                 await this.ShowMessageAsync("Registro exitoso", "El elemento especificado se ha registrado exitosamente.");
             }
@@ -166,6 +173,8 @@ namespace TurismoReal_Desktop
                 
                 actualizando = false;
 
+                win_Dpto.RecargarInventario();
+
                 await this.ShowMessageAsync("Actualización exitosa", "El elemento especificado se ha actualizado exitosamente.");
             }
             else
@@ -220,6 +229,20 @@ namespace TurismoReal_Desktop
                 dt_compra.SelectedDate = selectedInventario.FECHA_COMPRA;
                 ck_disponible.IsChecked = selectedInventario.DISPONIBLE == "1" ? true : false;
             }
+        }
+
+        private void tb_valor_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private void tb_valor_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Double value;
+            if (Double.TryParse(tb_valor.Text, out value))
+                tb_valor.Text = value.ToString("C", new System.Globalization.CultureInfo("es-CL"));
+            else
+                tb_valor.Text = String.Empty;
         }
     }
 }

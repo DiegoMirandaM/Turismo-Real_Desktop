@@ -16,6 +16,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Behaviors;
 using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
+using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -167,13 +168,21 @@ namespace TurismoReal_Desktop
 
             // Toma todos los datos proporcionados en los campos de texto para comprobar que no se registre un usuario duplicado, y luego lo ingresa. 
             string nombre = tb_nombre.Text.Trim();
-            string fullRut = tb_rut.Text.Trim(); // RUT COMPLETO TAL CUAL. AQUI VALIDAR Y DIVIDIR RUT DE DV PARA REGISTRO!
+            string fullRut = tb_rut.Text.Trim(); // RUT COMPLETO TAL CUAL. 
 
-            char dv = fullRut.ToCharArray().Last<char>();
-            string rutDV = fullRut.Replace(".", ""); //Quitar puntos en caso de haber. Queda '-' y DV. 
+            char dv = fullRut.ToCharArray().Last<char>(); // Se toma el ultimo caracter ingresado como digito verificador.
+            string rutDV = fullRut.Replace(".", ""); //Quitar puntos en caso de haber. Queda rut mas guion y DV. 
+
+            if (!rutDV.Contains("-"))
+            {
+                await this.ShowMessageAsync("Rut incorrecto", "Por favor, no olvide ingresar el rut con números, seguido del guión y digito verificador.");
+                return;
+            }
+
+
             if (int.TryParse(rutDV.Substring(0, rutDV.LastIndexOf('-')), out int finalRutInt) == false) // Recortar rut hasta antes del guion y DV, y lo vuelve int. 
             {
-                await this.ShowMessageAsync("Registro fallido", "Ha ocurrido un error intentando procesar rut.");
+                await this.ShowMessageAsync("Rut incorrecto", "Por favor, ingrese el rut con números, seguido del guión y digito verificador.");
                 return;
             }
 
@@ -197,10 +206,6 @@ namespace TurismoReal_Desktop
                 await this.ShowMessageAsync("Datos faltantes", "Para los funcionarios, por favor especifique área en donde trabaja.");
                 return;
             }
-
-
-
-
 
             // Comprobar que usuario no se encuentre ya registrado:
             foreach (Usuario user in dg_usuarios.Items)
@@ -270,8 +275,9 @@ namespace TurismoReal_Desktop
             string apeMat = tb_apeMat.Text.Trim();
             string telefono = tb_telefono.Text.Trim();
             Decimal.TryParse(cb_tipoUsuario.SelectedValue.ToString(), out decimal idTipoUsuario);
-            // Si el tipo de usuario no es funcionario, dejar null el area de trabajo: 
-            string area = idTipoUsuario == 2 ? tb_area.Text.Trim() : null;
+
+            // Si el usuario que se esta actualizando no tenia area especificada, dejar ese valor nulo. De lo contrario, tomar el mismo valor:
+            string area = String.IsNullOrWhiteSpace(seleccionado.AREA_FUNCIONARIO) ? null : seleccionado.AREA_FUNCIONARIO;
 
             // Si se especifico contraseña para sobreescribir, usar esa. Si no, usar la actual. 
             string password = string.IsNullOrWhiteSpace(tb_pass.Text.Trim()) ? seleccionado.PASSWORD : TR_Recursos.ConvertirSha256(tb_pass.Text.Trim());
@@ -352,5 +358,9 @@ namespace TurismoReal_Desktop
             dg_usuarios.ItemsSource = user.ListarUsuariosPorTipo(categoriaSeleccionada);
         }
 
+        private void tb_telefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^+0-9]+").IsMatch(e.Text);
+        }
     }
 }

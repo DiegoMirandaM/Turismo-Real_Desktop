@@ -66,7 +66,8 @@ namespace TurismoReal_Desktop
                     cb_conductorIda.SelectedValue = seleccionado.IDconductorAsignado;
                 }
 
-                tb_precioIda.Text = seleccionado.COSTO.ToString();
+                //tb_precioIda.Text = seleccionado.COSTO.ToString();
+                tb_precioIda.Text = seleccionado.COSTO.ToString("C", new System.Globalization.CultureInfo("es-CL"));
 
                 // Limpiar campos que no estan en uso:
                 tb_dirOrigen_vuelta.Clear();
@@ -110,7 +111,7 @@ namespace TurismoReal_Desktop
                 {
                     cb_conductorVuelta.SelectedValue = seleccionado.IDconductorAsignado;
                 }
-                tb_precioVuelta.Text = seleccionado.COSTO.ToString();
+                tb_precioVuelta.Text = seleccionado.COSTO.ToString("C", new System.Globalization.CultureInfo("es-CL"));
 
 
                 // Limpiar campos que no estan en uso:
@@ -148,11 +149,18 @@ namespace TurismoReal_Desktop
                 btn_rechazarTraslado.IsEnabled = true;
                 btn_aceptarTraslado.IsEnabled = false;
             }
-            // Si no esta aceptada, ofrecer aceptarla solamente
-            else
+            // Si esta rechazada, ofrecer aceptarla solamente:
+            else if (seleccionado.bool_cancelada)
             {
                 btn_actualizarTraslado.IsEnabled = false;
                 btn_rechazarTraslado.IsEnabled = false;
+                btn_aceptarTraslado.IsEnabled = true;
+            }
+            // Si la solicitud no ha sido aceptada ni rechazada aun, ofrecer estas dos opciones:
+            else
+            {
+                btn_actualizarTraslado.IsEnabled = false;
+                btn_rechazarTraslado.IsEnabled = true;
                 btn_aceptarTraslado.IsEnabled = true;
             }
 

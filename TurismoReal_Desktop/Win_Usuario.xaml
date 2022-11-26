@@ -88,46 +88,46 @@
 
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Nombre:" FontSize="12"/>
-                <TextBox Name="tb_nombre" Width="Auto" mah:TextBoxHelper.Watermark="Jonathan" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_nombre" Width="Auto" mah:TextBoxHelper.Watermark="Jonathan" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="1"/>
 
                 <Label FontSize="12" Content="Rut:"/>
-                <TextBox Name="tb_rut" Width="Auto" FontSize="12" mah:TextBoxHelper.Watermark="12345678-9" MaxLength="8" mah:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_rut" Width="Auto" FontSize="12" mah:TextBoxHelper.Watermark="12345678-9" MaxLength="10" mah:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" TabIndex="4" />
 
                 <Label Content="Dirección:" FontSize="12"/>
-                <TextBox Name="tb_direccion" Width="Auto" mah:TextBoxHelper.Watermark="Evergreen Street 341" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_direccion" Width="Auto" mah:TextBoxHelper.Watermark="Evergreen Street 341" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="7" />
 
                 <Label Content="Username:" FontSize="12"/>
-                <TextBox Name="tb_username" Width="Auto" mah:TextBoxHelper.Watermark="Jon_Doe" MaxLength="40" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_username" Width="Auto" mah:TextBoxHelper.Watermark="Jon_Doe" MaxLength="40" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="10" />
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Apellido Paterno:" FontSize="12"/>
-                <TextBox Name="tb_apePat" Width="Auto" mah:TextBoxHelper.Watermark="Doeman" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_apePat" Width="Auto" mah:TextBoxHelper.Watermark="Doeman" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="2"/>
 
                 <Label FontSize="12" Content="Email:"/>
-                <TextBox Name="tb_email" Width="Auto" mah:TextBoxHelper.Watermark="email@gmail.com" MaxLength="40" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_email" Width="Auto" mah:TextBoxHelper.Watermark="email@gmail.com" MaxLength="40" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="5" />
 
                 <Label Content="Ciudad:" FontSize="12"/>
-                <TextBox Name="tb_ciudad" Width="Auto" mah:TextBoxHelper.Watermark="Rancagua" MaxLength="30" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_ciudad" Width="Auto" mah:TextBoxHelper.Watermark="Rancagua" MaxLength="30" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="8" />
 
                 
                 <Label Content="Sobreescribir password:" FontSize="12"/>
-                <TextBox Name="tb_pass" Width="Auto" mah:TextBoxHelper.Watermark="12345678" MaxLength="128" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_pass" Width="Auto" mah:TextBoxHelper.Watermark="12345678" MaxLength="128" FontSize="12" VerticalContentAlignment="Center" TabIndex="11"/>
                 
             </StackPanel>
 
             <StackPanel Grid.Column="4" Grid.Row="1" Orientation="Vertical" >
                 <Label Content="Apellido Materno:" FontSize="12"/>
-                <TextBox Name="tb_apeMat" Width="Auto" mah:TextBoxHelper.Watermark="Bowman" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_apeMat" Width="Auto" mah:TextBoxHelper.Watermark="Bowman" MaxLength="50" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="3"/>
 
                 <Label FontSize="12" Content="Teléfono:"/>
-                <TextBox Name="tb_telefono" Width="Auto" mah:TextBoxHelper.Watermark="+56912345678" MaxLength="15" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_telefono" Width="Auto" mah:TextBoxHelper.Watermark="+56912345678" MaxLength="15" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" PreviewTextInput="tb_telefono_PreviewTextInput" TabIndex="6" />
 
                 <Label Content="Tipo de usuario:" FontSize="12"/>
-                <ComboBox Name="cb_tipoUsuario" FontSize="12" DisplayMemberPath="DESCRIPCION" Control:TextBoxHelper.Watermark="Cliente" SelectedValuePath="ID_TIPOUSUARIO" VerticalContentAlignment="Center" Width="Auto"/>
+                <ComboBox Name="cb_tipoUsuario" FontSize="12" DisplayMemberPath="DESCRIPCION" Control:TextBoxHelper.Watermark="Cliente" SelectedValuePath="ID_TIPOUSUARIO" VerticalContentAlignment="Center" Width="Auto" TabIndex="9"/>
 
                 <Label FontSize="12" Content="Área (opcional, para funcionario):"/>
-                <TextBox Name="tb_area" Width="Auto" mah:TextBoxHelper.Watermark="Valparaiso" MaxLength="30" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" />
+                <TextBox Name="tb_area" Width="Auto" mah:TextBoxHelper.Watermark="Valparaiso" MaxLength="30" mah:TextBoxHelper.ClearTextButton="True" FontSize="12" VerticalContentAlignment="Center" TabIndex="10" />
             </StackPanel>
         </Grid>
 
@@ -145,11 +145,11 @@
             </Grid.RowDefinitions>
 
             <Viewbox Grid.Column="3" Grid.Row="0" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="30">
-                <Button Name="Btn_crearUsuario" Content="Añadir nuevo usuario" VerticalAlignment="Center"  Width="180" FontSize="15" Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="Btn_crearUsuario_Click" />
+                <Button Name="Btn_crearUsuario" Content="Añadir nuevo usuario" VerticalAlignment="Center"  Width="180" FontSize="15" Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="Btn_crearUsuario_Click" TabIndex="13" />
             </Viewbox>
 
             <Viewbox Grid.Column="3" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="30">
-                <Button Name="Btn_updateDatos" Content="Actualizar datos" VerticalAlignment="Center"  Width="180" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="Btn_updateDatos_Click" />
+                <Button Name="Btn_updateDatos" Content="Actualizar datos" VerticalAlignment="Center"  Width="180" FontSize="15" Background="#04aba3" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="Btn_updateDatos_Click" TabIndex="14" />
             </Viewbox>
 
 

@@ -77,8 +77,8 @@
             <Label Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Fecha de compra:"/>
 
 
-            <TextBox Name="tb_nombre" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" Width="Auto" MaxLength="50" FontSize="12" VerticalContentAlignment="Center"/>
-            <TextBox Name="tb_valor" Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom" Width="Auto" MaxLength="35" FontSize="12" VerticalContentAlignment="Center"/>
+            <TextBox Name="tb_nombre" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" Width="Auto" mah:TextBoxHelper.Watermark="Lampara" mah:TextBoxHelper.ClearTextButton="True" MaxLength="50" FontSize="12" VerticalContentAlignment="Center"/>
+            <TextBox Name="tb_valor" Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom" Width="Auto" mah:TextBoxHelper.Watermark="$45.000" mah:TextBoxHelper.ClearTextButton="True" MaxLength="35" FontSize="12" VerticalContentAlignment="Center" PreviewTextInput="tb_valor_PreviewTextInput" LostFocus="tb_valor_LostFocus"/>
             <CheckBox Name="ck_disponible" Grid.Row="5" Grid.Column="2" VerticalAlignment="Bottom"/>
             <DatePicker Name="dt_compra" Grid.Row="7" Grid.Column="2" VerticalAlignment="Bottom"/>
 

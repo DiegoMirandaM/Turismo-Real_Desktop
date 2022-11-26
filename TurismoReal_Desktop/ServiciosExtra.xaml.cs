@@ -16,6 +16,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Behaviors;
 using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
+using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -188,6 +189,11 @@ namespace TurismoReal_Desktop
                 tb_nombre.Text = seleccionado.DESCRIPCION;
                 tb_costo.Text = seleccionado.COSTO_ACTUAL.ToString();
             }
+        }
+
+        private void tb_costo_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }

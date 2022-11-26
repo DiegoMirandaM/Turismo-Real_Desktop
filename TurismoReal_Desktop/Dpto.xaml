@@ -82,13 +82,13 @@
 
             <StackPanel Name="sp_datosDepto2" Grid.Column="2" Grid.Row="2" Orientation="Vertical">
                 <Label FontSize="12" Content="Número departamento:"/>
-                <TextBox Name="tb_numDpto" Width="Auto" mah:TextBoxHelper.Watermark="78" mah:TextBoxHelper.ClearTextButton="True" MaxLength="15" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_numDpto" Width="Auto" mah:TextBoxHelper.Watermark="78" mah:TextBoxHelper.ClearTextButton="True" MaxLength="15" FontSize="12" VerticalContentAlignment="Center" PreviewTextInput="tb_numDpto_PreviewTextInput"/>
 
                 <Label Content="Superficie depto:" FontSize="12"/>
-                <TextBox Name="tb_superficie" Width="Auto" mah:TextBoxHelper.Watermark="34" mah:TextBoxHelper.ClearTextButton="True" MaxLength="25" FontSize="12" VerticalContentAlignment="Center"/>
+                <TextBox Name="tb_superficie" Width="Auto" mah:TextBoxHelper.Watermark="34" mah:TextBoxHelper.ClearTextButton="True" MaxLength="25" FontSize="12" VerticalContentAlignment="Center" PreviewTextInput="tb_superficie_PreviewTextInput"/>
 
                 <Label FontSize="12" Content="Precio por día:"/>
-                <TextBox Name="tb_precio" FontSize="12" mah:TextBoxHelper.Watermark="45000" mah:TextBoxHelper.ClearTextButton="True" MaxLength="35" VerticalContentAlignment="Center" Width="Auto"/>
+                <TextBox Name="tb_precio" FontSize="12" mah:TextBoxHelper.Watermark="$45.000" mah:TextBoxHelper.ClearTextButton="True" MaxLength="35" VerticalContentAlignment="Center" Width="Auto" PreviewTextInput="tb_precio_PreviewTextInput" LostFocus="tb_precio_LostFocus"/>
             </StackPanel>
 
             <StackPanel Grid.Column="4" Grid.Row="1">

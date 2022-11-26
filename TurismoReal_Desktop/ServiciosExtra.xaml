@@ -52,7 +52,7 @@
         <Label Grid.Column="3" Grid.Row="4" FontSize="12" Content="Costo diario actual:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
 
         <TextBox Name="tb_nombre" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="Nombre del servicio" MaxLength="35" Grid.Column="5" Grid.Row="2" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15"/>
-        <TextBox Name="tb_costo" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="$30.000" MaxLength="35" Grid.Column="5" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15" TextChanged="tb_costo_TextChanged" />
+        <TextBox Name="tb_costo" mah:TextBoxHelper.ClearTextButton="True" mah:TextBoxHelper.Watermark="$30.000" MaxLength="35" Grid.Column="5" Grid.Row="4" VerticalContentAlignment="Center" MaxHeight="35" FontSize="15" TextChanged="tb_costo_TextChanged" PreviewTextInput="tb_costo_PreviewTextInput" />
 
 
         <Button Name="btn_actualizarServicio" Grid.Column="3" Grid.Row="6" Content="Actualizar servicio" Background="White" BorderBrush="#fe7a4a" BorderThickness="3" Foreground="#fe7a4a" FontSize="15" FontWeight="Bold" MaxHeight="55" Click="btn_actualizarServicio_Click"/>
