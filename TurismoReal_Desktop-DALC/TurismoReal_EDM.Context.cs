@@ -71,22 +71,22 @@ namespace TurismoReal_Desktop_DALC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_RESERVA", iDParameter);
         }
     
-        public virtual int SP_CHECKIN(Nullable<decimal> iD_CLI)
+        public virtual int SP_CHECKIN(Nullable<decimal> iD_DTO)
         {
-            var iD_CLIParameter = iD_CLI.HasValue ?
-                new ObjectParameter("ID_CLI", iD_CLI) :
-                new ObjectParameter("ID_CLI", typeof(decimal));
+            var iD_DTOParameter = iD_DTO.HasValue ?
+                new ObjectParameter("ID_DTO", iD_DTO) :
+                new ObjectParameter("ID_DTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKIN", iD_CLIParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKIN", iD_DTOParameter);
         }
     
-        public virtual int SP_CHECKOUT(Nullable<decimal> iD_CLI)
+        public virtual int SP_CHECKOUT(Nullable<decimal> iD_DTO)
         {
-            var iD_CLIParameter = iD_CLI.HasValue ?
-                new ObjectParameter("ID_CLI", iD_CLI) :
-                new ObjectParameter("ID_CLI", typeof(decimal));
+            var iD_DTOParameter = iD_DTO.HasValue ?
+                new ObjectParameter("ID_DTO", iD_DTO) :
+                new ObjectParameter("ID_DTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_CLIParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_DTOParameter);
         }
     
         public virtual int SP_CREATE_ARRIENDO(Nullable<decimal> iD_CLI, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_FIN, Nullable<decimal> tOTAL_ARRI, Nullable<decimal> tOTAL_SERV)
@@ -750,6 +750,165 @@ namespace TurismoReal_Desktop_DALC
                 new ObjectParameter("P_TOTAL_SERV", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MONTO_SERVICIOS", p_IDParameter, p_TOTAL_SERVParameter);
+        }
+    
+        public virtual int SP_CREATE_TRANSP_REALIZADO(Nullable<decimal> p_ID_SOLICITUD, Nullable<decimal> p_ID_CONDUCTOR, string p_DESC_VEHICULO, string p_PATENTE)
+        {
+            var p_ID_SOLICITUDParameter = p_ID_SOLICITUD.HasValue ?
+                new ObjectParameter("P_ID_SOLICITUD", p_ID_SOLICITUD) :
+                new ObjectParameter("P_ID_SOLICITUD", typeof(decimal));
+    
+            var p_ID_CONDUCTORParameter = p_ID_CONDUCTOR.HasValue ?
+                new ObjectParameter("P_ID_CONDUCTOR", p_ID_CONDUCTOR) :
+                new ObjectParameter("P_ID_CONDUCTOR", typeof(decimal));
+    
+            var p_DESC_VEHICULOParameter = p_DESC_VEHICULO != null ?
+                new ObjectParameter("P_DESC_VEHICULO", p_DESC_VEHICULO) :
+                new ObjectParameter("P_DESC_VEHICULO", typeof(string));
+    
+            var p_PATENTEParameter = p_PATENTE != null ?
+                new ObjectParameter("P_PATENTE", p_PATENTE) :
+                new ObjectParameter("P_PATENTE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_TRANSP_REALIZADO", p_ID_SOLICITUDParameter, p_ID_CONDUCTORParameter, p_DESC_VEHICULOParameter, p_PATENTEParameter);
+        }
+    
+        public virtual int SP_DELETE_TRANSP_REALIZADO(Nullable<decimal> p_ID_SOLI)
+        {
+            var p_ID_SOLIParameter = p_ID_SOLI.HasValue ?
+                new ObjectParameter("P_ID_SOLI", p_ID_SOLI) :
+                new ObjectParameter("P_ID_SOLI", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_TRANSP_REALIZADO", p_ID_SOLIParameter);
+        }
+    
+        public virtual int SP_UPDATE_ESTADO_SOL_TRANSP(Nullable<decimal> p_ID_SOLI, string p_NUEVO_ESTADO)
+        {
+            var p_ID_SOLIParameter = p_ID_SOLI.HasValue ?
+                new ObjectParameter("P_ID_SOLI", p_ID_SOLI) :
+                new ObjectParameter("P_ID_SOLI", typeof(decimal));
+    
+            var p_NUEVO_ESTADOParameter = p_NUEVO_ESTADO != null ?
+                new ObjectParameter("P_NUEVO_ESTADO", p_NUEVO_ESTADO) :
+                new ObjectParameter("P_NUEVO_ESTADO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ESTADO_SOL_TRANSP", p_ID_SOLIParameter, p_NUEVO_ESTADOParameter);
+        }
+    
+        public virtual int SP_UPDATE_TRANSP_REALIZADO(Nullable<decimal> p_ID_SOLICITUD, Nullable<decimal> p_ID_CONDUCTOR, string p_DESC_VEHICULO, string p_PATENTE)
+        {
+            var p_ID_SOLICITUDParameter = p_ID_SOLICITUD.HasValue ?
+                new ObjectParameter("P_ID_SOLICITUD", p_ID_SOLICITUD) :
+                new ObjectParameter("P_ID_SOLICITUD", typeof(decimal));
+    
+            var p_ID_CONDUCTORParameter = p_ID_CONDUCTOR.HasValue ?
+                new ObjectParameter("P_ID_CONDUCTOR", p_ID_CONDUCTOR) :
+                new ObjectParameter("P_ID_CONDUCTOR", typeof(decimal));
+    
+            var p_DESC_VEHICULOParameter = p_DESC_VEHICULO != null ?
+                new ObjectParameter("P_DESC_VEHICULO", p_DESC_VEHICULO) :
+                new ObjectParameter("P_DESC_VEHICULO", typeof(string));
+    
+            var p_PATENTEParameter = p_PATENTE != null ?
+                new ObjectParameter("P_PATENTE", p_PATENTE) :
+                new ObjectParameter("P_PATENTE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_TRANSP_REALIZADO", p_ID_SOLICITUDParameter, p_ID_CONDUCTORParameter, p_DESC_VEHICULOParameter, p_PATENTEParameter);
+        }
+    
+        public virtual int SP_CANCEL_SOLTRANSPORT(Nullable<decimal> p_ID_SOLICITUD)
+        {
+            var p_ID_SOLICITUDParameter = p_ID_SOLICITUD.HasValue ?
+                new ObjectParameter("P_ID_SOLICITUD", p_ID_SOLICITUD) :
+                new ObjectParameter("P_ID_SOLICITUD", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_SOLTRANSPORT", p_ID_SOLICITUDParameter);
+        }
+    
+        public virtual int SP_CREATE_SOLTRANSPORT(Nullable<decimal> p_ID_ARRI, Nullable<System.DateTime> p_FECH_INI, Nullable<decimal> p_PASAJEROS, string p_DIR_INI, string p_DIR_DESTINO, Nullable<decimal> p_KMS, string p_ACEPTADA, Nullable<decimal> p_COSTO, string p_SENTIDO)
+        {
+            var p_ID_ARRIParameter = p_ID_ARRI.HasValue ?
+                new ObjectParameter("P_ID_ARRI", p_ID_ARRI) :
+                new ObjectParameter("P_ID_ARRI", typeof(decimal));
+    
+            var p_FECH_INIParameter = p_FECH_INI.HasValue ?
+                new ObjectParameter("P_FECH_INI", p_FECH_INI) :
+                new ObjectParameter("P_FECH_INI", typeof(System.DateTime));
+    
+            var p_PASAJEROSParameter = p_PASAJEROS.HasValue ?
+                new ObjectParameter("P_PASAJEROS", p_PASAJEROS) :
+                new ObjectParameter("P_PASAJEROS", typeof(decimal));
+    
+            var p_DIR_INIParameter = p_DIR_INI != null ?
+                new ObjectParameter("P_DIR_INI", p_DIR_INI) :
+                new ObjectParameter("P_DIR_INI", typeof(string));
+    
+            var p_DIR_DESTINOParameter = p_DIR_DESTINO != null ?
+                new ObjectParameter("P_DIR_DESTINO", p_DIR_DESTINO) :
+                new ObjectParameter("P_DIR_DESTINO", typeof(string));
+    
+            var p_KMSParameter = p_KMS.HasValue ?
+                new ObjectParameter("P_KMS", p_KMS) :
+                new ObjectParameter("P_KMS", typeof(decimal));
+    
+            var p_ACEPTADAParameter = p_ACEPTADA != null ?
+                new ObjectParameter("P_ACEPTADA", p_ACEPTADA) :
+                new ObjectParameter("P_ACEPTADA", typeof(string));
+    
+            var p_COSTOParameter = p_COSTO.HasValue ?
+                new ObjectParameter("P_COSTO", p_COSTO) :
+                new ObjectParameter("P_COSTO", typeof(decimal));
+    
+            var p_SENTIDOParameter = p_SENTIDO != null ?
+                new ObjectParameter("P_SENTIDO", p_SENTIDO) :
+                new ObjectParameter("P_SENTIDO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_SOLTRANSPORT", p_ID_ARRIParameter, p_FECH_INIParameter, p_PASAJEROSParameter, p_DIR_INIParameter, p_DIR_DESTINOParameter, p_KMSParameter, p_ACEPTADAParameter, p_COSTOParameter, p_SENTIDOParameter);
+        }
+    
+        public virtual int SP_UPDATE_SOLTRANSPORT(Nullable<decimal> p_ID_SOL, Nullable<decimal> p_ID_ARRI, Nullable<System.DateTime> p_FECH_INI, Nullable<decimal> p_PASAJEROS, string p_DIR_INI, string p_DIR_DESTINO, string p_SENTIDO, Nullable<decimal> p_KMS, string p_ACEPTADA, Nullable<decimal> p_COSTO)
+        {
+            var p_ID_SOLParameter = p_ID_SOL.HasValue ?
+                new ObjectParameter("P_ID_SOL", p_ID_SOL) :
+                new ObjectParameter("P_ID_SOL", typeof(decimal));
+    
+            var p_ID_ARRIParameter = p_ID_ARRI.HasValue ?
+                new ObjectParameter("P_ID_ARRI", p_ID_ARRI) :
+                new ObjectParameter("P_ID_ARRI", typeof(decimal));
+    
+            var p_FECH_INIParameter = p_FECH_INI.HasValue ?
+                new ObjectParameter("P_FECH_INI", p_FECH_INI) :
+                new ObjectParameter("P_FECH_INI", typeof(System.DateTime));
+    
+            var p_PASAJEROSParameter = p_PASAJEROS.HasValue ?
+                new ObjectParameter("P_PASAJEROS", p_PASAJEROS) :
+                new ObjectParameter("P_PASAJEROS", typeof(decimal));
+    
+            var p_DIR_INIParameter = p_DIR_INI != null ?
+                new ObjectParameter("P_DIR_INI", p_DIR_INI) :
+                new ObjectParameter("P_DIR_INI", typeof(string));
+    
+            var p_DIR_DESTINOParameter = p_DIR_DESTINO != null ?
+                new ObjectParameter("P_DIR_DESTINO", p_DIR_DESTINO) :
+                new ObjectParameter("P_DIR_DESTINO", typeof(string));
+    
+            var p_SENTIDOParameter = p_SENTIDO != null ?
+                new ObjectParameter("P_SENTIDO", p_SENTIDO) :
+                new ObjectParameter("P_SENTIDO", typeof(string));
+    
+            var p_KMSParameter = p_KMS.HasValue ?
+                new ObjectParameter("P_KMS", p_KMS) :
+                new ObjectParameter("P_KMS", typeof(decimal));
+    
+            var p_ACEPTADAParameter = p_ACEPTADA != null ?
+                new ObjectParameter("P_ACEPTADA", p_ACEPTADA) :
+                new ObjectParameter("P_ACEPTADA", typeof(string));
+    
+            var p_COSTOParameter = p_COSTO.HasValue ?
+                new ObjectParameter("P_COSTO", p_COSTO) :
+                new ObjectParameter("P_COSTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_SOLTRANSPORT", p_ID_SOLParameter, p_ID_ARRIParameter, p_FECH_INIParameter, p_PASAJEROSParameter, p_DIR_INIParameter, p_DIR_DESTINOParameter, p_SENTIDOParameter, p_KMSParameter, p_ACEPTADAParameter, p_COSTOParameter);
         }
     }
 }

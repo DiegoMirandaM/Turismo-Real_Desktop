@@ -225,10 +225,10 @@
     <EntitySetMapping Name="SOLICITUD_TRANSPORTE">
       <EntityTypeMapping TypeName="TurismoReal_Model.SOLICITUD_TRANSPORTE">
         <MappingFragment StoreEntitySet="SOLICITUD_TRANSPORTE">
-          <ScalarProperty Name="SENTIDO_VIAJE" ColumnName="SENTIDO_VIAJE" />
           <ScalarProperty Name="COSTO" ColumnName="COSTO" />
           <ScalarProperty Name="ACEPTADA" ColumnName="ACEPTADA" />
           <ScalarProperty Name="KMS_DISTANCIA" ColumnName="KMS_DISTANCIA" />
+          <ScalarProperty Name="SENTIDO_VIAJE" ColumnName="SENTIDO_VIAJE" />
           <ScalarProperty Name="DIR_DESTINO" ColumnName="DIR_DESTINO" />
           <ScalarProperty Name="DIR_INICIO" ColumnName="DIR_INICIO" />
           <ScalarProperty Name="PASAJEROS" ColumnName="PASAJEROS" />
@@ -251,9 +251,8 @@
         <MappingFragment StoreEntitySet="TRANSPORTE_REALIZADO">
           <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
           <ScalarProperty Name="DESC_VEHICULO" ColumnName="DESC_VEHICULO" />
-          <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
           <ScalarProperty Name="ID_CONDUCTOR" ColumnName="ID_CONDUCTOR" />
-          <ScalarProperty Name="ID_TRANSPORTE" ColumnName="ID_TRANSPORTE" />
+          <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -285,5 +284,12 @@
         <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGOS" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="SP_CREATE_TRANSP_REALIZADO" FunctionName="TurismoReal_Model.Store.SP_CREATE_TRANSP_REALIZADO" />
+    <FunctionImportMapping FunctionImportName="SP_DELETE_TRANSP_REALIZADO" FunctionName="TurismoReal_Model.Store.SP_DELETE_TRANSP_REALIZADO" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_ESTADO_SOL_TRANSP" FunctionName="TurismoReal_Model.Store.SP_UPDATE_ESTADO_SOL_TRANSP" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_TRANSP_REALIZADO" FunctionName="TurismoReal_Model.Store.SP_UPDATE_TRANSP_REALIZADO" />
+    <FunctionImportMapping FunctionImportName="SP_CANCEL_SOLTRANSPORT" FunctionName="TurismoReal_Model.Store.SP_CANCEL_SOLTRANSPORT" />
+    <FunctionImportMapping FunctionImportName="SP_CREATE_SOLTRANSPORT" FunctionName="TurismoReal_Model.Store.SP_CREATE_SOLTRANSPORT" />
+    <FunctionImportMapping FunctionImportName="SP_UPDATE_SOLTRANSPORT" FunctionName="TurismoReal_Model.Store.SP_UPDATE_SOLTRANSPORT" />
   </EntityContainerMapping>
 </Mapping>

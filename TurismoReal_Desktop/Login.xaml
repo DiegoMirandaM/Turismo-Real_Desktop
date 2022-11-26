@@ -33,11 +33,11 @@
         <Grid Grid.Column="1" x:Name="gd_login" Background="Transparent" Margin="0,150,0,0" HorizontalAlignment="Center" Width="366" Height="236" VerticalAlignment="Top" >
 
             <Label Content="Usuario:" HorizontalAlignment="Left" Margin="19,63,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-            <TextBox Name="tb_user" HorizontalAlignment="Left" Margin="108,62,0,0" TextWrapping="NoWrap" Width="200" Height="28" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="1" Text="admin01" KeyDown="tb_enter_KeyDown"/>
+            <TextBox Name="tb_user" HorizontalAlignment="Left" Margin="108,62,0,0" TextWrapping="NoWrap" MaxLength="40" Width="200" Height="28" VerticalContentAlignment="Center" VerticalAlignment="Top" TabIndex="1" Text="admin01" KeyDown="tb_enter_KeyDown"/>
             <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="19,116,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
             <Label Content="BIENVENIDO" Foreground="#04aba3" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
 
-            <PasswordBox Name="tb_pass"  Margin="108,116,58,94" VerticalContentAlignment="Center" TabIndex="2" Password="password" KeyDown="tb_enter_KeyDown"/>
+            <PasswordBox Name="tb_pass"  Margin="108,116,58,94" VerticalContentAlignment="Center" TabIndex="2" MaxLength="128" Password="password" KeyDown="tb_enter_KeyDown"/>
 
             <Button x:Name="btn_login" Content="Iniciar Sesión" HorizontalAlignment="Center" Margin="0,178,0,0" VerticalAlignment="Top" Height="32" Width="110" TabIndex="3" Click="btn_login_Click"/>
         </Grid>

@@ -9,10 +9,10 @@
       <Parameter Name="ID" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="SP_CHECKIN">
-      <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+      <Parameter Name="ID_DTO" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="SP_CHECKOUT">
-      <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+      <Parameter Name="ID_DTO" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="SP_CREATE_ARRIENDO">
       <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
@@ -295,6 +295,51 @@
       <End Role="AMIGO" EntitySet="AMIGO" />
       <End Role="ARRIENDO" EntitySet="ARRIENDO" />
     </AssociationSet>
+    <FunctionImport Name="SP_CREATE_TRANSP_REALIZADO">
+      <Parameter Name="P_ID_SOLICITUD" Mode="In" Type="Decimal" />
+      <Parameter Name="P_ID_CONDUCTOR" Mode="In" Type="Decimal" />
+      <Parameter Name="P_DESC_VEHICULO" Mode="In" Type="String" />
+      <Parameter Name="P_PATENTE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DELETE_TRANSP_REALIZADO">
+      <Parameter Name="P_ID_SOLI" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_ESTADO_SOL_TRANSP">
+      <Parameter Name="P_ID_SOLI" Mode="In" Type="Decimal" />
+      <Parameter Name="P_NUEVO_ESTADO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_TRANSP_REALIZADO">
+      <Parameter Name="P_ID_SOLICITUD" Mode="In" Type="Decimal" />
+      <Parameter Name="P_ID_CONDUCTOR" Mode="In" Type="Decimal" />
+      <Parameter Name="P_DESC_VEHICULO" Mode="In" Type="String" />
+      <Parameter Name="P_PATENTE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CANCEL_SOLTRANSPORT">
+      <Parameter Name="P_ID_SOLICITUD" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CREATE_SOLTRANSPORT">
+      <Parameter Name="P_ID_ARRI" Mode="In" Type="Decimal" />
+      <Parameter Name="P_FECH_INI" Mode="In" Type="DateTime" />
+      <Parameter Name="P_PASAJEROS" Mode="In" Type="Decimal" />
+      <Parameter Name="P_DIR_INI" Mode="In" Type="String" />
+      <Parameter Name="P_DIR_DESTINO" Mode="In" Type="String" />
+      <Parameter Name="P_KMS" Mode="In" Type="Decimal" />
+      <Parameter Name="P_ACEPTADA" Mode="In" Type="String" />
+      <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+      <Parameter Name="P_SENTIDO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPDATE_SOLTRANSPORT">
+      <Parameter Name="P_ID_SOL" Mode="In" Type="Decimal" />
+      <Parameter Name="P_ID_ARRI" Mode="In" Type="Decimal" />
+      <Parameter Name="P_FECH_INI" Mode="In" Type="DateTime" />
+      <Parameter Name="P_PASAJEROS" Mode="In" Type="Decimal" />
+      <Parameter Name="P_DIR_INI" Mode="In" Type="String" />
+      <Parameter Name="P_DIR_DESTINO" Mode="In" Type="String" />
+      <Parameter Name="P_SENTIDO" Mode="In" Type="String" />
+      <Parameter Name="P_KMS" Mode="In" Type="Decimal" />
+      <Parameter Name="P_ACEPTADA" Mode="In" Type="String" />
+      <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="AMIGO">
     <Key>
@@ -505,10 +550,10 @@
     <Property Name="PASAJEROS" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
     <Property Name="DIR_INICIO" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="DIR_DESTINO" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SENTIDO_VIAJE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="KMS_DISTANCIA" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="ACEPTADA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="SENTIDO_VIAJE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ARRIENDO" Relationship="TurismoReal_Model.SOLICITUD_ARRIENDO_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="ARRIENDO" />
     <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="TurismoReal_Model.SOLICITUD_TRANSPORTES_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="TRANSPORTE_REALIZADO" />
   </EntityType>
@@ -522,11 +567,10 @@
   </EntityType>
   <EntityType Name="TRANSPORTE_REALIZADO">
     <Key>
-      <PropertyRef Name="ID_TRANSPORTE" />
+      <PropertyRef Name="ID_SOLICITUD" />
     </Key>
-    <Property Name="ID_TRANSPORTE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-    <Property Name="ID_CONDUCTOR" Type="Int32" Nullable="false" />
     <Property Name="ID_SOLICITUD" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="ID_CONDUCTOR" Type="Int32" Nullable="false" />
     <Property Name="DESC_VEHICULO" Type="String" Nullable="false" MaxLength="130" FixedLength="false" Unicode="false" />
     <Property Name="PATENTE" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CONDUCTOR" Relationship="TurismoReal_Model.TRANSPORTE_CONDUCTOR_FK" FromRole="TRANSPORTE_REALIZADO" ToRole="CONDUCTOR" />
@@ -723,7 +767,7 @@
   </Association>
   <Association Name="SOLICITUD_TRANSPORTES_FK">
     <End Type="TurismoReal_Model.SOLICITUD_TRANSPORTE" Role="SOLICITUD_TRANSPORTE" Multiplicity="1" />
-    <End Type="TurismoReal_Model.TRANSPORTE_REALIZADO" Role="TRANSPORTE_REALIZADO" Multiplicity="*" />
+    <End Type="TurismoReal_Model.TRANSPORTE_REALIZADO" Role="TRANSPORTE_REALIZADO" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="SOLICITUD_TRANSPORTE">
         <PropertyRef Name="ID_SOLICITUD" />

@@ -67,6 +67,7 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\EntityFramework.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\FontAwesome.WPF.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\HarfBuzzSharp.dll
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.SkiaSharpView.dll
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.SkiaSharpView.WPF.dll
@@ -95,6 +96,8 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\FontAwesome.WPF.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\HarfBuzzSharp.pdb
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\HarfBuzzSharp.xml
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.pdb
+D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.SkiaSharpView.xml
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveChartsCore.SkiaSharpView.WPF.xml
@@ -152,6 +155,3 @@ D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Des
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop-Vista.csproj.CopyComplete
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.exe
 D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\obj\Debug\TurismoReal_Desktop.pdb
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.dll
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.pdb
-D:\xXDiegoXx\+Trabajos en Desarrollo\+Portafolio de Titulo\Turismo_Real-Full_Desktop\TurismoReal_Desktop\bin\Debug\LiveCharts.xml

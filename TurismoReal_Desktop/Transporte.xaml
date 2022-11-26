@@ -43,11 +43,13 @@
 
         <DataGrid Name="dg_listaSolicitudes" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" GridLinesVisibility="All" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeRows="False" Background="#FFD4E8E6" IsReadOnly="True" MouseDoubleClick="dg_listaSolicitudes_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding nomCliente}" Header="Cliente" Width="*"/>
-                <DataGridTextColumn Binding="{Binding nomDepto}" Header="Departamento" Width="*"/>
-                <DataGridTextColumn Binding="{Binding PASAJEROS}" Header="Pasajeros" Width="0.56*"/>
-                <DataGridTextColumn Binding="{Binding FECHA_INICIO, StringFormat='dd/MM/yyyy'}" Header="Inicio arriendo" Width="0.8*"/>
-                <DataGridTextColumn Binding="{Binding COSTO, StringFormat={}{0:c0}}" Header="Costo" Width="*"/>
+                <DataGridTextColumn Binding="{Binding nomCliente}" Header="Cliente" Width="0.75*"/>
+                <DataGridTextColumn Binding="{Binding nomDepto}" Header="Departamento" Width="0.9*"/>
+                <DataGridTextColumn Binding="{Binding PASAJEROS}" Header="Pasajeros" Width="0.65*"/>
+                <DataGridTextColumn Binding="{Binding FECHA_INICIO_ARRIENDO, StringFormat='dd/MM/yyyy'}" Header="Inicio arriendo" Width="0.9*"/>
+                <DataGridTextColumn Binding="{Binding COSTO, StringFormat={}{0:c0}}" Header="Costo" Width="0.7*"/>
+                <DataGridCheckBoxColumn Binding="{Binding bool_aceptada}" Header="Aceptada" Width="0.62*"/>
+                <DataGridCheckBoxColumn Binding="{Binding bool_cancelada}" Header="Rechazada" Width="0.69*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -56,32 +58,32 @@
                 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Dirección de origen:"/>
-                    <TextBox Name="tb_dirOrigen_ida" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_dirOrigen_ida" Background="LightGray" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Dirección de destino:"/>
-                    <TextBox Name="tb_dirDest_ida" Width="150" IsReadOnly="True" Focusable="False"/>
+                    <TextBox Name="tb_dirDest_ida" Background="LightGray" Width="150" IsReadOnly="True" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Fecha de ida:"/>
-                    <TextBox Name="tb_fecIda" Width="150" IsReadOnly="True" Margin="40,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_fecIda" Background="LightGray" Width="150" IsReadOnly="True" Margin="40,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Total pasajeros:"/>
-                    <TextBox Name="tb_pasajIda" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_pasajIda" Background="LightGray" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Descripción vehículo:"/>
-                    <TextBox Name="tb_descVehIda" Width="150"/>
+                    <TextBox Name="tb_descVehIda" mah:TextBoxHelper.Watermark="Chery Tiggo rojo" MaxLength="130" Width="150"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="70,0,0,7">
                     <Label Content="Patente:"/>
-                    <TextBox Name="tb_patenteIda" Width="150"/>
+                    <TextBox Name="tb_patenteIda" mah:TextBoxHelper.Watermark="AEIOU27" MaxLength="7" CharacterCasing="Upper" Width="150"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
@@ -91,7 +93,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Precio del traslado:"/>
-                    <TextBox Name="tb_precioIda" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_precioIda" Background="LightGray" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
                 </StackPanel>
             </StackPanel>
             
@@ -106,32 +108,32 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Dirección de origen:"/>
-                    <TextBox Name="tb_dirOrigen_vuelta" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_dirOrigen_vuelta" Background="LightGray" Width="150" IsReadOnly="True" Margin="5,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Dirección de destino:"/>
-                    <TextBox Name="tb_dirDest_vuelta" Width="150" IsReadOnly="True" Focusable="False"/>
+                    <TextBox Name="tb_dirDest_vuelta" Background="LightGray" Width="150" IsReadOnly="True" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
-                    <Label Content="Fecha de ida:"/>
-                    <TextBox Name="tb_fecVuelta" Width="150" IsReadOnly="True" Margin="40,0,0,0" Focusable="False"/>
+                    <Label Content="Fecha de vuelta:"/>
+                    <TextBox Name="tb_fecVuelta" Background="LightGray" Width="150" IsReadOnly="True" Margin="27,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Total pasajeros:"/>
-                    <TextBox Name="tb_pasajVuelta" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_pasajVuelta" Background="LightGray" Width="150" IsReadOnly="True" Margin="30,0,0,0" Focusable="False"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Descripción vehículo:"/>
-                    <TextBox Name="tb_descVehVuelta" Width="150"/>
+                    <TextBox Name="tb_descVehVuelta" mah:TextBoxHelper.Watermark="Mitsubishi L200 blanca" MaxLength="130" Width="150"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="70,0,0,7">
                     <Label Content="Patente:"/>
-                    <TextBox Name="tb_patenteVuelta" Width="150"/>
+                    <TextBox Name="tb_patenteVuelta" MaxLength="7" mah:TextBoxHelper.Watermark="XYZPQ42" CharacterCasing="Upper" Width="150"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
@@ -141,7 +143,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
                     <Label Content="Precio del traslado:"/>
-                    <TextBox Name="tb_precioVuelta" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
+                    <TextBox Name="tb_precioVuelta" Background="LightGray" Width="150" IsReadOnly="True" Margin="15,0,0,0" Focusable="False"/>
                 </StackPanel>
             </StackPanel>
 
@@ -150,12 +152,16 @@
         <Border Grid.Column="3" Grid.Row="4" Background="#04aba3" CornerRadius="5"/>
         <Label Grid.Column="3" Grid.Row="4" Foreground="#d5e8e6" Content="Viaje de vuelta" HorizontalAlignment="Left" FontSize="20"/>
 
+        <Viewbox Grid.Column="1" Grid.Row="7" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="40" Margin="0,0,15,0">
+            <Button Name="btn_rechazarTraslado" Content="Rechazar traslado" VerticalAlignment="Center" BorderBrush="#FF761E1E"  Width="120"  Background="#FFAE4646" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_rechazarTraslado_Click"/>
+        </Viewbox>
+        
         <Viewbox Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="40">
             <Button Name="btn_actualizarTraslado" Content="Actualizar traslado" VerticalAlignment="Center" BorderBrush="#fe7a4a"  Width="120"  Background="White" Foreground="#fe7a4a" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_actualizarTraslado_Click"/>
         </Viewbox>
 
         <Viewbox Grid.Column="3" Grid.Row="7" Stretch="Uniform" HorizontalAlignment="Right" MaxHeight="40">
-            <Button Name="btn_registrarTraslado" Content="Registrar traslado" VerticalAlignment="Center" Width="120" Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_registrarTraslado_Click"/>
+            <Button x:Name="btn_aceptarTraslado" Content="Aceptar traslado" VerticalAlignment="Center" Width="120" Background="#fe7a4a" Foreground="White" FontWeight="DemiBold" mah:ControlsHelper.ContentCharacterCasing="Normal" Click="btn_aceptarTraslado_Click"/>
         </Viewbox>
 
 

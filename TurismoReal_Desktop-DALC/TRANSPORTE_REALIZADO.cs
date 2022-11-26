@@ -14,9 +14,8 @@ namespace TurismoReal_Desktop_DALC
     
     public partial class TRANSPORTE_REALIZADO
     {
-        public decimal ID_TRANSPORTE { get; set; }
-        public int ID_CONDUCTOR { get; set; }
         public decimal ID_SOLICITUD { get; set; }
+        public int ID_CONDUCTOR { get; set; }
         public string DESC_VEHICULO { get; set; }
         public string PATENTE { get; set; }
     

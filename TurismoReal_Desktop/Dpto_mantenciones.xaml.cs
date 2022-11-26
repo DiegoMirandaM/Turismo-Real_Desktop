@@ -263,7 +263,7 @@ namespace TurismoReal_Desktop
                 }
                 else
                 {
-                    await this.ShowMessageAsync("Eliminación fallida", "Algo salió mal, verifique conexión a la base de datos e intente nuevamente. \nSi el problema persiste, contacte a un administrador.");
+                    await this.ShowMessageAsync("Eliminación fallida", "Algo salió mal, verifique conexión a la base de datos e intente nuevamente.");
                 }
             }
 
