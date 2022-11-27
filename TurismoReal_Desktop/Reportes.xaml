@@ -74,21 +74,23 @@
 
         <Rectangle Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Fill="LightGray" />
 
-        
+        <Label Name="lb_top5Cities_noData" Content="No hay datos relacionados en el periodo." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <lvc:CartesianChart Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"
         Series="{Binding serie_Top5Ciudades}" 
         XAxes="{Binding XAxes_top5Ciudades}" YAxes="{Binding YAxes_top5Ciudades}" />
         <Label Content="Top 5 ciudades con mayores ingresos en periodo" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
-        
-        
+
+        <Label Name="lb_top5Dptos_noData" Content="No hay datos relacionados en el periodo." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <lvc:CartesianChart Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"
         Series="{Binding serie_Top5Dptos}" 
         XAxes="{Binding XAxes_top5Dptos}" YAxes="{Binding YAxes_top5Dptos}"/>
         <Label Content="Top 5 deptos con mayores ingresos en periodo" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
 
+        <Label Name="lb_egresosCat_noData" Content="No hay datos relacionados en el periodo." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <lvc:PieChart Name="gfo_egresosCat" Series="{Binding serie_EgresosCategoria}" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <Label Content="Ingresos por categoría" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5,0,0"/>
-        
+
+        <Label Name="lb_ingresosCat_noData" Content="No hay datos relacionados en el periodo." FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <lvc:PieChart Name="gfo_ingresosCat" Series="{Binding serie_IngresosCategoria}" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,20,0,0"/>
         <Label Content="Egresos por categoría" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"/>
 
@@ -135,10 +137,6 @@
                 <Label Content="{Binding gananciasTotales}" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Black"/>
             </Viewbox>
         </Grid>
-
-       
-
-
 
     </Grid>
 </mah:MetroWindow>

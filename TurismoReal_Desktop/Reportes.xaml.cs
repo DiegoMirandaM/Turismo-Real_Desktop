@@ -36,6 +36,11 @@ namespace TurismoReal_Desktop
 
             dp_fecInicio.SelectedDate = inicioAnio;
             dp_fecFin.SelectedDate = fechaActual;
+
+            lb_top5Dptos_noData.Opacity = 0;
+            lb_top5Cities_noData.Opacity = 0;
+            lb_egresosCat_noData.Opacity = 0;
+            lb_ingresosCat_noData.Opacity = 0;
         }
 
         private void btn_retroceder_Click(object sender, RoutedEventArgs e)
@@ -68,7 +73,13 @@ namespace TurismoReal_Desktop
                 dp_fecFin.SelectedDate = fecha_fin;
             }
 
-            DatosParaReporte datosRep = new DatosParaReporte(fecha_inicio, fecha_fin);
+            // Recargar los datos de los graficos, recuperando con booleanos si es que alguna categoria esta vacia:
+            DatosParaReporte datosRep = new DatosParaReporte(fecha_inicio, fecha_fin, out bool top5Dptos_vacio, out bool top5Cities_vacio, out bool catIngresos_vacio, out bool catGastos_vacio);
+
+            lb_top5Dptos_noData.Opacity = top5Dptos_vacio ? 1 : 0;
+            lb_top5Cities_noData.Opacity = top5Cities_vacio ? 1 : 0;
+            lb_egresosCat_noData.Opacity = catGastos_vacio ? 1 : 0;
+            lb_ingresosCat_noData.Opacity = catIngresos_vacio ? 1 : 0;
 
             DataContext = datosRep;
 

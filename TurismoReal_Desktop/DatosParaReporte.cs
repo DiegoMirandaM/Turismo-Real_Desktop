@@ -114,16 +114,16 @@ namespace TurismoReal_Desktop
             DateTime inicioAnio = DateTime.Parse("01/01/" + DateTime.Now.Year.ToString());
             DateTime fechaActual = DateTime.Now;
 
-            ConsultarDatosEnRango(inicioAnio, fechaActual);
+            ConsultarDatosEnRango(inicioAnio, fechaActual, out bool top5Dptos_vacio, out bool top5Cities_vacio, out bool catIngresos_vacio, out bool catGastos_vacio);
             RecargarGraficos();
         }
-        public DatosParaReporte(DateTime inicio, DateTime fin)
+        public DatosParaReporte(DateTime inicio, DateTime fin, out bool top5Dptos_vacio, out bool top5Cities_vacio, out bool catIngresos_vacio, out bool catGastos_vacio)
         {
-            ConsultarDatosEnRango(inicio, fin);
+            ConsultarDatosEnRango(inicio, fin, out top5Dptos_vacio, out top5Cities_vacio, out catIngresos_vacio, out catGastos_vacio);
             RecargarGraficos();
         }
 
-        public Boolean ConsultarDatosEnRango(DateTime fechaInicio, DateTime fechaFin)
+        public Boolean ConsultarDatosEnRango(DateTime fechaInicio, DateTime fechaFin, out bool top5Dptos_vacio, out bool top5Cities_vacio, out bool catIngresos_vacio, out bool catGastos_vacio)
         {
             try
             {
@@ -186,10 +186,21 @@ namespace TurismoReal_Desktop
 
                 top5Ciudades = new IngresosDeCiudad().ListarTodoEnFechas(fechaInicio, fechaFin);
 
+                top5Dptos_vacio = top5Deptos.Count() <= 0;
+                top5Cities_vacio = top5Ciudades.Count() <= 0;
+                catIngresos_vacio = ingresosCat.Sum() <= 0;
+                catGastos_vacio = gastosPorCategoria.Sum() <= 0;
+
+
                 return true;
             }
             catch (Exception)
             {
+                top5Dptos_vacio = true;
+                top5Cities_vacio = true;
+                catIngresos_vacio = true;
+                catGastos_vacio = true;
+
                 return false;
             }
         }
@@ -200,10 +211,10 @@ namespace TurismoReal_Desktop
             int ixCatIngreso = -1;
             serie_IngresosCategoria = ingresosCat.AsLiveChartsPieSeries((value, series) =>
             {
-                if(value > 0)
-                {
-                    ixCatIngreso++;
+                ixCatIngreso++;
 
+                if (value > 0)
+                {
                     string catNameIn = categoriasIng[ixCatIngreso];
 
                     series.Name = catNameIn;
@@ -220,10 +231,10 @@ namespace TurismoReal_Desktop
             int ixGastosCategoria = -1;
             serie_EgresosCategoria = gastosPorCategoria.AsLiveChartsPieSeries((value, series) =>
             {
+                ixGastosCategoria++;
+
                 if (value > 0)
                 {
-                    ixGastosCategoria++;
-
                     string catName = categoriaGastos[ixGastosCategoria];
 
                     series.Name = catName;
