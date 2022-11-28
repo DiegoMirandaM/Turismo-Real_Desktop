@@ -1,10 +1,6 @@
-﻿using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Windows;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-
+using System.Windows;
 using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop

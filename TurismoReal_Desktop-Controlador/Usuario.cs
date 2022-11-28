@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador
@@ -30,6 +28,7 @@ namespace TurismoReal_Desktop_Controlador
 
 
         private TurismoReal_Entities conn = new TurismoReal_Entities();
+
 
         public void Login(string user,
                         string pass,

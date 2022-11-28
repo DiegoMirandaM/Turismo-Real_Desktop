@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
-using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
-using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -106,33 +96,30 @@ namespace TurismoReal_Desktop
 
         private void dg_usuarios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // Tomar datos y usuario seleccionado para actualizarlo al hacer doble clic:
-            if (actualizando == false)
+            seleccionado = dg_usuarios.SelectedItem as Usuario;
+
+            if (seleccionado == null) return;
+
+            if (Btn_updateDatos.IsEnabled == false)
             {
-                if (dg_usuarios.SelectedItem == null) return;
-
-                if (Btn_updateDatos.IsEnabled == false)
-                {
-                    Alternar_habil_btns(Btn_updateDatos, true);
-                }
-
-                seleccionado = dg_usuarios.SelectedItem as Usuario;
-
-                tb_apeMat.Text = seleccionado.APE_MAT;
-                tb_apePat.Text = seleccionado.APE_PAT;
-                tb_ciudad.Text = seleccionado.CIUDAD;
-                tb_direccion.Text = seleccionado.DIRECCION;
-                tb_email.Text = seleccionado.EMAIL;
-                tb_nombre.Text = seleccionado.NOMBRE;
-                tb_rut.Text = seleccionado.RUT + "-" + seleccionado.DV;
-                tb_telefono.Text = seleccionado.TELEFONO;
-                tb_username.Text = seleccionado.USERNAME;
-                cb_tipoUsuario.Text = seleccionado.TIPO_USUARIO.DESCRIPCION;
-
-                // Si el area esta vacia, dejar el textbox vacio. Si tiene datos, tomarlos:                
-                tb_area.Text = string.IsNullOrWhiteSpace(seleccionado.AREA_FUNCIONARIO) ? null : seleccionado.AREA_FUNCIONARIO;
-
+                Alternar_habil_btns(Btn_updateDatos, true);
             }
+
+            tb_apeMat.Text = seleccionado.APE_MAT;
+            tb_apePat.Text = seleccionado.APE_PAT;
+            tb_ciudad.Text = seleccionado.CIUDAD;
+            tb_direccion.Text = seleccionado.DIRECCION;
+            tb_email.Text = seleccionado.EMAIL;
+            tb_nombre.Text = seleccionado.NOMBRE;
+            tb_rut.Text = seleccionado.RUT + "-" + seleccionado.DV;
+            tb_telefono.Text = seleccionado.TELEFONO;
+            tb_username.Text = seleccionado.USERNAME;
+            cb_tipoUsuario.Text = seleccionado.TIPO_USUARIO.DESCRIPCION;
+
+            // Si el area esta vacia, dejar el textbox vacio. Si tiene datos, tomarlos:                
+            tb_area.Text = string.IsNullOrWhiteSpace(seleccionado.AREA_FUNCIONARIO) ? null : seleccionado.AREA_FUNCIONARIO;
+
+            
         }
 
         private void Alternar_habil_btns(Button boton, bool estado)

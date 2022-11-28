@@ -1,13 +1,10 @@
 ﻿
-using System;
-using System.Windows;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
 using MahApps.Metro.Controls.Dialogs;
-
-using System.Collections.Generic;
-using TurismoReal_Desktop_Controlador;
+using System;
 using System.Text.RegularExpressions;
+using System.Windows;
+using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
 {
@@ -26,7 +23,7 @@ namespace TurismoReal_Desktop
             recargarCiudades();
         }
 
-        private void Alternar_habil_btns (bool estado)
+        private void Alternar_habil_btns(bool estado)
         {
             btn_gestImagenes.IsEnabled = estado;
             btn_gestInventario.IsEnabled = estado;
@@ -49,7 +46,7 @@ namespace TurismoReal_Desktop
             // Verifica que no falten datos antes de proceder.
             if (String.IsNullOrWhiteSpace(tb_nombre.Text.Trim()) || String.IsNullOrWhiteSpace(tb_direccion.Text.Trim()) || cb_ciudad.SelectedItem == null || String.IsNullOrWhiteSpace(tb_numDpto.Text.Trim()) || String.IsNullOrWhiteSpace(tb_superficie.Text.Trim()) || String.IsNullOrWhiteSpace(tb_precio.Text.Trim()) || String.IsNullOrWhiteSpace(tb_estadoActual.Text.Trim()))
             {
-                await this.ShowMessageAsync ("Registro fallido", "Por favor, complete todos los campos e intente nuevamente.");
+                await this.ShowMessageAsync("Registro fallido", "Por favor, complete todos los campos e intente nuevamente.");
                 return;
             }
 
@@ -77,8 +74,8 @@ namespace TurismoReal_Desktop
             Departamento newDpto = new Departamento();
             Boolean resultado = newDpto.agregarDpto(idCiudad, newDpto_NOMBRE, newDpto_DIRECCION, newDpto_SUPERFICIE_DPTO, nroDpto, precioDecimal, "0", newDpto_CONDICION);
 
-            
-            
+
+
             if (resultado)
             {
                 limpiarCampos();
@@ -89,20 +86,20 @@ namespace TurismoReal_Desktop
             {
                 await this.ShowMessageAsync("El registro ha fallado", "Algo ha salido mal, por favor intentelo nuevamente.");
             }
-            
+
             actualizando = false;
         }
 
         private async void btn_actualizarDpto_Click(object sender, RoutedEventArgs e)
         {
             // Si faltan datos, detener actualizacion 
-            if (String.IsNullOrWhiteSpace(tb_nombre.Text.Trim()) || 
-                String.IsNullOrWhiteSpace(tb_direccion.Text.Trim()) || 
-                cb_ciudad.SelectedItem == null || 
-                String.IsNullOrWhiteSpace(tb_numDpto.Text.Trim()) || 
-                String.IsNullOrWhiteSpace(tb_superficie.Text.Trim()) || 
-                String.IsNullOrWhiteSpace(tb_precio.Text.Trim()) || 
-                String.IsNullOrWhiteSpace(tb_estadoActual.Text.Trim()) )
+            if (String.IsNullOrWhiteSpace(tb_nombre.Text.Trim()) ||
+                String.IsNullOrWhiteSpace(tb_direccion.Text.Trim()) ||
+                cb_ciudad.SelectedItem == null ||
+                String.IsNullOrWhiteSpace(tb_numDpto.Text.Trim()) ||
+                String.IsNullOrWhiteSpace(tb_superficie.Text.Trim()) ||
+                String.IsNullOrWhiteSpace(tb_precio.Text.Trim()) ||
+                String.IsNullOrWhiteSpace(tb_estadoActual.Text.Trim()))
             {
                 await this.ShowMessageAsync("Datos incompletos", "Por favor, no deje campos vacíos para poder actualizar.");
                 return;
@@ -138,9 +135,9 @@ namespace TurismoReal_Desktop
             if (newDpto_NOMBRE == seleccionado.NOMBRE
                 && newDpto_DIRECCION == seleccionado.DIRECCION
                 && ((Ciudad)cb_ciudad.SelectedItem).NOMBRE == seleccionado.Negocio_Ciudad.NOMBRE
-                && newDpto_estado == seleccionado.CONDICION 
-                && nroDpto == seleccionado.NRO_DPTO 
-                && newDpto_SUPERFICIE_DPTO == seleccionado.SUPERFICIE_DPTO 
+                && newDpto_estado == seleccionado.CONDICION
+                && nroDpto == seleccionado.NRO_DPTO
+                && newDpto_SUPERFICIE_DPTO == seleccionado.SUPERFICIE_DPTO
                 && precioDecimal == seleccionado.PRECIO_DPTO)
             {
                 await this.ShowMessageAsync("Mismos datos", "Aún no se han modificado datos del registro original.");
@@ -167,10 +164,11 @@ namespace TurismoReal_Desktop
 
                 actualizando = false;
             }
-            
+
         }
 
-        private void limpiarCampos(){
+        private void limpiarCampos()
+        {
             tb_nombre.Clear();
             tb_direccion.Clear();
             cb_ciudad.SelectedIndex = -1;
@@ -190,12 +188,14 @@ namespace TurismoReal_Desktop
             RecargarListadoDpto();
         }
 
-        private void RecargarListadoDpto(){
+        private void RecargarListadoDpto()
+        {
             Departamento dep = new Departamento();
             dg_listaDptos.ItemsSource = dep.ListarTodo();
         }
 
-        private void recargarCiudades(){
+        private void recargarCiudades()
+        {
             Ciudad city = new Ciudad();
             cb_ciudad.ItemsSource = city.listarTodo();
         }
@@ -215,10 +215,10 @@ namespace TurismoReal_Desktop
         private void btn_gestInventario_Click(object sender, RoutedEventArgs e)
         {
             Dpto_inventario win_inventario = new Dpto_inventario(seleccionado, this);
-            win_inventario.ShowDialog(); 
+            win_inventario.ShowDialog();
 
         }
-        
+
         private void btn_disp_Click(object sender, RoutedEventArgs e)
         {
             // Dialogo de confirmacion antes de cambiar disponibilidad.
@@ -247,52 +247,52 @@ namespace TurismoReal_Desktop
                 actualizando = true;
 
                 seleccionado.alternarDisponibilidad(seleccionado.ID_DPTO, "0");
-                
+
                 limpiarCampos();
 
                 actualizando = false;
             }
 
-            
+
         }
 
         private void dg_listaDptos_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            seleccionado = dg_listaDptos.SelectedItem as Departamento;
+
             // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
-            if (actualizando == false)
+            if (actualizando == true || seleccionado == null) return;
+            
+
+            if (btn_gestInventario.IsEnabled == false)
             {
-
-                if (btn_gestInventario.IsEnabled == false)
-                {
-                    Alternar_habil_btns(true);
-                }
-
-                seleccionado = dg_listaDptos.SelectedItem as Departamento;
-
-                // Si el departamento está disponible, solo se podrá cambiar a no disponible, y vice versa. 
-                if (seleccionado.DISPONIBLE == "1")
-                {
-                    btn_noDisp.IsEnabled = true;
-                    btn_disp.IsEnabled = false;
-                }
-                else
-                {
-                    btn_noDisp.IsEnabled = false;
-                    btn_disp.IsEnabled = true;
-                }
-
-                // Tomar los valores del objeto seleccionado, y ponerlos en las cajas de texto:
-                tb_nombre.Text = seleccionado.NOMBRE;
-                tb_direccion.Text = seleccionado.DIRECCION;
-                cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;
-                tb_numDpto.Text = seleccionado.NRO_DPTO;
-                tb_superficie.Text = seleccionado.SUPERFICIE_DPTO;
-                tb_precio.Text = seleccionado.PRECIO_DPTO.ToString("C", new System.Globalization.CultureInfo("es-CL"));
-
-                tb_estadoActual.Text = seleccionado.CONDICION;
-
-                RecargarInventario();
+                Alternar_habil_btns(true);
             }
+
+            // Si el departamento está disponible, solo se podrá cambiar a no disponible, y vice versa. 
+            if (seleccionado.DISPONIBLE == "1")
+            {
+                btn_noDisp.IsEnabled = true;
+                btn_disp.IsEnabled = false;
+            }
+            else
+            {
+                btn_noDisp.IsEnabled = false;
+                btn_disp.IsEnabled = true;
+            }
+
+            // Tomar los valores del objeto seleccionado, y ponerlos en las cajas de texto:
+            tb_nombre.Text = seleccionado.NOMBRE;
+            tb_direccion.Text = seleccionado.DIRECCION;
+            cb_ciudad.Text = seleccionado.Negocio_Ciudad.NOMBRE;
+            tb_numDpto.Text = seleccionado.NRO_DPTO;
+            tb_superficie.Text = seleccionado.SUPERFICIE_DPTO;
+            tb_precio.Text = seleccionado.PRECIO_DPTO.ToString("C", new System.Globalization.CultureInfo("es-CL"));
+
+            tb_estadoActual.Text = seleccionado.CONDICION;
+
+            RecargarInventario();
+            
         }
 
         public void RecargarInventario()
@@ -319,7 +319,7 @@ namespace TurismoReal_Desktop
         private void tb_precio_LostFocus(object sender, RoutedEventArgs e)
         {
             Double value;
-            if (Double.TryParse(tb_precio.Text.Replace("$","").Replace(".",""), out value))
+            if (Double.TryParse(tb_precio.Text.Replace("$", "").Replace(".", ""), out value))
                 tb_precio.Text = value.ToString("C", new System.Globalization.CultureInfo("es-CL"));
             else
                 tb_precio.Text = String.Empty;

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador
@@ -55,7 +52,7 @@ namespace TurismoReal_Desktop_Controlador
                     depa.ArrendableStr = dato.DISPONIBLE.Equals("0") ? "No" : "Sí";
                     depa.CONDICION = dato.CONDICION;
                     depa.ARRIENDO = dato.ARRIENDO;
-                    
+
                     Ciudad city = new Ciudad();
                     city.ID_CIUDAD = dato.CIUDAD.ID_CIUDAD;
                     city.NOMBRE = dato.CIUDAD.NOMBRE;
@@ -66,17 +63,18 @@ namespace TurismoReal_Desktop_Controlador
                     depa.INVENTARIO = dato.INVENTARIO;
                     depa.MANTENCION = dato.MANTENCION;
                     depa.DISPONIBILIDAD_SERVICIO = dato.DISPONIBILIDAD_SERVICIO;
-        
+
                     listDep.Add(depa);
                 }
                 return listDep;
             }
+            
             catch (Exception)
             {
                 return new List<Departamento>();
             }
         }
-        
+
         public Boolean alternarDisponibilidad(decimal id_dpto, string nuevoEstado)
         {
             try
@@ -86,7 +84,7 @@ namespace TurismoReal_Desktop_Controlador
 
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -105,7 +103,7 @@ namespace TurismoReal_Desktop_Controlador
             {
                 return false;
             }
-            
+
         }
 
         public Boolean updateDpto(decimal ID_DPTO, decimal idCiudad, string newDpto_NOMBRE, string newDpto_DIRECCION, string newDpto_SUPERFICIE_DPTO, string nroDpto, decimal precioDecimal, string DISPONIBLE, string newDpto_estado)
@@ -117,7 +115,7 @@ namespace TurismoReal_Desktop_Controlador
 
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }

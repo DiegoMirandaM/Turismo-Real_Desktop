@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows;
+using System.Windows.Input;
 using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
@@ -139,6 +128,9 @@ namespace TurismoReal_Desktop
         private void dg_imagenes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             selectedImg = dg_imagenes.SelectedItem as Imagen;
+
+            if (selectedImg == null) return;
+
             img_principal.Source = selectedImg.fotoImg;
             btn_eliminarImagen.IsEnabled = true;
         }

@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
-using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
-using System.Text.RegularExpressions;
 
 namespace TurismoReal_Desktop
 {
@@ -162,7 +151,7 @@ namespace TurismoReal_Desktop
             ServiciosExtra_Asociar win_asociacionServicio = new ServiciosExtra_Asociar(seleccionado);
             win_asociacionServicio.ShowDialog();
         }
-        
+
         private void Alternar_habil_btns(bool estado)
         {
             btn_actualizarServicio.IsEnabled = estado;
@@ -176,19 +165,21 @@ namespace TurismoReal_Desktop
 
         private void dg_servicios_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            seleccionado = dg_servicios.SelectedItem as Servicio_extra;
+
             // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
-            if (actualizando == false)
-            {
+            if (actualizando == true || seleccionado == null) return;
+            
                 if (btn_actualizarServicio.IsEnabled == false)
                 {
                     Alternar_habil_btns(true);
                 }
 
-                seleccionado = dg_servicios.SelectedItem as Servicio_extra;
+                
 
                 tb_nombre.Text = seleccionado.DESCRIPCION;
                 tb_costo.Text = seleccionado.COSTO_ACTUAL.ToString();
-            }
+            
         }
 
         private void tb_costo_PreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -14,25 +14,12 @@
     Si Ofrecido está desmarcado pero se marca Disponible, Ofrecido tambien debe marcarse. 
 */
 
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
-using MahApps.Metro.Controls.Dialogs;
 using TurismoReal_Desktop_Controlador;
-using System.Collections;
 
 namespace TurismoReal_Desktop
 {
@@ -51,7 +38,7 @@ namespace TurismoReal_Desktop
             InitializeComponent();
         }
 
-        public ServiciosExtra_Asociar (Servicio_extra servicio)
+        public ServiciosExtra_Asociar(Servicio_extra servicio)
         {
             InitializeComponent();
             selectedService = servicio;
@@ -207,6 +194,6 @@ namespace TurismoReal_Desktop
             this.Close();
         }
 
-        
+
     }
 }

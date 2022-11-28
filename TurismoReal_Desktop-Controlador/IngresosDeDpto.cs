@@ -1,9 +1,6 @@
-﻿using Oracle.ManagedDataAccess.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador
@@ -17,7 +14,7 @@ namespace TurismoReal_Desktop_Controlador
         private TurismoReal_Entities conn = new TurismoReal_Entities();
 
         public IngresosDeDpto() { }
-        public IngresosDeDpto (decimal id, string nombre, decimal ingresos)
+        public IngresosDeDpto(decimal id, string nombre, decimal ingresos)
         {
             idDpto = id;
             nombreDpto = nombre;
@@ -31,18 +28,18 @@ namespace TurismoReal_Desktop_Controlador
             {
                 // Obtiene el resumen de ingresos por departamento para todos los departamentos en el rango dado:
                 var result = from T1 in conn.ARRIENDO
-                          join T2 in conn.DEPARTAMENTO on T1.ID_DPTO equals T2.ID_DPTO
-                          where T1.FECHA_INICIO >= fechaInicio && T1.FECHA_INICIO <= fechaFin && T1.CHECK_IN == "1"
-                          group T1 by T1.ID_DPTO into depto
-                          select new
-                          {
-                              ID = depto.Select(x => x.ID_DPTO),
-                              Nombre = (depto.Select(x => x.DEPARTAMENTO.NOMBRE)), 
-                              TotalDeIngresos = depto.Sum(x => x.TOTAL_ARRIENDO + x.TOTAL_SERVICIOS)
-                          };
+                             join T2 in conn.DEPARTAMENTO on T1.ID_DPTO equals T2.ID_DPTO
+                             where T1.FECHA_INICIO >= fechaInicio && T1.FECHA_INICIO <= fechaFin && T1.CHECK_IN == "1"
+                             group T1 by T1.ID_DPTO into depto
+                             select new
+                             {
+                                 ID = depto.Select(x => x.ID_DPTO),
+                                 Nombre = (depto.Select(x => x.DEPARTAMENTO.NOMBRE)),
+                                 TotalDeIngresos = depto.Sum(x => x.TOTAL_ARRIENDO + x.TOTAL_SERVICIOS)
+                             };
 
 
-                List <IngresosDeDpto> listIngresos = new List<IngresosDeDpto>();
+                List<IngresosDeDpto> listIngresos = new List<IngresosDeDpto>();
 
                 result = result.OrderByDescending(x => x.TotalDeIngresos);
                 result.Take(5);

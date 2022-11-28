@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador
@@ -76,7 +74,7 @@ namespace TurismoReal_Desktop_Controlador
                 return new List<Solicitud_transporte>();
             }
         }
-        
+
         public List<Solicitud_transporte> ListarSolicitudes()
         {
             try
@@ -87,7 +85,7 @@ namespace TurismoReal_Desktop_Controlador
                              join T2 in conn.ARRIENDO on T1.ID_ARRIENDO equals T2.ID_ARRIENDO
                              join T3 in conn.DEPARTAMENTO on T2.ID_DPTO equals T3.ID_DPTO
                              join T4 in conn.RESERVA on T2.ID_ARRIENDO equals T4.ID_ARRIENDO
-                             join T5 in conn.USUARIO on T2.ID_CLIENTE equals T5.ID_USUARIO 
+                             join T5 in conn.USUARIO on T2.ID_CLIENTE equals T5.ID_USUARIO
                              join T6 in conn.TRANSPORTE_REALIZADO on T1.ID_SOLICITUD equals T6.ID_SOLICITUD into allData
                              where T2.CHECK_OUT != "3" && T4.VIGENTE == "1" && T2.FECHA_FIN < System.DateTime.Now
 
@@ -160,7 +158,7 @@ namespace TurismoReal_Desktop_Controlador
                     sol.IDconductorAsignado = res.Conductor;
                     sol.descripcionVehiculo = res.DescVehiculo;
                     sol.patente = res.Patente;
-                    
+
 
                     listSolicitudes.Add(sol);
                 }
@@ -174,7 +172,7 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
-        
+
         public bool AceptarTraslado(decimal id_solicitud, int id_conductor, string desc_vehiculo, string patente)
         {
             // Tomar datos recibidos, que debiesen ser id_solicitud, ID_conductor, desc_vehiculo, y patente para crear un
@@ -211,7 +209,7 @@ namespace TurismoReal_Desktop_Controlador
             }
         }
 
-        
+
         public bool RechazarTraslado(decimal id_solicitud, bool estabaAceptado)
         {
             // Al rechazar el traslado, si habia sido aceptada, tendrá que eliminarse el registro de Traslado_realizado y
@@ -235,5 +233,5 @@ namespace TurismoReal_Desktop_Controlador
 
     }
 
-    
+
 }

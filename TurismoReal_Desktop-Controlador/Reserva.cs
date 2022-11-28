@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TurismoReal_Desktop_DALC;
 
 namespace TurismoReal_Desktop_Controlador

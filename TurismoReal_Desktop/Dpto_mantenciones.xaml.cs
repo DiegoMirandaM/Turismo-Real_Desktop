@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using TurismoReal_Desktop_Controlador;
+using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
+using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
 {
@@ -35,13 +25,13 @@ namespace TurismoReal_Desktop
             InitializeComponent();
         }
 
-        public Dpto_mantenciones (Departamento dpto)
+        public Dpto_mantenciones(Departamento dpto)
         {
             InitializeComponent();
             selectedDpto = dpto;
 
             lb_selectedDpto.Content = ArmarLabel();
-            
+
             Recargar_listado_mantenciones();
             Alternar_habil_btns(false);
         }
@@ -59,7 +49,7 @@ namespace TurismoReal_Desktop
             List<Mantencion> listadoMantenciones = mant.ListarTodoDeDpto(selectedDpto.ID_DPTO);
 
             // Si no hay mantenciones para el departamento, mostrar un primer registro vacio
-            if(listadoMantenciones.Count < 1)
+            if (listadoMantenciones.Count < 1)
             {
                 dg_mantenciones.SelectedItem = new List<Mantencion>();
             }
@@ -115,8 +105,8 @@ namespace TurismoReal_Desktop
             // Iterar por listado de mantenciones actual para verificar que no se registren mantenciones ya existentes.
             foreach (Mantencion manten in dg_mantenciones.Items)
             {
-                if (descripcion.Replace(" ", "").ToUpper() == manten.DESCRIPCION.Replace(" ", "").ToUpper() && 
-                    fec_inicio == manten.FECHA_INICIO && 
+                if (descripcion.Replace(" ", "").ToUpper() == manten.DESCRIPCION.Replace(" ", "").ToUpper() &&
+                    fec_inicio == manten.FECHA_INICIO &&
                     fec_fin == manten.FECHA_FIN)
                 {
                     await this.ShowMessageAsync("Elemento duplicado", "La mantención ya se encuentra en los registros.");
@@ -227,18 +217,18 @@ namespace TurismoReal_Desktop
 
         private void dg_mantenciones_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (actualizando == false)
-            {
-                selectedMantencion = dg_mantenciones.SelectedItem as Mantencion;
+            selectedMantencion = dg_mantenciones.SelectedItem as Mantencion;
 
-                //Recien aqui habilita boton de actualizar
-                Alternar_habil_btns(true);
+            if (actualizando == true || selectedMantencion == null) return;
 
-                dp_fecInicio.SelectedDate = selectedMantencion.FECHA_INICIO;
-                dp_fecFin.SelectedDate = selectedMantencion.FECHA_FIN;
-                tb_descripcion.Text = selectedMantencion.DESCRIPCION;
-                tb_costo.Text = selectedMantencion.COSTO.ToString();
-            }
+            //Recien aqui habilita boton de actualizar
+            Alternar_habil_btns(true);
+
+            dp_fecInicio.SelectedDate = selectedMantencion.FECHA_INICIO;
+            dp_fecFin.SelectedDate = selectedMantencion.FECHA_FIN;
+            tb_descripcion.Text = selectedMantencion.DESCRIPCION;
+            tb_costo.Text = selectedMantencion.COSTO.ToString();
+            
         }
 
         private async void btn_eliminar_Click(object sender, RoutedEventArgs e)

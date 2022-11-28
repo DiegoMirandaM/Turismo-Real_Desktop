@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
-using MahApps.Metro.Controls.Dialogs;
-
 using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
@@ -24,7 +13,7 @@ namespace TurismoReal_Desktop
     /// </summary>
     public partial class Transporte : MetroWindow
     {
-        private Boolean actualizando;
+        //private Boolean actualizando;
         private Solicitud_transporte seleccionado;
 
         public Transporte()
@@ -45,8 +34,9 @@ namespace TurismoReal_Desktop
         }
         private void dg_listaSolicitudes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // Se realiza esta comprobacion ya que el evento SelectionChanged se activa tambien cuando se actualiza la tabla, esto evita sus errores.
             seleccionado = dg_listaSolicitudes.SelectedItem as Solicitud_transporte;
+
+            if (seleccionado == null) return;
 
             // Tomar los valores del objeto seleccionado, y ponerlos en las cajas de texto CORESPONDIENTE A VIAJE DE IDA. ELSE = VUELTA:
             if (seleccionado.SENTIDO_VIAJE == "IDA")
@@ -180,7 +170,8 @@ namespace TurismoReal_Desktop
             // Tomar valores de los campos dependiendo del sentido del viaje:
             if (sentido == "IDA")
             {
-                if (cb_conductorIda.SelectedIndex == -1) {
+                if (cb_conductorIda.SelectedIndex == -1)
+                {
                     await this.ShowMessageAsync("Faltan datos del viaje de ida", "Por favor, complete todos los datos e intente nuevamente.");
                     return;
                 }

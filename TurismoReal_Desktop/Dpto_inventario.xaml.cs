@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using TurismoReal_Desktop_Controlador;
+using System;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
+using TurismoReal_Desktop_Controlador;
 
 namespace TurismoReal_Desktop
 {
@@ -99,7 +87,7 @@ namespace TurismoReal_Desktop
             Inventario inv = new Inventario();
 
             Boolean resultado = inv.CrearItem(selectedDpto.ID_DPTO, nombre, valor, disponible, fecCompra);
-            
+
             if (resultado)
             {
                 actualizando = true;
@@ -115,7 +103,7 @@ namespace TurismoReal_Desktop
             {
                 await this.ShowMessageAsync("El registro falló", "Algo salió mal, por favor intentelo nuevamente.");
             }
-            
+
         }
 
         private async void btn_actualizar_Click(object sender, RoutedEventArgs e)
@@ -170,7 +158,7 @@ namespace TurismoReal_Desktop
                 actualizando = true;
 
                 limpiarCampos();
-                
+
                 actualizando = false;
 
                 win_Dpto.RecargarInventario();
@@ -217,18 +205,18 @@ namespace TurismoReal_Desktop
 
         private void dg_inventario_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (actualizando == false)
-            {
-                selectedInventario = dg_inventario.SelectedItem as Inventario;
+            selectedInventario = dg_inventario.SelectedItem as Inventario;
 
-                //Recien aqui habilita boton de actualizar
-                Alternar_habil_btns(true);
+            if (actualizando == true || selectedInventario == null) return;
 
-                tb_nombre.Text = selectedInventario.NOMBRE;
-                tb_valor.Text = selectedInventario.VALOR.ToString();
-                dt_compra.SelectedDate = selectedInventario.FECHA_COMPRA;
-                ck_disponible.IsChecked = selectedInventario.DISPONIBLE == "1" ? true : false;
-            }
+            //Recien aqui habilita boton de actualizar
+            Alternar_habil_btns(true);
+
+            tb_nombre.Text = selectedInventario.NOMBRE;
+            tb_valor.Text = selectedInventario.VALOR.ToString();
+            dt_compra.SelectedDate = selectedInventario.FECHA_COMPRA;
+            ck_disponible.IsChecked = selectedInventario.DISPONIBLE == "1" ? true : false;
+            
         }
 
         private void tb_valor_PreviewTextInput(object sender, TextCompositionEventArgs e)

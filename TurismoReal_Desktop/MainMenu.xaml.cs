@@ -1,6 +1,5 @@
-﻿using System.Windows;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Behaviors;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
 
 namespace TurismoReal_Desktop
 {
@@ -19,7 +18,7 @@ namespace TurismoReal_Desktop
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
             Dpto win_dpo = new Dpto();
             win_dpo.Show();
-            
+
             this.Close();
             System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
